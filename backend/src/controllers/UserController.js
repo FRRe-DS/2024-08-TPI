@@ -7,8 +7,6 @@ class UserController {
         try {
             const user = await UserModel.createUser({ nombre, email, password, role });
             res.status(201).json(user);
-            //const token = jwt.sign({ id: result.insertId, role }, 'secret_key', { expiresIn: '1h' });
-            //res.json({ token });
         } catch (error) {
             res.status(500).json({ error: 'Error al crear el usuario' });
         }
@@ -66,16 +64,6 @@ class UserController {
             res.status(500).json({ error: 'Error al eliminar el Usuario' });
         }
     }
-    //Registro de usuario
-    /*static async registerUser(req,res){
-        const { nombre, email, password } = req.body
-        try {
-            const user = await UserModel.registerUser({ nombre, email, password, role });
-            res.status(200).json(user);
-        } catch (error){
-            res.status(500).json({ error: 'Error al crear el usuario' });
-        }
-    }*/
 }
     
 

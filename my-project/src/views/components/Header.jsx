@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '/public/css/Header.css'; 
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);  
     const [showLogout, setShowLogout] = useState(false);      
@@ -13,6 +14,11 @@ const Header = () => {
 
     const toggleLogout = () => setShowLogout(!showLogout); 
 
+    const userHasRole = (role) => {
+        return user && user['https://dev-fxve5ej4l1ljzvcj.us.auth0.com/roles']?.includes(role);
+
+    }
+    console.log(user)
     return (
         <header className="header">
             <div className="logo">
@@ -47,6 +53,14 @@ const Header = () => {
                             >
                                 Cerrar Sesión
                             </button>
+                            {userHasRole("admin") && ( // Verificar rol de admin
+                                <Link to="/admin">
+                                    <button
+                                    style={{ marginTop: '10px' }}>
+                                        Panel de Control
+                                    </button>
+                                </Link>
+                            )}
                         </div>
                     )}
                 </div>
