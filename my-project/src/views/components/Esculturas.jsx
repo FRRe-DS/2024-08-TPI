@@ -3,6 +3,7 @@ import './custom.css'
 
 
 const Esculturas = () => {
+    const imagen = 'public/img/imagen_bienal.jpg'
     return (
         <div className="font-medium custom-bg rounded-lg shadow-lg max-w-lg m-12 p-7">
             <h2 className="custom-bg2 text-3xl py-1 rounded-lg mb-4 text-center">Nombre</h2> 

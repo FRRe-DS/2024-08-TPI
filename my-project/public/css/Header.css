@@ -57,7 +57,7 @@
     color: #393d42;
 }
 
-.header .btn {
+.header .btn button , .header .menu button{
     font-weight: 700;
     color: #1f2124;
     padding: 9px 25px;
@@ -81,19 +81,14 @@
 .menu{
     display: none;
 }
-.header .btn:hover {
+.header .btn button:hover, .header .menu button:hover{
     background-color: #9fa3a9;
     color: #393d42;
     transform: scale(1.1);
 }
 
-.header .menu button:hover {
-    background-color: #9fa3a9;
-    color: #393d42;
-    transform: scale(1.1);
-}
 
-@media screen and (max-width: 800px) {
+/**/@media screen and (max-width: 800px){
     .nav-links, .btn {
         display: none;
     }
@@ -157,22 +152,5 @@
         right: 35px;
     }
 }
-.user-info {
-    position: relative;
-}
 
-.logout-menu {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000;
-}
 
-/* Add styles for when the menu is open */
-#mobile-menu.open {
-    width: 100%;
-}

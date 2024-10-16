@@ -1,6 +1,114 @@
 footer {
     background-color: #1f2124;
     color: #9fa3a9;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.footer-column {
+    flex: 1;
+    margin: 20px;
+}
+
+.footer-column h3 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-column p,
+.footer-column a {
+    color: #9fa3a9;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    display: block; /* Cada enlace ocupará una nueva línea */
+}
+
+.footer-column a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-media ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.social-media li {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    transition: opacity 0.3s;
+}
+
+.social-media img:hover {
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #9fa3a9;
+}
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column; /* Cambiar las columnas a dirección vertical */
+        align-items: center; /* Centrar las columnas */
+        padding: 15px 10px;
+    }
+
+    .footer-column {
+        margin: 10px 0; /* Ajustar los márgenes para columnas apiladas */
+        text-align: center;
+        flex-basis: 100%; /* Forzar que cada columna ocupe el ancho completo */
+    }
+
+    .social-media ul {
+        flex-direction: row; /* Mantener los íconos de redes sociales en una fila horizontal */
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (móviles de menos de 480px) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 5px; /* Hacerlo más compacto */
+    }
+
+    .footer-column {
+        margin: 5px 0;
+    }
+
+    .footer-bottom {
+        font-size: 10px;
+    }
+
+    .social-media img {
+        width: 24px;  /* Mantener el tamaño de los íconos constante */
+        height: 24px;
+    }
+}footer {
+    background-color: #1f2124;
+    color: #9fa3a9;
     padding: 20px;
     text-align: center;
 }
