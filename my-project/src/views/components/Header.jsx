@@ -73,31 +73,32 @@ const Header = () => {
             {!isAuthenticated ? (
                 <button className="btn" onClick={loginWithRedirect}>Iniciar Sesión</button>
             ) : (
-                <div className="user-info">
-                    <img 
-                        src={user.picture || "img/avatar.png"} 
-                        alt="User Icon" 
-                        onClick={toggleLogout}  
-                        style={{ cursor: 'pointer', borderRadius: '50%', width: '50px', height: '50px' }}
-                    />
-                    {showLogout && (
-                        <div className="logout-menu">
-                            <button 
-                                onClick={() => logout({ returnTo: window.location.origin })}
-                                style={{ marginTop: '10px' }}
-                            >
-                                Cerrar Sesión
-                            </button>
-                            {userHasRole("admin") && (
-                                <Link to="/admin">
-                                    <button style={{ marginTop: '10px' }}>
-                                        Panel de Control
-                                    </button>
-                                </Link>
-                            )}
-                        </div>
-                    )}
+                <div className="user-info" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img 
+                    src={user.picture || "img/avatar.png"} 
+                    alt="User Icon" 
+                    onClick={toggleLogout}  
+                    style={{ cursor: 'pointer', borderRadius: '50%', width: '50px', height: '50px', margin: '0 10px' }} // Espaciado entre el logo y los botones
+                />
+                {showLogout && (
+                    <div className="logout-menu" style={{ display: 'flex', alignItems: 'center' }}>
+                        <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                            onClick={() => logout({ returnTo: window.location.origin })}   
+                        >
+                            Cerrar Sesión
+                        </button>
+                        {userHasRole("admin") && (
+                            <Link to="/admin" style={{ marginLeft: '10px' }}>
+                                <button class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                                    Panel de Control
+                                </button>
+                            </Link>
+                        )}
+                    </div>
+                )}
                 </div>
+
+
             )}
 
             <a onClick={openNav} className="menu"><button>Menu</button></a>

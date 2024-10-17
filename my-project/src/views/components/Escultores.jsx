@@ -19,7 +19,7 @@ const Escultores = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 p-10">
       {escultores.map((escultor) => (
-        <div key={escultor.id} className="relative bg-white shadow-lg p-3 rounded-lg max-w-xs">
+        <div key={escultor.id} className="relative shadow-lg p-3 rounded-lg max-w-xs bg-customGray">
           {/* Bandera o imagen de la nacionalidad */}
           <img
             className="absolute top-1 left-4 w-10 h-6"
@@ -37,7 +37,7 @@ const Escultores = () => {
           {/* Información del escultor */}
           <div className="text-center">
             <h2 className="text-xl font-semibold">{escultor.nombre_esc + " " + escultor.apellido}</h2>
-            <p className="text-gray-500">{escultor.nacionalidad}</p>
+            <p className="text-grisOscuro">{escultor.nacionalidad}</p>
           </div>
         </div>
       ))}
