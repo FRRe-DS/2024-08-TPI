@@ -10,7 +10,9 @@ router.get('/', UserController.getAllUsers);
 router.post('/', UserController.createUser);
 
 // Obtener un User por ID
-router.get('/:id', UserController.getUserById);
+router.get('/:email', UserController.getUserById);
+
+router.get('/role/:email', UserController.getRoleByEmail);
 
 // Actualizar un User
 router.put('/:id', UserController.updateUser);
