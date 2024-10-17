@@ -31,12 +31,12 @@ const Escultores = () => {
           <img
             className="w-24 h-24 mx-auto mb-5"
             src={escultor.imagen_esc} // Imagen del escultor
-            alt={escultor.nombre_esc} // Alt text con el nombre del escultor
+            alt={escultor.nombre_esc + escultor.apellido} // Alt text con el nombre del escultor
           />
 
           {/* Información del escultor */}
           <div className="text-center">
-            <h2 className="text-xl font-semibold">{escultor.nombre_esc}</h2>
+            <h2 className="text-xl font-semibold">{escultor.nombre_esc + " " + escultor.apellido}</h2>
             <p className="text-gray-500">{escultor.nacionalidad}</p>
           </div>
         </div>
