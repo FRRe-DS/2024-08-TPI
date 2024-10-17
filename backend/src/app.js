@@ -10,7 +10,7 @@ const cors = require('cors');
 app.use(express.json());
 
 app.use(cors({
-    origin: '*',  // Permitir todos los orígenes. Para producción, considera especificar orígenes seguros.
+   origin: 'http://localhost:5173'
   }));
 
 // Rutas de eventos

@@ -1,14 +1,20 @@
 const pool = require('../config/db');
 
 class UserModel {
-    // Crear un nuevo user
-    static async createUser({ nombre, email, password, role }) {
+    
+    static async createUser({ name, nickname, email, role }) {
+        const [existeusuario] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
+        if (existeusuario.length > 0) {
+            return { error: 'Usuario existente' };
+        }
+    
         const [result] = await pool.query(
-            'INSERT INTO usuarios (nombre, email, password, role) VALUES (?, ?, ?, ?)',
-            [nombre, email, password, role]
+            'INSERT INTO usuarios (name, nickname, email, role) VALUES (?, ?, ?, ?)',
+            [name, nickname, email, role]
         );
-        return { id: result.insertId, nombre, email, password, role };
+        return { id: result.insertId, name, nickname, email, role };
     }
+    
 
     // Obtener todos los user
     static async getAllUsers() {
@@ -16,27 +22,34 @@ class UserModel {
         return rows;
     }
 
-    // Obtener user por ID
-    static async getUserById(id) {
-        const [rows] = await pool.query('SELECT * FROM usuarios WHERE id = ?', [id]);
+    // Obtener user por email
+    static async getUserById(email) {
+        const [rows] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
         if (rows.length === 0) {
             return null;
         }
         return rows[0];
     }
+    static async getRoleByEmail(email) {
+        const [rows] = await pool.query('SELECT role FROM usuarios WHERE email = ?', [email]);
+        if (rows.length === 0) {
+            return null;
+        }
+        return rows[0].role; 
+    }
 
-    // Actualizar user por ID
-    static async updateUser(id, { nombre, email, password, role }) {
+    // Actualizar user 
+    static async updateUser(email, {name, nickname, role }) {
         const [result] = await pool.query(
-            'UPDATE eventos SET nombre = ?, email = ?, password = ?, role = ? WHERE id = ?',
-            [nombre, email, password, role, id]
+            'UPDATE eventos SET name = ?, nickname = ?, role = ? WHERE email = ?',
+            [name, nickname, role, email]
         );
         return result.affectedRows > 0;
     }
 
-    // Eliminar user por ID
-    static async deleteUser(id) {
-        const [result] = await pool.query('DELETE FROM usuarios WHERE id = ?', [id]);
+    // Eliminar user
+    static async deleteUser(email) {
+        const [result] = await pool.query('DELETE FROM usuarios WHERE email = ?', [email]);
         return result.affectedRows > 0;
     }
 }

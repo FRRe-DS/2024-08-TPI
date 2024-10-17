@@ -68,6 +68,24 @@
     transition: all 0.3s ease 0s;
 }
 
+.header .btn {
+    font-weight: 700;
+    color: #1f2124;
+    padding: 9px 25px;
+    background: #6a6e73;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.header .btn:hover {
+    background-color: #9fa3a9;
+    color: #393d42;
+    transform: scale(1.1);
+}
+
+/* También para el botón del menú */
 .header .menu button {
     font-weight: 700;
     color: #1f2124;
@@ -78,22 +96,25 @@
     cursor: pointer;
     transition: all 0.3s ease 0s;
 }
-.menu{
-    display: none;
-}
-.header .btn button:hover, .header .menu button:hover{
+
+.header .menu button:hover {
     background-color: #9fa3a9;
     color: #393d42;
     transform: scale(1.1);
 }
 
 
-/**/@media screen and (max-width: 800px){
+.menu {
+    display: none;
+}
+
+
+@media screen and (max-width: 800px) {
     .nav-links, .btn {
-        display: none;
+        display: none; /* Ocultar el menú de navegación y el botón de iniciar sesión */
     }
     .menu {
-        display: inherit;
+        display: inherit; /* Mostrar el botón menú en pantallas pequeñas */
     }
 }
 
@@ -112,7 +133,9 @@
     overflow: hidden;
     transition: width 0.3s ease 0s;
 }
-
+.header .overlay.open {
+    width: 100%; /* Asegúrate de que se expanda a todo el ancho de la pantalla */
+}
 .header .overlay .overlay-content {
     display: flex;
     height: 100%;
@@ -154,3 +177,18 @@
 }
 
 
+.logout-menu button {
+    background-color: white; 
+    color: black;            
+    border: 1px solid black; 
+    padding: 2px 5px;     
+    border-radius: 5px;     
+    cursor: pointer;         
+    font-size: 16px;        
+    transition: background-color 0.3s; 
+}
+
+
+.logout-menu button:hover {
+    background-color: #f0f0f0; 
+}

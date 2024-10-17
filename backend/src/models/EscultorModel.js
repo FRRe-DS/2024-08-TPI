@@ -2,12 +2,12 @@ const pool = require('../config/db');
 
 class EscultorModel {
     // Crear un nuevo evento
-    static async createEscultor({ nombre, biografia, contacto, obras_previas, imagen }) {
+    static async createEscultor({ nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc }) {
         const [result] = await pool.query(
-            'INSERT INTO Escultores (nombre, biografia, contacto, obras_previas, imagen_esc, imagen_nacionalidad, nacionalidad) VALUES (?, ?, ?, ?, ?)',
-            [nombre, biografia, contacto, obras_previas, imagen_esc, imagen_nacionalidad, nacionalidad]
+            'INSERT INTO Escultores (nombre_esc, apellido,nacionalidad,img_nacionalidad,biografia,imagen_esc) VALUES (?, ?, ?, ?, ?, ?)',
+            [nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc ]
         );
-        return { id_escultor: result.insertId, nombre, biografia, contacto, obras_previas, imagen_esc, imagen_nacionalidad, nacionalidad };
+        return { id_escultor: result.insertId, nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc  };
     }
 
     // Obtener todos los Escultores
@@ -26,10 +26,10 @@ class EscultorModel {
     }
 
     // Actualizar Escultoro por ID
-    static async updateEscultor(id_escultor, { nombre, biografia, contacto, obras_previas, imagen }) {
+    static async updateEscultor(id_escultor, {nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc }) {
         const [result] = await pool.query(
-            'UPDATE Escultores SET nombre = ?, biografia = ?, contacto = ?, obras_previas = ?, imagen_esc = ?,imagen_nacionalidad = ?, nacionalidad = ? WHERE id_escultor = ?',
-            [nombre, biografia, contacto, obras_previas, imagen_esc, imagen_nacionalidad, nacionalidad, id_escultor]
+            'UPDATE Escultores SET nombre_esc = ?, apellido = ?, contacto = ?,nacionalidad = ?, img_nacionalidad = ?,biografia = ?, imagen_esc = ? WHERE id_escultor = ?',
+            [nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc, id_escultor ]
         );
         return result.affectedRows > 0;
     }

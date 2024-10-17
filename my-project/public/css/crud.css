@@ -78,6 +78,7 @@ html{
 }
 
 
+
 @media (max-width: 768px) {
     #titulo1, #titulo2, #titulo3 {
         font-size: 75px; /* Reducir el tamaño de fuente */
@@ -187,5 +188,42 @@ html{
     
     .demas_info p {
         font-size: 16px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+}
+.button-container {
+    display: grid; /* Usamos grid para el diseño */
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 5px; /* Espacio entre botones (ajustado para estar más juntos) */
+    justify-items: center; /* Centra los botones dentro de sus celdas */
+    margin: 0px; /* Espaciado alrededor del contenedor */
+}
+
+/* Estilo para los botones */
+.custom-button {
+    background-color: #4CAF50; /* Color de fondo */
+    color: rgb(0, 0, 0); /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 12px 24px; /* Espaciado interno (ajustado) */
+    text-align: center; /* Alinear texto al centro */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave para el hover */
+    width: 50%; /* Hacer que el botón use todo el ancho disponible */
+    margin: 10px 5px 5px 5px;
+    height: 60px; /* Altura ajustada de los botones */
+}
+
+
+/* Efecto hover para los botones */
+.custom-button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    .button-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
 }
