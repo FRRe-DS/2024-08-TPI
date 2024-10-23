@@ -7,7 +7,8 @@ import Escultores from './views/components/Escultores'; // Importa otros compone
 import Esculturas from './views/components/Esculturas';
 import Votacion from './views/components/Votacion';
 import RutasProtegidas from './views/components/RutasProtegidas';
-import Create from './views/components/create-escultor'; // Asegúrate de importar el componente Create
+import Create from './views/components/create-escultor'; // Asegúrate de importar el componente Create}
+
 import Admin from './views/components/CRUD';
 
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/escultores" element={<Escultores />} />
             <Route path="/esculturas" element={<Esculturas />} />
             <Route path="/create" element={<Create />} />
+            
             <Route 
                 path="/votacion" 
                 element={

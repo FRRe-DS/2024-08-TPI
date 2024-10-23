@@ -93,6 +93,23 @@ function Crud() {
         (item.nombre_esc || item.nombre).toLowerCase().includes(searchTerm.toLowerCase()) // Ajustar según el tipo de listado
     );
 
+    // Función para manejar la navegación al formulario de creación según la lista activa
+    const handleAdd = () => {
+        switch (activeList) {
+            case 'escultores':
+                navigate('/Create');
+                break;
+            case 'esculturas':
+                navigate('/create-escultura');
+                break;
+            case 'usuarios':
+                navigate('/create-usuario');
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <div className="crud-container">
             <div className="sidebar">
@@ -110,7 +127,7 @@ function Crud() {
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda
                         />
-                        <button className="add-button" onClick={() => navigate('/Create')}>Agregar +</button>
+                        <button className="add-button" onClick={handleAdd}>Agregar +</button>
                     </div>
                 </header>
                 <div className="list-container">
