@@ -18,10 +18,6 @@ const Votacion = () => {
     fetchEscultor();
   }, [id_escultor]);
 
-  const closeBiografia = () => {
-    setEscultor(null); 
-  };
-
   if (!escultor) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -49,12 +45,6 @@ const Votacion = () => {
             {escultor.nombre_esc} {escultor.apellido}
           </h2>
           <p className="text-gray-500 italic mb-4">{escultor.nacionalidad}</p>
-          <button
-            className="text-gray-500 hover:text-gray-700 float-right mb-4 text-xl"
-            onClick={closeBiografia}
-          >
-            &times;
-          </button>
           <div className="text-left w-full px-4">
             <h3 className="text-lg font-semibold mb-2 text-gray-800">Biografía</h3>
             <p className="text-gray-600 leading-relaxed">{escultor.biografia}</p>

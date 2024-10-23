@@ -5,7 +5,7 @@ const Escultores = () => {
   const [escultores, setEscultores] = useState([]);
   const [selectedEscultor, setSelectedEscultor] = useState(null);
   const [showBiografia, setShowBiografia] = useState(false);
-  const navigate = useNavigate(); // Hook para redirigir a la página de votación
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEscultores = async () => {
@@ -44,7 +44,7 @@ const Escultores = () => {
             {/* Imagen de la bandera en la esquina superior izquierda */}
             <img
               className="absolute top-2 left-2 w-12 h-8 rounded shadow-md border border-gray-300"
-              src={escultor.img_nacionalidad} // Reemplaza esto con la propiedad correcta para la bandera
+              src={escultor.img_nacionalidad}
               alt={`Bandera de ${escultor.nacionalidad}`}
             />
             
@@ -57,7 +57,7 @@ const Escultores = () => {
               <h2 className="text-xl font-semibold text-gray-900">{escultor.nombre_esc}</h2>
               <p className="text-gray-500">{escultor.nacionalidad}</p>
             </div>
-            <div className="text-center mt-4 w-full flex justify-around">
+            <div className="text-center mt-4 w-full flex flex-col sm:flex-row justify-around">
               <button 
                 className="bg-gray-800 text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200"
                 onClick={() => handleVerBiografia(escultor)}
@@ -108,6 +108,7 @@ const Escultores = () => {
 };
 
 export default Escultores;
+
 
 
 
