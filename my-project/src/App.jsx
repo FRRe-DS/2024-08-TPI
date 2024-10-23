@@ -11,6 +11,7 @@ import Create from './views/components/Create'; // Asegúrate de importar el com
 import Admin from './views/components/CRUD';
 
 
+
 const App = () => {
 
 
@@ -40,6 +41,7 @@ const App = () => {
                 />
 
             <Route path="*" element={<div>404 Not Found</div>} /> {/* Página 404 */}
+          
           </Routes>
         </main>
         <Footer />
