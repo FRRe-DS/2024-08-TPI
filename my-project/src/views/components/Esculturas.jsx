@@ -1,6 +1,4 @@
-
 import './custom.css'
-
 
 const Esculturas = () => {
     const imagen = 'public/img/imagen_bienal.jpg'
