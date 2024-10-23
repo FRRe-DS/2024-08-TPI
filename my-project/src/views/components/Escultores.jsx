@@ -36,11 +36,7 @@ const Escultores = () => {
 
           {/* Información del escultor */}
           <div className="text-center">
-<<<<<<< HEAD
             <h2 className="text-xl font-semibold">{escultor.nombre_esc + " " + escultor.apellido}</h2>
-=======
-            <h2 className="text-xl font-semibold">{escultor.nombre_esc}</h2>
->>>>>>> origin/frontend
             <p className="text-grisOscuro">{escultor.nacionalidad}</p>
           </div>
         </div>
