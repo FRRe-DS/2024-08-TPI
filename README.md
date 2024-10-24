@@ -53,8 +53,8 @@ npm run dev
 > **DEBEN TENER ABIERTO SU MYSQL PARA ESTO Y TENER INSTALADO PYTHON** 
 
 
-El CMD les va pedir su contraseña del servidor de MYSQL, al escribir no van a ver lo que escriben por seguridad 
-Si es la primera vez que ejecutan el script, ejecuten lo siguiente, si ya hicieron esto una vez no es necesario: :alien:
+El CMD les va pedir su contraseña del servidor de MYSQL, al escribir no van a ver lo que escriben por seguridad. 
+> Si es la primera vez que ejecutan el script, ejecuten lo siguiente, si ya hicieron esto una vez no es necesario: :alien:
 
 ``` 
 pip install mysql
