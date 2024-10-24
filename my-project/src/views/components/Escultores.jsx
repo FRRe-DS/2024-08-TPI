@@ -18,10 +18,7 @@ const Escultores = () => {
     fetchEscultores();
   }, []);
 
-  const handleVerBiografia = (escultor) => {
-    setSelectedEscultor(escultor);
-    setShowBiografia(true);
-  };
+
 
   const handleVotar = (escultor) => {
     navigate(`/votacion/${escultor.id_escultor}`);
@@ -33,7 +30,7 @@ const Escultores = () => {
         {escultores.map((escultor) => (
           <div
             key={escultor.id_escultor}
-            className="relative bg-white shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
+            className="relative bg-customGray shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
           >
             <img
               className="absolute top-2 left-2 w-10 h-6 sm:w-12 sm:h-8 rounded shadow-md border border-gray-300"
@@ -46,12 +43,12 @@ const Escultores = () => {
               alt={escultor.nombre_esc}
             />
             <div className="text-center">
-              <h2 className="text-lg sm:text-xl font-semibold text-gray-900">{escultor.nombre_esc}</h2>
-              <p className="text-gray-500">{escultor.nacionalidad}</p>
+              <h2 className="text-lg sm:text-xl font-semibold text-grisBIENnegro">{escultor.nombre_esc + ' ' + escultor.apellido}</h2>
+              <p className="text-grisBIENnegro">{escultor.nacionalidad}</p>
             </div>
             <div className="mt-4 w-full flex flex-col sm:flex-row justify-around space-y-2 sm:space-y-0">
               <button
-                className="bg-gray-800 text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200 w-full sm:w-auto"
+                className="bg-grisOscuro text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200 w-full sm:w-auto"
                 onClick={() => handleVotar(escultor)}
               >
                 Ver más

@@ -46,6 +46,15 @@ npm install
 ```
 npm run dev
 ```
+> [!NOTE]
+> **Script automatico en python para actualizar la bd**
+**HAY QUE TENER INSTALADO PYTHON** 
+
+El CMD les va pedir su contraseña del servidor de MYSQL, al escribir no van a ver lo que escriben por seguridad jijo
+``` 
+pip instalL mysql
+```
+
 
     
 ## Documentacion
