@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
 
 const Votacion = () => {
   const { id_escultor } = useParams();
+  const navigate = useNavigate(); // Inicializar useNavigate
   const [escultor, setEscultor] = useState(null);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const Votacion = () => {
   return (
     <div className="p-5 bg-gray-100 min-h-screen">
       <div className="flex flex-col items-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800">Biografía del Escultor</h1>
+        <h1 className="text-4xl font-bold text-GrisMuyOscuro">Biografía del Escultor</h1>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
@@ -41,20 +42,20 @@ const Votacion = () => {
             alt={escultor.nombre_esc}
             className="w-32 h-32 mb-4 rounded-full border-4 border-gray-300 shadow-md"
           />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
+          <h2 className="text-2xl font-bold text-GrisMuyOscuro mb-2">
             {escultor.nombre_esc} {escultor.apellido}
           </h2>
           <p className="text-gray-500 italic mb-4">{escultor.nacionalidad}</p>
           <div className="text-left w-full px-4">
-            <h3 className="text-lg font-semibold text-gray-800">Información del Escultor</h3>
-            <p><span className="font-bold">Nombre:</span> {escultor.nombre_esc}</p>
-            <p><span className="font-bold">Apellido:</span> {escultor.apellido}</p>
-            <p><span className="font-bold">Nacionalidad:</span> {escultor.nacionalidad}</p>
+            <h3 className="text-lg font-semibold text-GrisMuyOscuro">Información del Escultor</h3>
+            <p><span className="font-bold text-GrisMuyOscuro">Nombre:</span> 
+            <span className='text-GrisCasiOscuro'> {escultor.nombre_esc}</span></p>
+            <p><span className="font-bold text-GrisMuyOscuro">Apellido:</span> <span className='text-GrisCasiOscuro'> {escultor.apellido}</span></p>
           </div>
 
           {/* Sección de código QR */}
           <div className="mt-6">
-            <h3 className="text-lg items-center font-semibold text-gray-800">ESCANEAR CÓDIGO:</h3>
+            <h3 className="text-lg items-center font-semibold text-GrisMuyOscuro">ESCANEAR CÓDIGO:</h3>
             <div className="w-32 h-32 mt-4">
               <img
                 src={`http://localhost:5173/api/qr/${id_escultor}`}
@@ -67,20 +68,20 @@ const Votacion = () => {
 
         <div className="flex-grow bg-white rounded-lg shadow-lg p-4">
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">Biografía</h3>
-            <p className="text-gray-600 leading-relaxed">{escultor.biografia}</p>
+            <h3 className="text-lg font-semibold mb-2 text-GrisMuyOscuro">Biografía</h3>
+            <p className="text-GrisCasiOscuro leading-relaxed">{escultor.biografia}</p>
           </div>
 
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">Escultura Actual</h3>
-            <p>Aquí se mostrará la información sobre la escultura.</p>
+            <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Escultura Actual</h3>
+            <p className='text-GrisCasiOscuro '>Aquí se mostrará la información sobre la escultura.</p>
           </div>
         </div>
       </div>
 
       {/* Nuevo bloque para esculturas antiguas */}
       <div className="bg-white rounded-lg shadow-lg p-4 mt-6">
-        <h3 className="text-xl font-semibold mb-4 text-gray-800">Esculturas Antiguas</h3>
+        <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Esculturas Antiguas</h3>
         {escultor.esculturas_antiguas && escultor.esculturas_antiguas.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {escultor.esculturas_antiguas.map((escultura, index) => (
@@ -90,7 +91,7 @@ const Votacion = () => {
                   alt={escultura.nombre}
                   className="w-full h-40 object-cover rounded-lg mb-2"
                 />
-                <h4 className="text-lg font-semibold text-gray-800">{escultura.nombre}</h4>
+                <h4 className="text-lg font-semibold text-GrisMuyOscuro">{escultura.nombre}</h4>
                 <p className="text-gray-600">Año: {escultura.anio}</p>
               </div>
             ))}
@@ -98,6 +99,16 @@ const Votacion = () => {
         ) : (
           <p className="text-gray-500">No hay esculturas antiguas registradas.</p>
         )}
+      </div>
+
+      {/* Botón para volver atrás */}
+      <div className="flex justify-end mt-8">
+        <button
+          onClick={() => navigate(-1)} // Volver a la página anterior
+          className="bg-GrisMuyOscuro  hover:bg-grisOscuro text-white font-bold py-2 px-4 rounded"
+        >
+          Volver atrás
+        </button>
       </div>
     </div>
   );
