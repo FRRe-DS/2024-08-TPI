@@ -7,7 +7,7 @@ const Votacion = () => {
   const [escultor, setEscultor] = useState(null);
 
   useEffect(() => {
-    const fetchEscultor = async () => {
+    const fetchEscultorByID = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
         setEscultor(response.data);
@@ -15,7 +15,7 @@ const Votacion = () => {
         console.error('Error al obtener datos del escultor', error);
       }
     };
-    fetchEscultor();
+    fetchEscultorByID();
   }, [id_escultor]);
 
   if (!escultor) {
@@ -46,17 +46,30 @@ const Votacion = () => {
           </h2>
           <p className="text-gray-500 italic mb-4">{escultor.nacionalidad}</p>
           <div className="text-left w-full px-4">
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">Biografía</h3>
-            <p className="text-gray-600 leading-relaxed">{escultor.biografia}</p>
+            <h3 className="text-lg font-semibold text-gray-800">Información del Escultor</h3>
+            <p><span className="font-bold">Nombre:</span> {escultor.nombre_esc}</p>
+            <p><span className="font-bold">Apellido:</span> {escultor.apellido}</p>
+            <p><span className="font-bold">Nacionalidad:</span> {escultor.nacionalidad}</p>
+          </div>
+
+          {/* Sección de código QR */}
+          <div className="mt-6">
+            <h3 className="text-lg items-center font-semibold text-gray-800">ESCANEAR COGIDO:</h3>
+            <div className="w-32 h-32 mt-4">
+              {/* Aquí irá el código QR dinámico del escultor */}
+              <img
+                src={`http://localhost:5173/api/qr/${id_escultor}`}
+                alt="Código QR"
+                className="w-full h-full"
+              />
+            </div>
           </div>
         </div>
 
         <div className="flex-grow bg-white rounded-lg shadow-lg p-4">
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h3 className="text-lg font-semibold text-gray-800">Información del Escultor</h3>
-            <p><span className="font-bold">Nombre:</span> {escultor.nombre_esc}</p>
-            <p><span className="font-bold">Apellido:</span> {escultor.apellido}</p>
-            <p><span className="font-bold">Nacionalidad:</span> {escultor.nacionalidad}</p>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Biografía</h3>
+            <p className="text-gray-600 leading-relaxed">{escultor.biografia}</p>
           </div>
 
           <div className="bg-gray-100 p-4 rounded-lg">
@@ -70,5 +83,6 @@ const Votacion = () => {
 };
 
 export default Votacion;
+
 
 

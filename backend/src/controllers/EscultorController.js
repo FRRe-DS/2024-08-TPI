@@ -52,7 +52,7 @@ class EscultorController {
         }
     }
 
-    // Eliminar Escultoro
+    // Eliminar Escultor
     static async deleteEscultor(req, res) {
         const { id_escultor } = req.params;
         try {
