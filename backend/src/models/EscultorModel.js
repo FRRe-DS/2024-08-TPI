@@ -16,16 +16,16 @@ class EscultorModel {
         return rows;
     }
 
-    // Obtener Escultoro por ID
+    // Obtener Escultor por ID
     static async getEscultorById(id_escultor) {
-        const [rows] = await pool.query('SELECT * FROM Escultores WHERE id = ?', [id_escultor]);
+        const [rows] = await pool.query('SELECT * FROM Escultores WHERE id_escultor = ?', [id_escultor]);
         if (rows.length === 0) {
             return null;
         }
         return rows[0];
     }
 
-    // Actualizar Escultoro por ID
+    // Actualizar Escultor por ID
     static async updateEscultor(id_escultor, {nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc }) {
         const [result] = await pool.query(
             'UPDATE Escultores SET nombre_esc = ?, apellido = ?, contacto = ?,nacionalidad = ?, img_nacionalidad = ?,biografia = ?, imagen_esc = ? WHERE id_escultor = ?',
@@ -34,7 +34,7 @@ class EscultorModel {
         return result.affectedRows > 0;
     }
 
-    // Eliminar Escultoro por ID
+    // Eliminar Escultor por ID
     static async deleteEscultor(id_escultor) {
         const [result] = await pool.query('DELETE FROM escultor WHERE id_escultor = ?', [id_escultor]);
         return result.affectedRows > 0;

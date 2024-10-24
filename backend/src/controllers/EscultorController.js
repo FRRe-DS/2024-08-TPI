@@ -37,7 +37,7 @@ class EscultorController {
         }
     }
 
-    // Actualizar Escultoro
+    // Actualizar Escultor
     static async updateEscultor(req, res) {
         const { id_escultor } = req.params;
         const { nombre, apellido, nacionalidad,imagen_nacionalidad,biografia,imagen_esc } = req.body;
@@ -52,7 +52,7 @@ class EscultorController {
         }
     }
 
-    // Eliminar Escultoro
+    // Eliminar Escultor
     static async deleteEscultor(req, res) {
         const { id_escultor } = req.params;
         try {
