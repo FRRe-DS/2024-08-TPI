@@ -17,9 +17,7 @@ const Escultores = () => {
     };
     fetchEscultores();
   }, []);
-
-
-
+  
   const handleVotar = (escultor) => {
     navigate(`/votacion/${escultor.id_escultor}`);
   };

@@ -8,7 +8,7 @@ const Votacion = () => {
   const [escultor, setEscultor] = useState(null);
 
   useEffect(() => {
-    const fetchEscultorByID = async () => {
+    const fetchEscultor = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
         setEscultor(response.data);
@@ -16,7 +16,7 @@ const Votacion = () => {
         console.error('Error al obtener datos del escultor', error);
       }
     };
-    fetchEscultorByID();
+    fetchEscultor();
   }, [id_escultor]);
 
   if (!escultor) {
@@ -73,7 +73,7 @@ const Votacion = () => {
           </div>
 
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Escultura Actual</h3>
+            <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Proyecto</h3>
             <p className='text-GrisCasiOscuro '>Aquí se mostrará la información sobre la escultura.</p>
           </div>
         </div>

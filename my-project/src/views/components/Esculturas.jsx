@@ -1,28 +1,59 @@
-import './custom.css'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import '/public/css/custom.css';
 
 const Esculturas = () => {
-    const imagen = 'public/img/imagen_bienal.jpg'
+    const [esculturas, setEsculturas] = useState([]);
+
+    useEffect(() => {
+        const fetchEsculturas = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/escultura');
+                setEsculturas(response.data);
+            } catch (error) {
+                console.error('Error al obtener las esculturas', error);
+            }
+        };
+        fetchEsculturas();
+    }, []);
+
     return (
-        <div className="font-medium custom-bg rounded-lg shadow-lg max-w-lg m-12 p-7">
-            <h2 className="custom-bg2 text-3xl py-1 rounded-lg mb-4 text-center">Nombre</h2> 
-            <div className="flex items-start">
-                {imagen && (
-                    <img
-                        src={imagen}
-                        alt="Nombre"
-                        className="w-1/2 h-auto object-cover rounded-lg mr-5"
-                    />
-                )}
-                <div className="flex-1">
-                    <p className="custom-bg2 rounded-lg text-black text-center text-md py-1 px-10 mb-1"><strong>Tematica:</strong> Tematica</p>
-                    <div className="custom-bg2 rounded-lg py-1 px-2">
-                        <p className="text-md mb-1 font-semibold"><strong>Fecha de creación:</strong> fecha</p>
-                        <p className="text-sm text-black font-black">descripcion</p>
+        <div className="flex flex-wrap justify-center">
+            {esculturas.length > 0 ? (
+                esculturas.map((escultura) => (
+                    <div key={escultura.id_escultura} className=" bg-customGray shadow-lg rounded-lg overflow-hidden m-4 max-w-sm flex flex-col">
+                        <h2 className="text-lg sm:text-xl font-semibold text-grisBIENnegro p-4">{escultura.nombre}</h2>
+                        <div className="flex-1 flex">
+                            {escultura.img_url && (
+                                <img
+                                    src={escultura.img_url}
+                                    alt={escultura.nombre}
+                                    className="w-32 h-32 object-cover rounded-lg m-4" 
+                                />
+                            )}
+                            <div className="flex-1 flex flex-col p-4">
+                                <p className="bg-gray-100 rounded-lg text-grisBIENnegro text-center text-md py-1 mb-2">
+                                    <strong>Temática:</strong> {escultura.tematica}
+                                </p>
+                                <div className="bg-gray-100 rounded-lg py-2 px-3 flex-1">
+                                    <p className="text-md font-semibold">
+                                        <strong>Fecha de creación:</strong> {escultura.fecha_creacion}
+                                    </p>
+                                    <p className="text-sm text-black font-black mt-2">
+                                        <strong>Descripción:</strong> {escultura.descripcion}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                ))
+            ) : (
+                <p className="text-center text-lg text-gray-500 mt-4">No se encontraron esculturas.</p>
+            )}
         </div>
     );
 }
 
 export default Esculturas;
+
+

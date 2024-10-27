@@ -54,13 +54,16 @@ function Crud() {
 
     // Función para manejar la eliminación (escultores, esculturas, usuarios)
     const handleDelete = async (id) => {
+        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este elemento?');
+        if (!confirmDelete) return; // Si el usuario cancela, no se realiza la eliminación.
+
         let url = '';
         switch (activeList) {
             case 'escultores':
                 url = `http://localhost:3000/api/escultor/${id}`;
                 break;
             case 'esculturas':
-                url = `http://localhost:3000/api/esculturas/${id}`;
+                url = `http://localhost:3000/api/escultura/${id}`;
                 break;
             case 'usuarios':
                 url = `http://localhost:3000/api/usuario/${id}`;
@@ -71,33 +74,41 @@ function Crud() {
 
         try {
             await fetch(url, { method: 'DELETE' });
+        
+            let mensaje = '';  // Inicializar variable para el mensaje
+        
             if (activeList === 'escultores') {
-                setEscultores(escultores.filter(item => item.id !== id));
+                setEscultores(escultores.filter(item => item.id_escultor !== id));
+                mensaje = 'Se ha eliminado correctamente al escultor';
             } else if (activeList === 'esculturas') {
-                setEsculturas(esculturas.filter(item => item.id !== id));
-            } else {
-                setUsuarios(usuarios.filter(item => item.id !== id));
+                setEsculturas(esculturas.filter(item => item.id_escultura !== id));
+                mensaje = 'Se ha eliminado correctamente la escultura';
+            } else if (activeList === 'usuarios') {
+                setUsuarios(usuarios.filter(item => item.id_usuario !== id));
+                mensaje = 'Se ha eliminado correctamente al usuario';
             }
+        
+            alert(mensaje);  // Mostrar mensaje de éxito
         } catch (error) {
             console.error('Error al eliminar el elemento', error);
         }
     };
 
-    // Filtrar los datos según el término de búsqueda y la lista activa
+    // Filtrar resultados en base al término de búsqueda
     const filteredItems = (activeList === 'escultores'
         ? escultores
         : activeList === 'esculturas'
         ? esculturas
         : usuarios
     ).filter((item) => 
-        (item.nombre_esc || item.nombre).toLowerCase().includes(searchTerm.toLowerCase()) // Ajustar según el tipo de listado
+        (item.nombre_esc || item.nombre).toLowerCase().includes(searchTerm.toLowerCase()) 
     );
 
-    // Función para manejar la navegación al formulario de creación según la lista activa
+    // Función para redirigir al formulario de creación
     const handleAdd = () => {
         switch (activeList) {
             case 'escultores':
-                navigate('/Create');
+                navigate('/create');
                 break;
             case 'esculturas':
                 navigate('/create-escultura');
@@ -133,11 +144,27 @@ function Crud() {
                 <div className="list-container">
                     {filteredItems.length > 0 ? (
                         filteredItems.map((item) => (
-                            <div key={item.id} className="list-item">
+                            <div key={item.id_escultor || item.id_escultura || item.id_usuario} className="list-item">
                                 {item.nombre_esc ? item.nombre_esc + ' ' + item.apellido : item.nombre}
                                 <div className="action-buttons">
-                                    <button className="action-button-delete" onClick={() => handleDelete(item.id)}>Eliminar</button>
-                                    <button className="action-button" onClick={() => navigate(`/modificar/${item.id}`)}>Modificar</button>
+                                    <button className="action-button-delete" onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id_usuario)}>Eliminar</button>
+                                    <button className="action-button"
+                                            onClick={() => {
+                                                switch (activeList) {
+                                                case 'escultores':
+                                                    navigate(`/modificar-escultor/${item.id_escultor}`); 
+                                                    break;
+                                                case 'esculturas':
+                                                    navigate(`/modificar-escultura/${item.id_escultura}`); 
+                                                    break;
+                                                case 'usuarios':
+                                                    navigate(`/modificar-usuario/${item.id_usuario}`); 
+                                                    break;
+                                                default:
+                                                    break;
+                                                }
+                                            }}
+                                    >Modificar</button>
                                 </div>
                             </div>
                         ))
@@ -151,3 +178,4 @@ function Crud() {
 }
 
 export default Crud;
+

@@ -97,8 +97,6 @@ const Header = () => {
                     </div>
                 )}
                 </div>
-
-
             )}
 
             <a onClick={openNav} className="menu"><button>Menu</button></a>
