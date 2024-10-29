@@ -1,0 +1,118 @@
+/* Estilos generales del formulario */
+form {
+    background: transparent;
+    border: 1px solid #9fa3a9;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 500px; /* Ancho máximo del formulario */
+    margin: 20px auto;
+    box-shadow: 0px 6px 15px #393d42;
+}
+
+/* Estilo para las etiquetas */
+form label {
+    font-family: 'EB Garamond', serif;
+    color: #9fa3a9;
+    font-size: 30px;
+}
+
+/* Estilo para inputs y textareas */
+form input,
+form textarea {
+    width: 100%; /* Usa el 100% del ancho disponible */
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'Lora', serif;
+    color: #000000;
+    border: 1px solid #9fa3a9;
+    border-radius: 5px;
+}
+
+/* Estilo para el select */
+form select {
+    width: 100%; /* Usa el 100% del ancho disponible */
+    padding: 10px; /* Espaciado interno para el select */
+    margin: 10px 0; /* Margen superior e inferior */
+    font-family: 'Lora', serif; /* Fuente para el texto dentro del select */
+    color: #000000; /* Color del texto */
+    border: 1px solid #9fa3a9; /* Borde del select */
+    border-radius: 5px; /* Esquinas redondeadas */
+    background-color: white; /* Fondo blanco para el select */
+}
+
+/* Estilo para la opción por defecto en el select */
+form select option[value=""] {
+    color: #a0a0a0; /* Color similar al del placeholder */
+}
+
+/* Evitar que el usuario seleccione la opción por defecto */
+form select option[disabled] {
+    color: #a0a0a0; /* Color similar al del placeholder */
+}
+
+/* Estilo para el select al hacer hover */
+form select:hover {
+    border-color: #9fa3a9; /* Cambia el color del borde al pasar el mouse */
+}
+
+/* Estilo específico para el select cuando está deshabilitado */
+form select:disabled {
+    background-color: #f0f0f0; /* Fondo gris claro cuando está deshabilitado */
+    cursor: not-allowed; /* Cambia el cursor al pasar sobre el select */
+}
+
+/* Estilos para el botón */
+form button {
+    background-color: #393d42;
+    color: #9fa3a9;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Asegura que el botón sea un bloque */
+    margin: 20px auto; /* Centra el botón horizontalmente */
+}
+
+/* Estilo para el hover del botón */
+form button:hover {
+    background-color: #9fa3a9;
+    color: #393d42;
+}
+
+/* Estilo específico para el textarea */
+form textarea {
+    resize: none; /* Evita que el usuario redimensione el textarea */
+}
+
+/* Consultas de medios para hacer el formulario responsivo */
+@media (max-width: 768px) {
+    form {
+        padding: 15px; /* Reduce el espaciado interno en pantallas pequeñas */
+    }
+
+    form label {
+        font-size: 24px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+    }
+
+    form input,
+    form textarea,
+    form select {
+        padding: 8px; /* Reduce el padding en inputs y selects */
+        margin: 8px 0; /* Reduce el margen en inputs y selects */
+    }
+
+    form button {
+        padding: 8px 16px; /* Reduce el espaciado del botón */
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        max-width: 90%; /* Asegura que el formulario no exceda el 90% del ancho en pantallas muy pequeñas */
+    }
+
+    form label {
+        font-size: 20px; /* Tamaño de fuente aún más pequeño para pantallas muy pequeñas */
+    }
+}

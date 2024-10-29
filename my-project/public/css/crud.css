@@ -1,0 +1,145 @@
+.crud-container {
+    display: flex;
+    height: 100vh;
+    background-color: #111;
+    color: #fff;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #222;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Para que la barra lateral sea desplazable si es necesario */
+}
+
+.sidebar-button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+}
+
+.sidebar-button:hover {
+    background-color: #444;
+}
+
+.main-section {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px; /* Separa visualmente el buscador de la lista */
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: #111;
+    border: 1px solid #333;
+    flex-grow: 1; /* Asegura que el input ocupe más espacio */
+}
+
+.add-button {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap; /* Evita que el texto se quiebre */
+}
+
+.add-button:hover {
+    background-color: #218838;
+}
+
+.list-container {
+    margin-top: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px); /* Limita la altura para permitir el desplazamiento */
+    position: relative; /* Asegura que la lista no se superponga con otros elementos */
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-flex; /* Para hacer que el elemento tan solo ocupe lo que sus hijos marque */
+    z-index: 1;
+}
+
+.NombreEscultor {
+    flex-grow: 1; /* Permite que el nombre ocupe el espacio disponible */
+    margin-right: 10px; /* Espacio entre el nombre y los botones */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Espacio entre botones */
+}
+
+.list-item span {
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+
+.action-button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    margin-left: 10px; /* Espacio entre los botones */
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.action-button:hover {
+    background-color: #0019fa;
+}
+
+.action-button-delete {
+    background-color: #ff000d;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    margin-left: 10px; /* Espacio entre los botones */
+    cursor: pointer;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+.action-button-delete:hover {
+    background-color: #dc3545; /* Color en hover para eliminar */
+}

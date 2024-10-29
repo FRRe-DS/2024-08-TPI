@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+html{
+    background-image: url(../img/fondo2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+#frase{
+    width: 500px;
+    text-align: center;
+    font-size: 25px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    animation: text 2s linear infinite;
+    color: #9fa3a9;
+}
+#frase strong{
+    color: #393d42;
+}
+#titulo2, #titulo3{
+    font-family: "Lora", serif;
+    letter-spacing: 2px;
+    font-weight: 800 ;
+    font-size: 100px;
+    color: #9fa3a9;
+   
+}
+
+#titulo1 {
+    font-family:  "EB Garamond", serif;
+    letter-spacing: 2px;
+    font-weight: lighter;
+    font-size: 100px; 
+    color: #9fa3a9;
+    
+}
+
+
+
+.titulos {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Alinea verticalmente si es necesario */
+    gap: 15px; /* Añade espacio entre los títulos */
+    padding-top: 80px; 
+   padding-bottom: 10px;
+   
+}
+
+
+
+@keyframes text {
+    0%{
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        filter: hue-rotate(35deg);
+    }  
+}
+
+
+@media (max-width: 768px) {
+    #titulo1, #titulo2, #titulo3 {
+        font-size: 75px; /* Reducir el tamaño de fuente */
+    }
+
+    .titulos {
+        padding-top: 60px;
+        padding-bottom: 5px;
+        flex-direction: column; /* Alinear los títulos verticalmente */
+    }
+}
+
+/* Media query para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    #titulo1, #titulo2, #titulo3 {
+        font-size: 50px; /* Reducir aún más el tamaño de fuente */
+    }
+
+    .titulos {
+        padding-top: 40px;
+        padding-bottom: 5px;
+        flex-direction: column; /* Alinear los títulos verticalmente */
+    }
+}
+
+
+.info {
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.info p {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    color: #9fa3a9;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    animation: slide 5s linear infinite; /* Aplica la animación deseada */
+}
+
+@keyframes moveUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+.info p {
+    animation: moveUpDown 3s ease-in-out;
+}
+
+
+
+.demas_info {
+    background:transparent; /* Fondo blanco más transparente */
+    border: 1px solid #9fa3a9 ; /* Borde blanco semitransparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque para el fondo */
+    border-radius: 15px; /* Bordes más redondeados */
+    padding: 25px; /* Espaciado interno */
+    margin: 20px auto; /* Centrar la sección y añadir margen */
+    max-width: 800px; /* Ancho máximo */
+    box-shadow: 0px 6px 15px #393d42; /* Sombra más suave pero más prominente */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para hover */
+}
+.demas_info:hover {
+    transform: translateY(-10px); /* Efecto flotante */
+    box-shadow: 0px 8px 20px #393d42; /* Sombra más pronunciada al hacer hover */
+}
+
+.Historia {
+    font-family: 'Lora', serif; /* Fuente elegante */
+    font-size: 36px; /* Tamaño grande */
+    font-weight: 700;
+    color: #393d42; /* Texto blanco para destacar en fondo oscuro */
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #9fa3a9; /* Sombra suave para mejorar la legibilidad */
+}
+
+.demas_info p {
+    font-family: 'EB Garamond', serif; /* Fuente para el texto */
+    font-size: 18px;
+    line-height: 1.6;
+    color: #9fa3a9; /* Texto gris claro para resaltar sobre el fondo */
+    margin-bottom: 15px;
+    text-align: justify;
+    text-indent: 20px;
+}
+
+@media (max-width: 768px) {
+    .demas_info {
+        padding: 15px;
+        max-width: 90%; /* Asegura que se ajuste bien en pantallas pequeñas */
+    }
+    
+    .Historia {
+        font-size: 28px; /* Reduce el tamaño del título en pantallas más pequeñas */
+    }
+    
+    .demas_info p {
+        font-size: 16px; /* Reduce el tamaño del texto en pantallas pequeñas */
+    }
+}
