@@ -6,7 +6,7 @@ function Crud() {
     const navigate = useNavigate();
     const [escultores, setEscultores] = useState([]);
     const [esculturas, setEsculturas] = useState([]);
-    const [usuarios, setUsuarios] = useState([]);
+    const [eventos, setEventos] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el buscador
     const [activeList, setActiveList] = useState('escultores'); // Estado para controlar qué listado mostrar
 
@@ -38,18 +38,18 @@ function Crud() {
         fetchEsculturas();
     }, []);
 
-    // Función para traer usuarios desde el backend
+    // Función para traer eventos desde el backend
     useEffect(() => {
-        const fetchUsuarios = async () => {
+        const fetchEventos = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/usuario'); // Cambia a la URL correcta para usuarios
+                const response = await fetch('http://localhost:3000/api/eventos'); // Cambia a la URL correcta para usuarios
                 const data = await response.json();
-                setUsuarios(data);
+                setEventos(data);
             } catch (error) {
-                console.error('Error al traer los usuarios', error);
+                console.error('Error al traer los eventos', error);
             }
         };
-        fetchUsuarios();
+        fetchEventos();
     }, []);
 
     // Función para manejar la eliminación (escultores, esculturas, usuarios)
@@ -65,8 +65,8 @@ function Crud() {
             case 'esculturas':
                 url = `http://localhost:3000/api/escultura/${id}`;
                 break;
-            case 'usuarios':
-                url = `http://localhost:3000/api/usuario/${id}`;
+            case 'eventos':
+                url = `http://localhost:3000/api/eventos/${id}`;
                 break;
             default:
                 return;
@@ -83,9 +83,9 @@ function Crud() {
             } else if (activeList === 'esculturas') {
                 setEsculturas(esculturas.filter(item => item.id_escultura !== id));
                 mensaje = 'Se ha eliminado correctamente la escultura';
-            } else if (activeList === 'usuarios') {
-                setUsuarios(usuarios.filter(item => item.id_usuario !== id));
-                mensaje = 'Se ha eliminado correctamente al usuario';
+            } else if (activeList === 'eventos') {
+                setEventos(eventos.filter(item => item.id !== id));
+                mensaje = 'Se ha eliminado correctamente al evento';
             }
         
             alert(mensaje);  // Mostrar mensaje de éxito
@@ -99,7 +99,7 @@ function Crud() {
         ? escultores
         : activeList === 'esculturas'
         ? esculturas
-        : usuarios
+        : eventos
     ).filter((item) => 
         (item.nombre_esc || item.nombre).toLowerCase().includes(searchTerm.toLowerCase()) 
     );
@@ -113,8 +113,8 @@ function Crud() {
             case 'esculturas':
                 navigate('/create-escultura');
                 break;
-            case 'usuarios':
-                navigate('/create-usuario');
+            case 'eventos':
+                navigate('/create-evento');
                 break;
             default:
                 break;
@@ -126,7 +126,7 @@ function Crud() {
             <div className="sidebar">
                 <button className="sidebar-button" onClick={() => setActiveList('escultores')}>Escultores</button>
                 <button className="sidebar-button" onClick={() => setActiveList('esculturas')}>Esculturas</button>
-                <button className="sidebar-button" onClick={() => setActiveList('usuarios')}>Usuarios</button>
+                <button className="sidebar-button" onClick={() => setActiveList('eventos')}>Eventos</button>
             </div>
             <div className="main-section">
                 <header className="header">
@@ -144,10 +144,10 @@ function Crud() {
                 <div className="list-container">
                     {filteredItems.length > 0 ? (
                         filteredItems.map((item) => (
-                            <div key={item.id_escultor || item.id_escultura || item.id_usuario} className="list-item">
+                            <div key={item.id_escultor || item.id_escultura || item.id} className="list-item">
                                 {item.nombre_esc ? item.nombre_esc + ' ' + item.apellido : item.nombre}
                                 <div className="action-buttons">
-                                    <button className="action-button-delete" onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id_usuario)}>Eliminar</button>
+                                    <button className="action-button-delete" onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id)}>Eliminar</button>
                                     <button className="action-button"
                                             onClick={() => {
                                                 switch (activeList) {
@@ -157,8 +157,8 @@ function Crud() {
                                                 case 'esculturas':
                                                     navigate(`/modificar-escultura/${item.id_escultura}`); 
                                                     break;
-                                                case 'usuarios':
-                                                    navigate(`/modificar-usuario/${item.id_usuario}`); 
+                                                case 'eventos':
+                                                    navigate(`/modificar-evento/${item.id}`); 
                                                     break;
                                                 default:
                                                     break;

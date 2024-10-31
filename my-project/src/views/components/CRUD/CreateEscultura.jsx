@@ -115,7 +115,7 @@ export default function CreateEscultura() {
                     </select>
                 </div>
             </FormField>
-            <Button type='submit'>Enviar</Button>
+            <Button type='submit'>Crear Escultura</Button>
         </Form>
     );
 }

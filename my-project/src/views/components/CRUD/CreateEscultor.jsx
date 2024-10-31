@@ -126,7 +126,7 @@ export default function CreateEscultor() {
                 <label>Imagen URL</label>
                 <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
                 </FormField>
-                <Button type='submit'>Enviar</Button>
+                <Button type='submit'>Crear Escultor</Button>
             </Form>
         </div>
     );

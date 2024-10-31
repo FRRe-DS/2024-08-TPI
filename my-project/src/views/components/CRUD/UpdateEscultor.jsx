@@ -31,7 +31,6 @@ export default function UpdateEscultor() {
         const fetchEscultor = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
-                console.log(response.data);
                 const { nombre_esc, apellido, nacionalidad, img_nacionalidad, biografia, imagen_esc } = response.data;
                 setFirstName(nombre_esc || '');
                 setLastName(apellido || '');
@@ -63,8 +62,6 @@ export default function UpdateEscultor() {
             console.error('Error al actualizar al escultor', error);
         }
     };
-
-    console.log({ nombre_esc, apellido, nacionalidad, img_nacionalidad, biografia, imagen_esc }); // Añadir este log
 
     return (
         <Form onSubmit={updateData}>
