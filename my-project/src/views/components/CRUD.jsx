@@ -42,7 +42,7 @@ function Crud() {
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/usuario'); // Cambia a la URL correcta para usuarios
+                const response = await fetch('http://localhost:3000/api/usuarios'); // Cambia a la URL correcta para usuarios
                 const data = await response.json();
                 setUsuarios(data);
             } catch (error) {

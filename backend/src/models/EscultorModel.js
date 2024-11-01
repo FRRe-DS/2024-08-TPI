@@ -2,17 +2,18 @@ const pool = require('../config/db');
 
 class EscultorModel {
     // Crear un nuevo escultor
-    static async createEscultor({ nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc }) {
+    static async createEscultor({ nombre_esc, apellido, pais,biografia,imagen_esc }) {
+    
         const [result] = await pool.query(
-            'INSERT INTO Escultores (nombre_esc, apellido,nacionalidad,img_nacionalidad,biografia,imagen_esc) VALUES (?, ?, ?, ?, ?, ?)',
-            [nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc ]
+            'INSERT INTO Escultores (nombre_esc, apellido,pais,biografia,imagen_esc) VALUES (?, ?, ?, ?, ?)',
+            [nombre_esc, apellido, pais,biografia,imagen_esc ]
         );
-        return { id_escultor: result.insertId,  nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc  };
+        return { id_escultor: result.insertId,  nombre_esc, apellido, pais,biografia,imagen_esc};
     }
 
     // Obtener todos los Escultores
     static async getAllEscultores() {
-        const [rows] = await pool.query('SELECT * FROM Escultores');
+        const [rows] = await pool.query('SELECT * FROM escultores e inner join nacionalidad n where e.pais = n.pais');
         return rows;
     }
 

@@ -3,9 +3,16 @@ const EscultorModel = require('../models/EscultorModel');
 class EscultorController {
     // Crear un nuevo Escultor
     static async createEscultor(req, res) {
-        const { nombre_esc, apellido, nacionalidad, img_nacionalidad,biografia, imagen_esc } = req.body;
+        const { nombre_esc, apellido, pais,biografia} = req.body;
+        const imagen_esc = req.file ? req.file.path.replace(/\\/g, '/') : null;
         try {
-            const Escultor = await EscultorModel.createEscultor({ nombre_esc, apellido, nacionalidad, img_nacionalidad, biografia, imagen_esc });
+            const Escultor = await EscultorModel.createEscultor({ 
+                nombre_esc, 
+                apellido, 
+                pais, 
+                biografia, 
+                imagen_esc 
+            });
             res.status(201).json(Escultor);
         } catch (error) {
             console.error('Error al obtener el rol del usuario:', error)
@@ -40,9 +47,9 @@ class EscultorController {
     // Actualizar Escultor
     static async updateEscultor(req, res) {
         const { id_escultor } = req.params;
-        const { nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc } = req.body;
+        const { nombre_esc, apellido, pais,biografia,imagen_esc } = req.body;
         try {
-            const success = await EscultorModel.updateEscultor(id_escultor, { nombre_esc, apellido, nacionalidad, img_nacionalidad, biografia, imagen_esc });
+            const success = await EscultorModel.updateEscultor(id_escultor, { nombre_esc, apellido, pais, biografia, imagen_esc });
             if (!success) {
                 return res.status(404).json({ error: 'Escultor no encontrado' });
             }
