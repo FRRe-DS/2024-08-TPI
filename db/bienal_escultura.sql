@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `bienal_escultura` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bienal_escultura`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: bienal_g8
+-- Host: 127.0.0.1    Database: bienal_escultura
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -27,11 +29,10 @@ CREATE TABLE `escultores` (
   `nombre_esc` varchar(255) NOT NULL,
   `apellido` varchar(45) DEFAULT NULL,
   `biografia` text,
-  `nacionalidad` varchar(45) DEFAULT NULL,
-  `img_nacionalidad` varchar(500) DEFAULT NULL,
-  `imagen_esc` varchar(500) DEFAULT NULL,
+  `pais` varchar(45) DEFAULT NULL,
+  `imagen_esc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_escultor`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `escultores` (
 
 LOCK TABLES `escultores` WRITE;
 /*!40000 ALTER TABLE `escultores` DISABLE KEYS */;
-INSERT INTO `escultores` VALUES (1,'Carlos ','Monge',NULL,'México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Mexico-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Argentina-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/Espana-Bandera.png','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png'),(11,'Matias','Bangher','Artista destacado en el ámbito del arte contemporáneo.','Argentina','https://upload.wikimedia.org/wikipedia/commons/f/f4/Bandera_del_Club_Atl%C3%A9tico_Independiente.svg','https://scontent.fres2-2.fna.fbcdn.net/v/t39.30808-6/457505422_1872400573254412_1077158449239205253_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=UUwu_gcDjvcQ7kNvgEorg80&_nc_ht=scontent.fres2-2.fna&_nc_gid=AxH36ww6PNExC5NA1S1OPTS&oh=00_AYD_vgtI1uKLeuzlFDE7Uh2dK_2kEoKiXj--kQIeW-8clA&oe=6720AA2A'),(69,'Ian','Nuñez','ñupaloooo','Ecuador','https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj6k_A8zrzJk8GzG5fMuEa6U1_CKGTQqGICg&s');
+INSERT INTO `escultores` VALUES (1,'Carlos ','Monge',NULL,'México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png'),(13,'Agus ','Cabral','Nacido alla ite para crear ','Nigeria',NULL),(19,'MATIAS','BANGHER','AGUANTE COLAPINTO GATOOOOOOOOOOOOOOOOO','Argentina','images/MATIAS_BANGHER-1.webp');
 /*!40000 ALTER TABLE `escultores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `esculturas` (
   KEY `id_escultor` (`id_escultor`),
   CONSTRAINT `esculturas_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `esculturas_ibfk_2` FOREIGN KEY (`id_escultor`) REFERENCES `escultores` (`id_escultor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,6 @@ CREATE TABLE `esculturas` (
 
 LOCK TABLES `esculturas` WRITE;
 /*!40000 ALTER TABLE `esculturas` DISABLE KEYS */;
-INSERT INTO `esculturas` VALUES (1,'UtinkoEnbolas','dsdfsaifwjein','2024-05-15',1,1);
 /*!40000 ALTER TABLE `esculturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,6 +105,32 @@ INSERT INTO `eventos` VALUES (1,'Bienal 2024 Actualizada','2024-07-01','Chaco','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `nacionalidad`
+--
+
+DROP TABLE IF EXISTS `nacionalidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nacionalidad` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nacionalidad` varchar(45) NOT NULL,
+  `img_nacionalidad` varchar(255) NOT NULL,
+  `pais` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nacionalidad`
+--
+
+LOCK TABLES `nacionalidad` WRITE;
+/*!40000 ALTER TABLE `nacionalidad` DISABLE KEYS */;
+INSERT INTO `nacionalidad` VALUES (1,'Argentino/a','https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg','Argentina'),(2,'Brasileño/a','https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg','Brasil'),(3,'Canadiense','https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg','Canadá'),(4,'Chileno/a','https://upload.wikimedia.org/wikipedia/commons/7/78/Flag_of_Chile.svg','Chile'),(5,'Colombiano/a','https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Colombia.svg','Colombia'),(6,'Costarricense','https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Costa_Rica_%28state%29.svg','Costa Rica'),(7,'Cubano/a','https://upload.wikimedia.org/wikipedia/commons/b/bd/Flag_of_Cuba.svg','Cuba'),(8,'Dominicano/a','https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_the_Dominican_Republic.svg','República Dominicana'),(9,'Ecuatoriano/a','https://upload.wikimedia.org/wikipedia/commons/e/e8/Flag_of_Ecuador.svg','Ecuador'),(10,'Salvadoreño/a','https://upload.wikimedia.org/wikipedia/commons/3/34/Flag_of_El_Salvador.svg','El Salvador'),(11,'Estadounidense','https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg','Estados Unidos'),(12,'Guatemalteco/a','https://upload.wikimedia.org/wikipedia/commons/e/ec/Flag_of_Guatemala.svg','Guatemala'),(13,'Haitiano/a','https://upload.wikimedia.org/wikipedia/commons/5/56/Flag_of_Haiti.svg','Haití'),(14,'Hondureño/a','https://upload.wikimedia.org/wikipedia/commons/8/82/Flag_of_Honduras.svg','Honduras'),(15,'Mexicano/a','https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg','México'),(16,'Nicaragüense','https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Nicaragua.svg','Nicaragua'),(17,'Panameño/a','https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_Panama.svg','Panamá'),(18,'Paraguayo/a','https://upload.wikimedia.org/wikipedia/commons/2/27/Flag_of_Paraguay.svg','Paraguay'),(19,'Peruano/a','https://upload.wikimedia.org/wikipedia/commons/d/df/Flag_of_Peru_%28state%29.svg','Perú'),(20,'Puertorriqueño/a','https://upload.wikimedia.org/wikipedia/commons/2/28/Flag_of_Puerto_Rico.svg','Puerto Rico'),(21,'Uruguayo/a','https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg','Uruguay'),(22,'Venezolano/a','https://upload.wikimedia.org/wikipedia/commons/0/06/Flag_of_Venezuela.svg','Venezuela'),(23,'Alemán/Alemana','https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg','Alemania'),(24,'Austríaco/a','https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg','Austria'),(25,'Belga','https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg','Bélgica'),(26,'Danés/Danesa','https://upload.wikimedia.org/wikipedia/commons/9/9c/Flag_of_Denmark.svg','Dinamarca'),(27,'Español/a','https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg','España'),(28,'Francés/Francesa','https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg','Francia'),(29,'Griego/a','https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Greece.svg','Grecia'),(30,'Irlandés/Irlandesa','https://upload.wikimedia.org/wikipedia/commons/4/45/Flag_of_Ireland.svg','Irlanda'),(31,'Italiano/a','https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg','Italia'),(32,'Neerlandés/Neerlandesa','https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg','Países Bajos'),(33,'Noruego/a','https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg','Noruega'),(34,'Polaco/a','https://upload.wikimedia.org/wikipedia/en/1/12/Flag_of_Poland.svg','Polonia'),(35,'Portugués/Portuguesa','https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Portugal.svg','Portugal'),(36,'Sueco/a','https://upload.wikimedia.org/wikipedia/en/4/4c/Flag_of_Sweden.svg','Suecia'),(37,'Suizo/a','https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Switzerland.svg','Suiza'),(38,'Inglés/inglesa','https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg','Reino Unido'),(39,'Finlandés/Finlandesa','https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_Finland.svg','Finlandia');
+/*!40000 ALTER TABLE `nacionalidad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -120,7 +146,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`email`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +155,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('jeje@yopmail.com','jeje@yopmail.com','jeje','admin',6),('Juan Pepe','juanpepe8070@gmail.com','juanpepe8070','admin',4),('Matías Ezequiel Bangher','matiasbangher06@gmail.com','matiasbangher06','admin',2),('Mati Bangher','matiesdelrojo73@gmail.com','matiesdelrojo73','user',3),('migue@yopmail.com','migue@yopmail.com','migue','admin',5);
+INSERT INTO `usuarios` VALUES ('Matías Ezequiel Bangher','matiasbangher06@gmail.com','matiasbangher06','admin',2),('Mati Bangher','matiesdelrojo73@gmail.com','matiesdelrojo73','user',3);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-24 20:06:44
+-- Dump completed on 2024-11-08 23:55:28

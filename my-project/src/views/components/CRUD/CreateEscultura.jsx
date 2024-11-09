@@ -115,7 +115,8 @@ export default function CreateEscultura() {
                     </select>
                 </div>
             </FormField>
-            <Button type='submit'>Crear Escultura</Button>
+            <Button type='submit'>Enviar</Button>
+            <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
         </Form>
     );
 }

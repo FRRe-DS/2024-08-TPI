@@ -102,7 +102,8 @@ export default function UpdateEscultor() {
                 <label>Imagen URL</label>
                 <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
             </FormField>
-            <Button type='submit'>Actualizar Escultor</Button>
+            <Button type='submit' >Actualizar Escultor</Button>
+            <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
         </Form>
     );
 }
