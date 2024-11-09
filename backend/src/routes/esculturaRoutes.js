@@ -10,12 +10,12 @@ router.get('/', EsculturaController.getAllEsculturas);
 router.post('/', EsculturaController.createEscultura);
 
 // Obtener un escultura por ID
-router.get('/:id', EsculturaController.getEsculturaById);
+router.get('/:id_escultura', EsculturaController.getEsculturaById);
 
 // Actualizar un escultura
-router.put('/:id', EsculturaController.updateEscultura);
+router.put('/:id_escultura', EsculturaController.updateEscultura);
 
 // Eliminar un escultura
-router.delete('/:id', EsculturaController.deleteEscultura);
+router.delete('/:id_escultura', EsculturaController.deleteEscultura);
 
 module.exports = router;

@@ -3,9 +3,9 @@ const EsculturaModel = require('../models/EsculturaModel');
 class EsculturaController {
     // Crear una nueva escultura
     static async createEscultura(req, res) {
-        const { nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor } = req.body;
+        const { nombre, img_url ,tematica ,descripcion, fecha_creacion, id_evento, id_escultor } = req.body;
         try {
-            const escultura = await EsculturaModel.createEscultura({ nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor });
+            const escultura = await EsculturaModel.createEscultura({ nombre, img_url ,tematica ,descripcion, fecha_creacion, id_evento, id_escultor });
             res.status(201).json(escultura);
         } catch (error) {
             res.status(500).json({ error: 'Error al crear la escultura' });
@@ -39,9 +39,9 @@ class EsculturaController {
     // Actualizar escultura
     static async updateEscultura(req, res) {
         const { id_escultura } = req.params;
-        const { nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor } = req.body;
+        const { nombre, descripcion, tematica, img_url, fecha_creacion, id_evento, id_escultor } = req.body;
         try {
-            const success = await EsculturaModel.updateEscultura(id_escultura, { nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor });
+            const success = await EsculturaModel.updateEscultura(id_escultura, { nombre, descripcion, tematica, img_url, fecha_creacion, id_evento, id_escultor });
             if (!success) {
                 return res.status(404).json({ error: 'Escultura no encontrada' });
             }
@@ -55,7 +55,7 @@ class EsculturaController {
     static async deleteEscultura(req, res) {
         const { id_escultura } = req.params;
         try {
-            const success = await EventModel.deleteEscultura(id_escultura);
+            const success = await EsculturaModel.deleteEscultura(id_escultura);
             if (!success) {
                 return res.status(404).json({ error: 'Escultura no encontrada' });
             }
@@ -67,3 +67,4 @@ class EsculturaController {
 }
 
 module.exports = EsculturaController;
+

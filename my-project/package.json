@@ -4,13 +4,16 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "dev": "vite",           
+  "dev:server": "nodemon src/app.js",  
+  "build": "vite build",   
+  "lint": "eslint .",      
+  "preview": "vite preview" 
+},
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "prop-types": "^15.8.1",
@@ -35,6 +38,7 @@
     "postcss": "^8.4.45",
     "react-error-overlay": "^6.0.9",
     "tailwindcss": "^3.4.11",
-    "vite": "^5.4.1"
+    "vite": "^5.4.9",
+    "nodemon": "^2.x.x"
   }
 }

@@ -3,19 +3,19 @@ const EscultorController = require('../controllers/EscultorController');
 
 const router = express.Router();
 
-// Obtener todos los eventos
+// Obtener todos los escultores
 router.get('/', EscultorController.getAllEscultores);
 
-// Crear un nuevo evento
+// Crear un nuevo escultor
 router.post('/', EscultorController.createEscultor);
 
-// Obtener un evento por ID
-router.get('/:id', EscultorController.getEscultorById);
+// Obtener un escultor por ID
+router.get('/:id_escultor', EscultorController.getEscultorById);
 
-// Actualizar un evento
-router.put('/:id', EscultorController.updateEscultor);
+// Actualizar un escultor
+router.put('/:id_escultor', EscultorController.updateEscultor);
 
-// Eliminar un evento
-router.delete('/:id', EscultorController.deleteEscultor);
+// Eliminar un escultores
+router.delete('/:id_escultor', EscultorController.deleteEscultor);
 
 module.exports = router;
