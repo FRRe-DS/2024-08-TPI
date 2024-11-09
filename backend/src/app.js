@@ -1,11 +1,12 @@
 const express = require('express');
-require('dotenv').config;
+require('dotenv').config();
 const eventRoutes = require('./routes/eventRoutes');
 const userRoutes = require('./routes/userRoutes');
 const escultorRoutes = require('./routes/escultorRoutes');
 const esculturaRoutes = require('./routes/esculturaRoutes');
 const app = express();
 const cors = require('cors');
+
 // Middleware para procesar JSON
 app.use(express.json());
 
@@ -18,6 +19,8 @@ app.use('/api/eventos', eventRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/escultura', esculturaRoutes);
 app.use('/api/escultor', escultorRoutes);
+app.use('/images', express.static('images'));
+
 
 // Manejo de errores genéricos
 app.use((err, req, res, next) => {

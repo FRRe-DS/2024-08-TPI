@@ -9,30 +9,40 @@ import '/public/css/crud.css';
 export default function CreateEscultor() {
     const [nombre_esc, setFirstName] = useState('');
     const [apellido, setLastName] = useState('');
-    const [nacionalidad, setNacionalidad] = useState('');
-    const [img_nacionalidad, setBanderaUrl] = useState('');
+    const [pais, setPais] = useState('');
     const [nacionalidades, setNacionalidades] = useState([]);
     const [biografia, setBiografia] = useState('');
     const [imagen_esc, setImagenEsc] = useState('');
-    const navigate = useNavigate();
+    const [imagenPreview, setImagenPreview] = useState(null);
 
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
             key: country.alpha3,
             text: country.name,
             value: country.name,
-            img_nacionalidad: country.file_url
         }));
         setNacionalidades(nacionalidadOptions);
     }, []);
 
+    const handleImagenChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImagenEsc(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagenPreview(reader.result); // Guarda la URL de previsualización
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const postData = async (e) => {
         e.preventDefault();
-        let invalidos = [];
 
+        let invalidos = [];
         if (!nombre_esc) invalidos.push("Nombre");
         if (!apellido) invalidos.push("Apellido");
-        if (!nacionalidad) invalidos.push("Nacionalidad");
+        if (!pais) invalidos.push("Pais");
         if (!biografia) invalidos.push("Biografía");
         if (!imagen_esc) invalidos.push("Imagen escultor");
 
@@ -46,24 +56,28 @@ export default function CreateEscultor() {
             return;
         }
 
+        const formData = new FormData();
+        formData.append("nombre_esc", nombre_esc);
+        formData.append("apellido", apellido);
+        formData.append("pais", pais);
+        formData.append("biografia", biografia);
+        formData.append("imagen_esc", imagen_esc);
+
         try {
-            await axios.post('http://localhost:3000/api/escultor/', {
-                nombre_esc,
-                apellido,
-                nacionalidad,
-                img_nacionalidad, 
-                biografia,
-                imagen_esc
+            await axios.post('http://localhost:3000/api/escultor/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
             console.log('Datos enviados correctamente');
             window.alert("Carga de escultor realizada");
 
             setFirstName('');
             setLastName('');
-            setNacionalidad('');
-            setBanderaUrl('');
+            setPais('');
             setBiografia('');
             setImagenEsc('');
+            setImagenPreview(null);
         } catch (error) {
             console.error('Error al enviar los datos', error);
             alert('Error al enviar los datos. Por favor, intenta de nuevo.');
@@ -92,17 +106,16 @@ export default function CreateEscultor() {
                 <Form.Field>
                     <label>Nacionalidad</label>
                     <select 
-                        value={nacionalidad} 
+                        value={pais} 
                         onChange={(e) => {
                             const selectedCountry = nacionalidades.find(country => country.value === e.target.value);
                             if (selectedCountry) {
-                                setNacionalidad(selectedCountry.value);
-                                setBanderaUrl(selectedCountry.img_nacionalidad);
+                                setPais(selectedCountry.value);
                             }
                         }} 
                         className="ui dropdown"
                     >
-                        <option value="">Seleccionar nacionalidad</option>
+                        <option value="">Seleccionar País</option>
                         {nacionalidades.map(country => (
                             <option key={country.key} value={country.value}>
                                 {country.text}
@@ -120,8 +133,19 @@ export default function CreateEscultor() {
                     />
                 </Form.Field>
                 <FormField>
-                    <label>Imagen URL</label>
-                    <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
+                    <label>Seleccione la imagen del escultor</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleImagenChange} 
+                    />
+                    {imagenPreview && (
+                        <img 
+                            src={imagenPreview} 
+                            alt="Previsualización de la imagen" 
+                            style={{ width: '100px', marginTop: '10px' }} 
+                        />
+                    )}
                 </FormField>
                 <Button type='submit'>Enviar</Button>
                 <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
