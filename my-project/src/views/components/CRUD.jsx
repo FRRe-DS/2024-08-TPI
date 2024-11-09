@@ -87,7 +87,6 @@ function Crud() {
                 setEventos(eventos.filter(item => item.id !== id));
                 mensaje = 'Se ha eliminado correctamente al evento';
             }
-        
             alert(mensaje);  // Mostrar mensaje de éxito
         } catch (error) {
             console.error('Error al eliminar el elemento', error);
