@@ -124,47 +124,52 @@ function Crud() {
     return (
         <div className="crud-container">
             <div className="sidebar">
-                <button className="sidebar-button" onClick={() => setActiveList('escultores')}>Escultores</button>
-                <button className="sidebar-button" onClick={() => setActiveList('esculturas')}>Esculturas</button>
-                <button className="sidebar-button" onClick={() => setActiveList('usuarios')}>Usuarios</button>
+                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
+                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
+                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('usuarios')}>Eventos</button>
+
             </div>
             <div className="main-section">
-                <header className="header">
+                <header className="header bg-transparent">
                     <div className="search-container">
                         <input 
                             type="text" 
                             placeholder="Buscador" 
-                            className="search-input"
+                            className="search-input p-3 text-sm text-white rounded-lg bg-[#222222] focus:border-[#393d42] "
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el término de búsqueda
                         />
-                        <button className="add-button" onClick={handleAdd}>Agregar +</button>
+                        <button 
+                            type="button" 
+                            className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-2xl px-6 py-3 mt-4 mb-4 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+                            onClick={handleAdd}
+                        >
+                            AGREGAR +
+                        </button>
                     </div>
                 </header>
                 <div className="list-container">
                     {filteredItems.length > 0 ? (
                         filteredItems.map((item) => (
-                            <div key={item.id_escultor || item.id_escultura || item.id_usuario} className="list-item">
-                                {item.nombre_esc ? item.nombre_esc + ' ' + item.apellido : item.nombre}
+                            <div key={item.id} className="flex justify-between bg-[#222222] mb-2 items-center text-2xl dark:text-white">
+                            <div className="text-center mx-5 items-center text-2xl">  
+                                {item.nombre_esc ? `${item.nombre_esc} ${item.apellido}` : item.nombre}
+                            </div>       
                                 <div className="action-buttons">
-                                    <button className="action-button-delete" onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id_usuario)}>Eliminar</button>
-                                    <button className="action-button"
-                                            onClick={() => {
-                                                switch (activeList) {
-                                                case 'escultores':
-                                                    navigate(`/modificar-escultor/${item.id_escultor}`); 
-                                                    break;
-                                                case 'esculturas':
-                                                    navigate(`/modificar-escultura/${item.id_escultura}`); 
-                                                    break;
-                                                case 'usuarios':
-                                                    navigate(`/modificar-usuario/${item.id_usuario}`); 
-                                                    break;
-                                                default:
-                                                    break;
-                                                }
-                                            }}
-                                    >Modificar</button>
+                                    <button 
+                                        type="button" 
+                                        className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-2xl px-6 py-3 mt-4 mb-4 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-800"
+                                        onClick={() => handleDelete(item.id)}
+                                    >
+                                        ELIMINAR
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-6 py-3 mt-4 mb-4 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+                                        onClick={() => navigate(`/modificar/${item.id}`)}
+                                    >
+                                        MODIFICAR
+                                    </button>
                                 </div>
                             </div>
                         ))
@@ -175,6 +180,8 @@ function Crud() {
             </div>
         </div>
     );
+    
+    
 }
 
 export default Crud;
