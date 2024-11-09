@@ -65,9 +65,7 @@ export default function CreateEscultor() {
 
         try {
             await axios.post('http://localhost:3000/api/escultor/', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
+                
             });
             console.log('Datos enviados correctamente');
             window.alert("Carga de escultor realizada");
