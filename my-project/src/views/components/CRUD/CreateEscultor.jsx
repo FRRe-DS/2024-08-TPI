@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, FormField } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import nacionalidadesData from '/src/data/countries.json';
 import '/public/css/formularios.css';
-import '/public/css/crud.css'; // Asegúrate de importar los estilos CSS
+import '/public/css/crud.css';
 
 export default function CreateEscultor() {
     const [nombre_esc, setFirstName] = useState('');
@@ -13,6 +14,7 @@ export default function CreateEscultor() {
     const [nacionalidades, setNacionalidades] = useState([]);
     const [biografia, setBiografia] = useState('');
     const [imagen_esc, setImagenEsc] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
@@ -25,29 +27,25 @@ export default function CreateEscultor() {
     }, []);
 
     const postData = async (e) => {
-        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+        e.preventDefault();
         let invalidos = [];
 
-        // Validación de campos vacíos
         if (!nombre_esc) invalidos.push("Nombre");
         if (!apellido) invalidos.push("Apellido");
         if (!nacionalidad) invalidos.push("Nacionalidad");
         if (!biografia) invalidos.push("Biografía");
         if (!imagen_esc) invalidos.push("Imagen escultor");
 
-        // Validar que la biografía no exceda los 150 caracteres
         if (biografia.length > 150) {
             alert('La biografía no puede exceder los 150 caracteres.');
             return;
         }
 
-        // Si hay campos inválidos, mostrar una alerta
         if (invalidos.length > 0) {
             alert("Por favor, completa los siguientes campos: " + invalidos.join(", "));
             return;
         }
 
-        // Enviar datos a la API
         try {
             await axios.post('http://localhost:3000/api/escultor/', {
                 nombre_esc,
@@ -60,7 +58,6 @@ export default function CreateEscultor() {
             console.log('Datos enviados correctamente');
             window.alert("Carga de escultor realizada");
 
-            // Limpiar los campos del formulario
             setFirstName('');
             setLastName('');
             setNacionalidad('');
@@ -69,7 +66,7 @@ export default function CreateEscultor() {
             setImagenEsc('');
         } catch (error) {
             console.error('Error al enviar los datos', error);
-            alert('Error al enviar los datos. Por favor, intenta de nuevo.'); // Mensaje de error
+            alert('Error al enviar los datos. Por favor, intenta de nuevo.');
         }
     };
 
@@ -123,10 +120,11 @@ export default function CreateEscultor() {
                     />
                 </Form.Field>
                 <FormField>
-                <label>Imagen URL</label>
-                <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
+                    <label>Imagen URL</label>
+                    <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
                 </FormField>
                 <Button type='submit'>Enviar</Button>
+                <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
             </Form>
         </div>
     );

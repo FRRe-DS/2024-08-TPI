@@ -116,6 +116,7 @@ export default function CreateEscultura() {
                 </div>
             </FormField>
             <Button type='submit'>Enviar</Button>
+            <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
         </Form>
     );
 }
