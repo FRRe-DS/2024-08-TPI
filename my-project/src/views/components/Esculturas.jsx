@@ -21,8 +21,9 @@ const Esculturas = () => {
         <div className="flex flex-wrap justify-center">
             {esculturas.length > 0 ? (
                 esculturas.map((escultura) => (
-                    <div key={escultura.id_escultura} className=" bg-customGray shadow-lg rounded-lg overflow-hidden m-4 max-w-sm flex flex-col">
-                        <h2 className="text-lg sm:text-xl font-semibold text-grisBIENnegro p-4">{escultura.nombre}</h2>
+                    <div key={escultura.id_escultura} className="relative bg-gradient-to-t from-[#9fa3a9] to-white shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
+>
+                        <h2 className="text-lg sm:text-xl font-semibold text-black p-4">{escultura.nombre}</h2>
                         <div className="flex-1 flex">
                             {escultura.img_url && (
                                 <img
@@ -39,7 +40,7 @@ const Esculturas = () => {
                                     <p className="text-md font-semibold">
                                         <strong>Fecha de creación:</strong> {escultura.fecha_creacion}
                                     </p>
-                                    <p className="text-sm text-black font-black mt-2">
+                                    <p className="text-sm text-wh font-black mt-2">
                                         <strong>Descripción:</strong> {escultura.descripcion}
                                     </p>
                                 </div>

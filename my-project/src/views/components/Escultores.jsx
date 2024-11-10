@@ -36,8 +36,8 @@ const Escultores = () => {
           
           <div
             key={escultor.id_escultor}
-            className="relative bg-customGray shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
-          >
+            className="relative bg-gradient-to-t from-[#9fa3a9] to-[#1f2124] shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
+            >
             <img
               className="absolute top-2 left-2 w-10 h-6 sm:w-12 sm:h-8 rounded shadow-md border border-gray-300"
               src={escultor.img_nacionalidad}

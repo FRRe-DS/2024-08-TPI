@@ -18,10 +18,9 @@ export default function UpdateEscultor() {
     // Cargar las nacionalidades para mostrar en el dropdown
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
-            key: country.alpha3,
-            text: country.name,
-            value: country.name,
-            img_nacionalidad: country.file_url
+            key: country.code,
+            text: country.nombre,
+            value: country.nombre,
         }));
         setNacionalidades(nacionalidadOptions);
     }, []);

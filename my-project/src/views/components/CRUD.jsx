@@ -124,9 +124,9 @@ function Crud() {
     return (
         <div className="crud-container">
             <div className="sidebar">
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('usuarios')}>Eventos</button>
+                <button className="sidebar-button bg-gradient-to-t from-[#1f2124] to-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
+                <button className="sidebar-button bg-gradient-to-t from-[#1f2124] to-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
+                <button className="sidebar-button bg-gradient-to-t from-[#1f2124] to-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('usuarios')}>Eventos</button>
 
             </div>
             <div className="main-section">
@@ -151,7 +151,8 @@ function Crud() {
                 <div className="list-container">
                     {filteredItems.length > 0 ? (
                         filteredItems.map((item) => (
-                            <div key={item.id} className="flex justify-between bg-[#222222] mb-2 items-center text-2xl dark:text-white pr-3">
+                            <div key={item.id} className="flex justify-between bg-gradient-to-t from-[#00000022] to-[#222222] mb-2 items-center text-2xl dark:text-white pr-3"
+>
                             <div className="text-center mx-5 items-center text-2xl">  
                                 {item.nombre_esc ? `${item.nombre_esc} ${item.apellido}` : item.nombre}
                             </div>       

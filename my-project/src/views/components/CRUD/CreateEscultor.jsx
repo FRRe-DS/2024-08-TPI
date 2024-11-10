@@ -17,9 +17,9 @@ export default function CreateEscultor() {
 
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
-            key: country.alpha3,
-            text: country.name,
-            value: country.name,
+            key: country.code,
+            text: country.nombre,
+            value: country.nombre,
         }));
         setNacionalidades(nacionalidadOptions);
     }, []);
