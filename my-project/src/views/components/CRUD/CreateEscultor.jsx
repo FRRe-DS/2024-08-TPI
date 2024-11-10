@@ -15,6 +15,8 @@ export default function CreateEscultor() {
     const [imagen_esc, setImagenEsc] = useState('');
     const [imagenPreview, setImagenPreview] = useState(null);
 
+    const navigate = useNavigate(); // Define useNavigate aquí
+
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
             key: country.code,
@@ -65,7 +67,9 @@ export default function CreateEscultor() {
 
         try {
             await axios.post('http://localhost:3000/api/escultor/', formData, {
-                
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
             console.log('Datos enviados correctamente');
             window.alert("Carga de escultor realizada");
@@ -102,7 +106,7 @@ export default function CreateEscultor() {
                     />
                 </Form.Field>
                 <Form.Field>
-                    <label>Nacionalidad</label>
+                    <label>Pais</label>
                     <select 
                         value={pais} 
                         onChange={(e) => {

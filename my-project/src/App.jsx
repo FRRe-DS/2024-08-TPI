@@ -14,7 +14,7 @@ import Admin from './views/components/CRUD';
 import CreateEscultura from './views/components/CRUD/CreateEscultura'
 import UpdateEscultura from './views/components/CRUD/UpdateEscultura';
 import DeleteEscultura from './views/components/CRUD/DeleteEscultura';
-
+import Votar from './views/components/Votar';
 
 const App = () => {
   return (
@@ -40,6 +40,8 @@ const App = () => {
                 <RutasProtegidas component={Votacion} role="user" />
               }
             />
+            
+            <Route path="/votar/:id_escultor" element={<Votar />} />   
             <Route 
               path="/Admin" 
               element={
