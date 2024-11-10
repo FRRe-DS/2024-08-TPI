@@ -53,16 +53,14 @@ const Votacion = () => {
             <p><span className="font-bold text-GrisMuyOscuro">Apellido:</span> <span className='text-GrisCasiOscuro'> {escultor.apellido}</span></p>
           </div>
 
-          {/* Sección de código QR */}
+          {/* Botón que redirige al componente Votar */}
           <div className="mt-6">
-            <h3 className="text-lg items-center font-semibold text-GrisMuyOscuro">ESCANEAR CÓDIGO:</h3>
-            <div className="w-32 h-32 mt-4">
-              <img
-                src={`http://localhost:5173/api/qr/${id_escultor}`}
-                alt="Código QR"
-                className="w-full h-full"
-              />
-            </div>
+            <button
+              onClick={() => navigate(`/votar/${id_escultor}`)} // Navegar al componente Votar
+              className="bg-GrisMuyOscuro hover:bg-grisOscuro text-white font-bold py-2 px-4 rounded"
+            >
+              Ir a Votar
+            </button>
           </div>
         </div>
 
@@ -71,7 +69,6 @@ const Votacion = () => {
             <h3 className="text-lg font-semibold mb-2 text-GrisMuyOscuro">Biografía</h3>
             <p className="text-GrisCasiOscuro leading-relaxed">{escultor.biografia}</p>
           </div>
-
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
             <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Proyecto</h3>
             <p className='text-GrisCasiOscuro '>Aquí se mostrará la información sobre la escultura.</p>
@@ -115,8 +112,3 @@ const Votacion = () => {
 };
 
 export default Votacion;
-
-
-
-
-
