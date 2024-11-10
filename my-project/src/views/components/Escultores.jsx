@@ -17,15 +17,23 @@ const Escultores = () => {
     };
     fetchEscultores();
   }, []);
+  console.log(escultores);
+  function isUrl(image) {
+    const res = image.match(/^(http|https):\/\/[^ "]+$/);
+    return res !== null; // Devuelve true si es una URL válida
+  }
+
   
   const handleVotar = (escultor) => {
     navigate(`/votacion/${escultor.id_escultor}`);
   };
-
+  
+  
   return (
     <div className="relative">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {escultores.map((escultor) => (
+          
           <div
             key={escultor.id_escultor}
             className="relative bg-gradient-to-t from-[#9fa3a9] to-[#1f2124] shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
@@ -37,7 +45,7 @@ const Escultores = () => {
             />
             <img
               className="w-20 h-20 sm:w-24 sm:h-24 mb-3 rounded-full object-cover shadow-md"
-              src={escultor.imagen_esc}
+              src={(isUrl(escultor.imagen_esc) ? escultor.imagen_esc : `http://localhost:3000/${escultor.imagen_esc}`) || '/public/img/avatar.png '}
               alt={escultor.nombre_esc}
             />
             <div className="text-center">

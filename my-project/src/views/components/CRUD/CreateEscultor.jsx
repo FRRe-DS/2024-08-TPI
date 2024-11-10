@@ -3,73 +3,83 @@ import { Button, Form, FormField } from 'semantic-ui-react';
 import axios from 'axios';
 import nacionalidadesData from '/src/data/countries.json';
 import '/public/css/formularios.css';
-import '/public/css/crud.css'; // Asegúrate de importar los estilos CSS
+import '/public/css/crud.css';
 
 export default function CreateEscultor() {
     const [nombre_esc, setFirstName] = useState('');
     const [apellido, setLastName] = useState('');
-    const [nacionalidad, setNacionalidad] = useState('');
-    const [img_nacionalidad, setBanderaUrl] = useState('');
+    const [pais, setPais] = useState('');
     const [nacionalidades, setNacionalidades] = useState([]);
     const [biografia, setBiografia] = useState('');
     const [imagen_esc, setImagenEsc] = useState('');
+    const [imagenPreview, setImagenPreview] = useState(null);
 
     useEffect(() => {
         const nacionalidadOptions = nacionalidadesData.map(country => ({
             key: country.alpha3,
             text: country.name,
             value: country.name,
-            img_nacionalidad: country.file_url
         }));
         setNacionalidades(nacionalidadOptions);
     }, []);
 
-    const postData = async (e) => {
-        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
-        let invalidos = [];
+    const handleImagenChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImagenEsc(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagenPreview(reader.result); // Guarda la URL de previsualización
+            };
+            reader.readAsDataURL(file);
+        }
+    };
 
-        // Validación de campos vacíos
+    const postData = async (e) => {
+        e.preventDefault();
+
+        let invalidos = [];
         if (!nombre_esc) invalidos.push("Nombre");
         if (!apellido) invalidos.push("Apellido");
-        if (!nacionalidad) invalidos.push("Nacionalidad");
+        if (!pais) invalidos.push("Pais");
         if (!biografia) invalidos.push("Biografía");
         if (!imagen_esc) invalidos.push("Imagen escultor");
 
-        // Validar que la biografía no exceda los 150 caracteres
         if (biografia.length > 150) {
             alert('La biografía no puede exceder los 150 caracteres.');
             return;
         }
 
-        // Si hay campos inválidos, mostrar una alerta
         if (invalidos.length > 0) {
             alert("Por favor, completa los siguientes campos: " + invalidos.join(", "));
             return;
         }
 
-        // Enviar datos a la API
+        const formData = new FormData();
+        formData.append("nombre_esc", nombre_esc);
+        formData.append("apellido", apellido);
+        formData.append("pais", pais);
+        formData.append("biografia", biografia);
+        formData.append("imagen_esc", imagen_esc);
+
         try {
-            await axios.post('http://localhost:3000/api/escultor/', {
-                nombre_esc,
-                apellido,
-                nacionalidad,
-                img_nacionalidad, 
-                biografia,
-                imagen_esc
+            await axios.post('http://localhost:3000/api/escultor/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
             console.log('Datos enviados correctamente');
             window.alert("Carga de escultor realizada");
 
-            // Limpiar los campos del formulario
             setFirstName('');
             setLastName('');
-            setNacionalidad('');
-            setBanderaUrl('');
+            setPais('');
             setBiografia('');
             setImagenEsc('');
+            setImagenPreview(null);
         } catch (error) {
             console.error('Error al enviar los datos', error);
-            alert('Error al enviar los datos. Por favor, intenta de nuevo.'); // Mensaje de error
+            alert('Error al enviar los datos. Por favor, intenta de nuevo.');
         }
     };
 
@@ -95,17 +105,16 @@ export default function CreateEscultor() {
                 <Form.Field>
                     <label>Nacionalidad</label>
                     <select 
-                        value={nacionalidad} 
+                        value={pais} 
                         onChange={(e) => {
                             const selectedCountry = nacionalidades.find(country => country.value === e.target.value);
                             if (selectedCountry) {
-                                setNacionalidad(selectedCountry.value);
-                                setBanderaUrl(selectedCountry.img_nacionalidad);
+                                setPais(selectedCountry.value);
                             }
                         }} 
                         className="ui dropdown"
                     >
-                        <option value="">Seleccionar nacionalidad</option>
+                        <option value="">Seleccionar País</option>
                         {nacionalidades.map(country => (
                             <option key={country.key} value={country.value}>
                                 {country.text}
@@ -123,8 +132,19 @@ export default function CreateEscultor() {
                     />
                 </Form.Field>
                 <FormField>
-                <label>Imagen URL</label>
-                <input placeholder='Ingrese URL de la imagen' value={imagen_esc} onChange={(e) => setImagenEsc(e.target.value)} />
+                    <label>Seleccione la imagen del escultor</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleImagenChange} 
+                    />
+                    {imagenPreview && (
+                        <img 
+                            src={imagenPreview} 
+                            alt="Previsualización de la imagen" 
+                            style={{ width: '100px', marginTop: '10px' }} 
+                        />
+                    )}
                 </FormField>
                 <Button type='submit'>Enviar</Button>
             </Form>
