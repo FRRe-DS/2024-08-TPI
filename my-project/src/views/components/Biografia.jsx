@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
 
-const Bibliografia = () => {
+const Biografia = () => {
   const { id_escultor } = useParams();
   const navigate = useNavigate(); // Inicializar useNavigate
   const [escultor, setEscultor] = useState(null);
@@ -119,4 +119,4 @@ const Bibliografia = () => {
   );
 };
 
-export default Bibliografia;
+export default Biografia;

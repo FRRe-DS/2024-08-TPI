@@ -1,79 +1,93 @@
 import { useState, useEffect } from 'react';
-import { Button, Form, FormField } from 'semantic-ui-react';
 import axios from 'axios';
-import '/public/css/crud.css'; 
+import '/public/css/crud.css';
+import { Button } from 'semantic-ui-react'; // Asegúrate de importar el componente Button
 
 export default function CreateEscultura() {
     const [nombre, setNombre] = useState('');
-    const [img_url, setImagenUrl] = useState('');
-    const [tematica, setTematica] = useState('');
+    const [imgFiles, setImgFiles] = useState([]); 
     const [descripcion, setDescripcion] = useState('');
-    const [dia, setDia] = useState('');
-    const [mes, setMes] = useState('');
-    const [anio, setAnio] = useState('');
-    const [dias, setDias] = useState([]);
-    const [meses, setMeses] = useState([]);
-    const [anios, setAnios] = useState([]);
+    const [escultores, setEscultores] = useState([]); 
+    const [eventos, setEventos] = useState([]); 
+    const [selectedEscultor, setSelectedEscultor] = useState(null); 
+    const [selectedEvento, setSelectedEvento] = useState(null); 
 
+    // Cargar escultores y eventos desde la API
     useEffect(() => {
-        const diasArray = [...Array(31)].map((_, index) => index + 1);
-        setDias(diasArray);
+        // Cargar escultores
+        axios.get('http://localhost:3000/api/escultor')
+            .then(response => {
+                setEscultores(response.data.map((escultor) => ({
+                    key: escultor.id,
+                    text: escultor.nombre_esc + ' ' + escultor.apellido,
+                    value: escultor.id,
+                })));
+            })
+            .catch(error => {
+                console.error('Error al cargar los escultores', error);
+            });
 
-        const mesesArray = [
-            { value: 1, text: "Enero" },
-            { value: 2, text: "Febrero" },
-            { value: 3, text: "Marzo" },
-            { value: 4, text: "Abril" },
-            { value: 5, text: "Mayo" },
-            { value: 6, text: "Junio" },
-            { value: 7, text: "Julio" },
-            { value: 8, text: "Agosto" },
-            { value: 9, text: "Septiembre" },
-            { value: 10, text: "Octubre" },
-            { value: 11, text: "Noviembre" },
-            { value: 12, text: "Diciembre" },
-        ];
-        setMeses(mesesArray);
-
-        const aniosArray = [];
-        const anioActual = new Date().getFullYear();
-        for (let i = 0; i <= 100; i++) { 
-            aniosArray.push(anioActual - i);
-        }
-        setAnios(aniosArray);
+        // Cargar eventos
+        axios.get('http://localhost:3000/api/eventos')
+            .then(response => {
+                setEventos(response.data.map((evento) => ({
+                    key: evento.id,
+                    text: evento.nombre,
+                    value: evento.id,
+                })));
+            })
+            .catch(error => {
+                console.error('Error al cargar los eventos', error);
+            });
     }, []);
 
+    // Manejar cambio en los archivos seleccionados
+    const handleImageChange = (e) => {
+        const files = e.target.files;
+        setImgFiles(files); // Actualizar el estado con los archivos seleccionados
+    };
+
+    // Manejar envío de datos
     const postData = async (e) => {
         e.preventDefault();
         let invalidos = [];
-
+    
         if (!nombre) invalidos.push("Nombre");
-        if (!tematica) invalidos.push("Temática");
         if (!descripcion) invalidos.push("Descripción");
-
+        if (!selectedEscultor) invalidos.push("Escultor");
+        if (!selectedEvento) invalidos.push("Evento");
+    
         if (invalidos.length > 0) {
             alert("Por favor, completa los siguientes campos: " + invalidos.join(", "));
             return;
         }
-
-        const fechaCreacion = `${anio}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`; // Formato YYYY-MM-DD
-
+    
+        // Crear FormData para manejar múltiples archivos
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+    
+        formData.append('descripcion', descripcion);
+        formData.append('id_evento', selectedEvento);  
+        formData.append('id_escultor', selectedEscultor);  
+    
+        // Agregar las imágenes al FormData
+        Array.from(imgFiles).forEach(file => {
+            formData.append('imagenes', file);
+        });
+    
         try {
-            await axios.post('http://localhost:3000/api/escultura/', {
-                nombre,
-                img_url,
-                tematica,
-                descripcion,
-                fecha_creacion: fechaCreacion, // Envía la fecha formateada
+            await axios.post('http://localhost:3000/api/escultura/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // Indicamos que se están enviando archivos
+                }
             });
             alert("Escultura creada exitosamente");
+            // Limpiar el estado después de la creación
             setNombre('');
-            setImagenUrl('');
-            setTematica('');
+            setImgFiles([]); 
             setDescripcion('');
-            setDia('');
-            setMes('');
-            setAnio('');
+            setEventos([]);  // Restablecer la lista de eventos
+            setEscultores([]);  // Restablecer la lista de escultores
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
             console.error('Error al enviar los datos', error);
@@ -81,42 +95,94 @@ export default function CreateEscultura() {
     };
 
     return (
-        <Form className="create-form" onSubmit={postData}>
-            <FormField>
-                <label>Nombre</label>
-                <input placeholder='Ingrese nombre' value={nombre} onChange={(e) => setNombre(e.target.value)} />
-            </FormField>
-            <FormField>
-                <label>Imagen URL</label>
-                <input placeholder='Ingrese URL de la imagen' value={img_url} onChange={(e) => setImagenUrl(e.target.value)} />
-            </FormField>
-            <FormField>
-                <label>Temática</label>
-                <input placeholder='Ingrese temática' value={tematica} onChange={(e) => setTematica(e.target.value)} />
-            </FormField>
-            <FormField>
-                <label>Descripción</label>
-                <input placeholder='Escriba una descripción' value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
-            </FormField>
-            <FormField>
-                <label>Fecha de creación</label>
-                <div className="fecha-container">
-                    <select value={dia} onChange={(e) => setDia(e.target.value)}>
-                        <option value="">Día</option>
-                        {dias.map((d) => <option key={d} value={d}>{d}</option>)}
-                    </select>
-                    <select value={mes} onChange={(e) => setMes(e.target.value)}>
-                        <option value="">Mes</option>
-                        {meses.map((m) => <option key={m.value} value={m.value}>{m.text}</option>)}
-                    </select>
-                    <select value={anio} onChange={(e) => setAnio(e.target.value)}>
-                        <option value="">Año</option>
-                        {anios.map((year) => <option key={year} value={year}>{year}</option>)}
-                    </select>
-                </div>
-            </FormField>
-            <Button type='submit'>Enviar</Button>
-            <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
-        </Form>
+        <form className="create-form" onSubmit={postData}>
+            <div className="mb-4">
+                <label className="block text-gray-700">Escultor</label>
+                <select
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={selectedEscultor}
+                    onChange={(e) => setSelectedEscultor(e.target.value)}
+                >
+                    <option value="">Selecciona un escultor</option>
+                    {escultores.map((escultor) => (
+                        <option key={escultor.key} value={escultor.value}>
+                            {escultor.text}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="mb-4">
+                <label className="block text-gray-700">Nombre</label>
+                <input
+                    type="text"
+                    placeholder="Ingrese nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                />
+            </div>
+
+            <div className="mb-4">
+                <label className="block text-gray-700">Imágenes</label>
+                <input
+                    type="file"
+                    multiple
+                    onChange={handleImageChange}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {imgFiles.length > 0 && (
+                    <div className="mt-2">
+                        <h4 className="text-gray-700">Imágenes seleccionadas:</h4>
+                        {Array.from(imgFiles).map((file, index) => (
+                            <p key={index} className="text-gray-600">{file.name}</p>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+           
+            <div className="mb-4">
+                <label className="block text-gray-700">Descripción de la Temática</label>
+                <textarea
+                    placeholder="Escriba una descripción"
+                    value={descripcion}
+                    onChange={(e) => setDescripcion(e.target.value)}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                ></textarea>
+            </div>
+
+            <div className="mb-4">
+                <label className="block text-gray-700">Evento</label>
+                <select
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    value={selectedEvento}
+                    onChange={(e) => setSelectedEvento(e.target.value)}
+                >
+                    <option value="">Selecciona un evento</option>
+                    {eventos.map((evento) => (
+                        <option key={evento.key} value={evento.value}>
+                            {evento.text}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <div className="flex justify-between">
+                <Button
+                    type="submit"
+                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
+                >
+                    Enviar
+                </Button>
+                <Button
+                    type="button"
+                    onClick={() => navigate(-1)}
+                    className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"
+                >
+                    Ir Atrás
+                </Button>
+            </div>
+        </form>
     );
 }

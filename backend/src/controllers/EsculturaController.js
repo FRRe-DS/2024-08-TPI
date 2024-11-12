@@ -3,14 +3,27 @@ const EsculturaModel = require('../models/EsculturaModel');
 class EsculturaController {
     // Crear una nueva escultura
     static async createEscultura(req, res) {
-        const { nombre, img_url ,tematica ,descripcion, fecha_creacion, id_evento, id_escultor } = req.body;
+        const { nombre, descripcion, id_evento, id_escultor } = req.body;
         try {
-            const escultura = await EsculturaModel.createEscultura({ nombre, img_url ,tematica ,descripcion, fecha_creacion, id_evento, id_escultor });
-            res.status(201).json(escultura);
+          // Crear la escultura en la tabla 'esculturas'
+          const escultura = await EsculturaModel.createEscultura({ nombre, descripcion, id_evento, id_escultor });
+      
+          // Guardar las imágenes en la tabla 'escultura_img'
+          if (req.files) {
+            for (const file of req.files) {
+              await EsculturaModel.createEsculturaImagen({
+                id_escultura: escultura.id_escultura,
+                imagen_url: file.filename
+              });
+            }
+          }
+      
+          res.status(201).json(escultura);
         } catch (error) {
-            res.status(500).json({ error: 'Error al crear la escultura' });
+          console.error(error);
+          res.status(500).json({ error: 'Error al crear la escultura' });
         }
-    }
+      }
 
     // Obtener todas las esculturas
     static async getAllEsculturas(_req, res) {
@@ -39,9 +52,9 @@ class EsculturaController {
     // Actualizar escultura
     static async updateEscultura(req, res) {
         const { id_escultura } = req.params;
-        const { nombre, descripcion, tematica, img_url, fecha_creacion, id_evento, id_escultor } = req.body;
+        const { nombre, descripcion, img_url, id_evento, id_escultor } = req.body;
         try {
-            const success = await EsculturaModel.updateEscultura(id_escultura, { nombre, descripcion, tematica, img_url, fecha_creacion, id_evento, id_escultor });
+            const success = await EsculturaModel.updateEscultura(id_escultura, { nombre, descripcion, img_url, id_evento, id_escultor });
             if (!success) {
                 return res.status(404).json({ error: 'Escultura no encontrada' });
             }

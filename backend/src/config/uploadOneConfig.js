@@ -6,7 +6,7 @@ const sharp = require('sharp')
 
 const storage = multer.memoryStorage();
 
-const upload = multer({storage: storage});
+const uploadOne = multer({storage: storage});
 
 const procesarImagen = async (req, res, next) => {
     if(!req.file){
@@ -31,4 +31,4 @@ const procesarImagen = async (req, res, next) => {
     }
 }
 
-module.exports = { upload, procesarImagen };
+module.exports = { uploadOne, procesarImagen };

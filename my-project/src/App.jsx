@@ -14,7 +14,7 @@ import CreateEscultura from './views/components/CRUD/CreateEscultura'
 import UpdateEscultura from './views/components/CRUD/UpdateEscultura';
 import DeleteEscultura from './views/components/CRUD/DeleteEscultura';
 import Votar from './views/components/Votar';
-import Bibliografia from './views/components/Bibliografia';
+import Biografia from './views/components/Biografia';
 import Resultados from './views/components/Resultados';
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
             <Route path="/create" element={<CreateEscultor />} />
             <Route path="/modificar-escultor/:id_escultor" element={<UpdateEscultor />} />
             <Route path="/delete-escultor" element={<DeleteEscultor />} />
-            <Route path="/bibliografia/:id_escultor" element={<Bibliografia />} />
+            <Route path="/biografia/:id_escultor" element={<Biografia />} />
             <Route path="/create-escultura" element={<CreateEscultura />} />
             <Route path="/modificar-escultura/:id_escultura" element={<UpdateEscultura />} />
             <Route path="/delete-escultura" element={<DeleteEscultura />} />
