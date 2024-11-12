@@ -24,7 +24,7 @@ const Escultores = () => {
   }
 
   const handleVotar = (escultor) => {
-    navigate(`/votacion/${escultor.id_escultor}`);
+    navigate(`/bibliografia/${escultor.id_escultor}`);
   };
 
   return (

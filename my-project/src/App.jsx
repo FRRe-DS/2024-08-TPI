@@ -5,7 +5,6 @@ import Cuerpo from './views/components/Cuerpo';
 import Eventos from './views/components/Eventos';
 import Escultores from './views/components/Escultores';
 import Esculturas from './views/components/Esculturas';
-import Votacion from './views/components/Votacion';
 import RutasProtegidas from './views/components/RutasProtegidas';
 import CreateEscultor from './views/components/CRUD/CreateEscultor'; 
 import UpdateEscultor from './views/components/CRUD/UpdateEscultor';
@@ -15,6 +14,8 @@ import CreateEscultura from './views/components/CRUD/CreateEscultura'
 import UpdateEscultura from './views/components/CRUD/UpdateEscultura';
 import DeleteEscultura from './views/components/CRUD/DeleteEscultura';
 import Votar from './views/components/Votar';
+import Bibliografia from './views/components/Bibliografia';
+import Resultados from './views/components/Resultados';
 
 const App = () => {
   return (
@@ -30,18 +31,12 @@ const App = () => {
             <Route path="/create" element={<CreateEscultor />} />
             <Route path="/modificar-escultor/:id_escultor" element={<UpdateEscultor />} />
             <Route path="/delete-escultor" element={<DeleteEscultor />} />
-            <Route path="/votacion/:id_escultor" element={<Votacion />} />
+            <Route path="/bibliografia/:id_escultor" element={<Bibliografia />} />
             <Route path="/create-escultura" element={<CreateEscultura />} />
             <Route path="/modificar-escultura/:id_escultura" element={<UpdateEscultura />} />
             <Route path="/delete-escultura" element={<DeleteEscultura />} />
-            <Route 
-              path="/votacion" 
-              element={
-                <RutasProtegidas component={Votacion} role="user" />
-              }
-            />
-            
-            <Route path="/votar/:id_escultor" element={<Votar />} />   
+            <Route path="/Resultados" element={<Resultados />} />
+            <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 
               element={

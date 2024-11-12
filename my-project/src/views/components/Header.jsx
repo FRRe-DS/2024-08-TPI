@@ -7,14 +7,10 @@ import { Dropdown } from 'flowbite-react'; // Importa el dropdown de Flowbite
 
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);  
-    const [showLogout, setShowLogout] = useState(false);      
+    
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
     const [userRole, setUserRole] = useState(null);
-    const openNav = () => setIsOpen(true);
-    const closeNav = () => setIsOpen(false);
 
-    const toggleLogout = () => setShowLogout(!showLogout);
 
     useEffect(() => {
         if (isAuthenticated && user) {
@@ -67,7 +63,7 @@ const Header = () => {
             <li><Link to="/escultores">Escultores</Link></li>
             <li><Link to="/esculturas">Esculturas</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
-            {isAuthenticated && userHasRole('user') && (<li><Link to="/votacion">Votación</Link></li>)}
+            <li><Link to="/Resultados">Resultados</Link></li>
         </ul>
     </nav>
 

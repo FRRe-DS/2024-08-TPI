@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
 
-const Votacion = () => {
+const Bibliografia = () => {
   const { id_escultor } = useParams();
   const navigate = useNavigate(); // Inicializar useNavigate
   const [escultor, setEscultor] = useState(null);
@@ -18,7 +18,12 @@ const Votacion = () => {
     };
     fetchEscultor();
   }, [id_escultor]);
-
+  
+  function isUrl(image) {
+    const res = image.match(/^(http|https):\/\/[^ "]+$/);
+    return res !== null; // Devuelve true si es una URL válida
+  }
+  
   if (!escultor) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -38,7 +43,10 @@ const Votacion = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex flex-col items-center lg:w-1/3 bg-white rounded-lg shadow-lg p-4">
           <img
-            src={escultor.imagen_esc}
+            src={
+                  (isUrl(escultor.imagen_esc) ? escultor.imagen_esc : `http://localhost:3000/${escultor.imagen_esc}`) ||
+                  '/public/img/avatar.png '
+                }
             alt={escultor.nombre_esc}
             className="w-32 h-32 mb-4 rounded-full border-4 border-gray-300 shadow-md"
           />
@@ -111,4 +119,4 @@ const Votacion = () => {
   );
 };
 
-export default Votacion;
+export default Bibliografia;
