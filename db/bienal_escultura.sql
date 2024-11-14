@@ -57,7 +57,7 @@ CREATE TABLE `escultura_img` (
   PRIMARY KEY (`id`),
   KEY `id_escultura` (`id_escultura`),
   CONSTRAINT `escultura_img_ibfk_1` FOREIGN KEY (`id_escultura`) REFERENCES `esculturas` (`id_escultura`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,6 @@ CREATE TABLE `escultura_img` (
 
 LOCK TABLES `escultura_img` WRITE;
 /*!40000 ALTER TABLE `escultura_img` DISABLE KEYS */;
-INSERT INTO `escultura_img` VALUES (1,6,'escultor_apellido_1-escultura-1.webp');
 /*!40000 ALTER TABLE `escultura_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +87,7 @@ CREATE TABLE `esculturas` (
   KEY `id_escultor` (`id_escultor`),
   CONSTRAINT `esculturas_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `esculturas_ibfk_2` FOREIGN KEY (`id_escultor`) REFERENCES `escultores` (`id_escultor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +96,6 @@ CREATE TABLE `esculturas` (
 
 LOCK TABLES `esculturas` WRITE;
 /*!40000 ALTER TABLE `esculturas` DISABLE KEYS */;
-INSERT INTO `esculturas` VALUES (6,'MORENO','moRENO',1,1);
 /*!40000 ALTER TABLE `esculturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +113,7 @@ CREATE TABLE `eventos` (
   `lugar` varchar(255) DEFAULT NULL,
   `descripcion` text,
   `tematica` varchar(255) DEFAULT NULL,
+  `activo` enum('si','no') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -125,7 +124,7 @@ CREATE TABLE `eventos` (
 
 LOCK TABLES `eventos` WRITE;
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
-INSERT INTO `eventos` VALUES (1,'Bienal 2024 Actualizada','2024-07-01','Chaco','Escultura modernizada','Arte actual'),(2,'Exposición de Arte Clásico','2024-09-15','Museo de Arte Clásico','Una muestra de esculturas y pinturas clásicas.','Arte Clásico'),(3,'Festival de Música Electrónica','2024-10-05','Estadio Central','Un festival con artistas internacionales de música electrónica.','Música Electrónica'),(4,'Feria de Artesanías Locales','2024-11-20','Plaza Mayor','Una feria con artesanías locales y productos regionales.','Artesanías'),(5,'Conferencia de Innovación Tecnológica','2024-12-10','Centro de Convenciones','Conferencia sobre las últimas tendencias en tecnología e innovación.','Tecnología'),(6,'Exposición de Esculturas Modernas','2024-10-01','Centro Cultural de Resistencia','Una exposición de esculturas modernas de artistas locales e internacionales.','Arte Moderno');
+INSERT INTO `eventos` VALUES (1,'Bienal 2024 Actualizada','2024-07-01','Chaco','Escultura modernizada','Arte actual','si'),(2,'Exposición de Arte Clásico','2024-09-15','Museo de Arte Clásico','Una muestra de esculturas y pinturas clásicas.','Arte Clásico','no'),(3,'Festival de Música Electrónica','2024-10-05','Estadio Central','Un festival con artistas internacionales de música electrónica.','Música Electrónica','no'),(4,'Feria de Artesanías Locales','2024-11-20','Plaza Mayor','Una feria con artesanías locales y productos regionales.','Artesanías','no'),(5,'Conferencia de Innovación Tecnológica','2024-12-10','Centro de Convenciones','Conferencia sobre las últimas tendencias en tecnología e innovación.','Tecnología','no'),(6,'Exposición de Esculturas Modernas','2024-10-01','Centro Cultural de Resistencia','Una exposición de esculturas modernas de artistas locales e internacionales.','Arte Moderno','no');
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +205,6 @@ CREATE TABLE `voto` (
 
 LOCK TABLES `voto` WRITE;
 /*!40000 ALTER TABLE `voto` DISABLE KEYS */;
-INSERT INTO `voto` VALUES (8,19,'matiesdelrojo73@gmail.com',5.0),(13,8,'matiesdelrojo73@gmail.com',2.5);
 /*!40000 ALTER TABLE `voto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -219,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-12 12:36:37
+-- Dump completed on 2024-11-14 17:24:55
