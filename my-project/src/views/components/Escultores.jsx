@@ -30,7 +30,7 @@ const Escultores = () => {
   return (
     <div className="relative">
       <div
-        className="overflow-y-auto h-[80vh] p-4 mt-4"  // Añadido margen superior (mt-4)
+        className="overflow-y-auto h-[80vh] p-4 mt-4 "  // Añadido margen superior (mt-4)
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {escultores.map((escultor) => (

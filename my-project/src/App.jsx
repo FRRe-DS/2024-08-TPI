@@ -16,6 +16,9 @@ import DeleteEscultura from './views/components/CRUD/DeleteEscultura';
 import Votar from './views/components/Votar';
 import Biografia from './views/components/Biografia';
 import Resultados from './views/components/Resultados';
+import CreateEvento from './views/components/CRUD/CreateEvento';
+import DeleteEvento from './views/components/CRUD/DeleteEvento';
+import UpdateEvento from './views/components/CRUD/UpdateEvento'
 
 const App = () => {
   return (
@@ -36,6 +39,9 @@ const App = () => {
             <Route path="/modificar-escultura/:id_escultura" element={<UpdateEscultura />} />
             <Route path="/delete-escultura" element={<DeleteEscultura />} />
             <Route path="/Resultados" element={<Resultados />} />
+            <Route path="/create-evento" element={<CreateEvento />} />
+            <Route path="/delete-evento" element={<DeleteEvento />} />
+            <Route path="/modificar-evento/:id_evento" element={<UpdateEvento />} />
             <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 

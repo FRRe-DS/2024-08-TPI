@@ -18,9 +18,9 @@ export default function CreateEscultura() {
         axios.get('http://localhost:3000/api/escultor')
             .then(response => {
                 setEscultores(response.data.map((escultor) => ({
-                    key: escultor.id,
+                    key: escultor.id_escultor,
                     text: `${escultor.nombre_esc} ${escultor.apellido}`,
-                    value: escultor.id,
+                    value: escultor.id_escultor,
                 })));
             })
             .catch(error => console.error('Error al cargar los escultores', error));
