@@ -16,23 +16,22 @@ const procesarImagenesEsculturas = async (req, res, next) => {
   const nombreBase = `${nombre_esc || 'escultor'}_${apellido || 'apellido'}_${id_escultor || 'id'}`;
 
   try {
-    // Procesar cada imagen en req.files
+    
     const processedImages = await Promise.all(req.files.map(async (file, index) => {
       const nombreImg = `${nombreBase}-escultura-${index + 1}.webp`;
       const outputPath = path.join('images', `escultor_${id_escultor}`, nombreImg);
 
-      // Crear el directorio si no existe
-      const dir = path.dirname(outputPath); // Obtener el directorio donde se guardará la imagen
+      const dir = path.dirname(outputPath); // obtenemos el directorio donde se va a guardar cada imagen
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true }); // Crear el directorio, incluyendo subdirectorios si no existen
       }
 
-      // Procesar la imagen con Sharp y guardarla en el directorio de destino
+      // Procesar la imagen con Sharp y la guarda en el directorio
       await sharp(file.buffer)
-        .webp({ quality: 80 })
+        .webp({ quality: 80 }) //aca la transformamos al formato .webp con calidad de 80
+                                //mantiene la calidad visual pero comprimida en comparacion con otros formatos
         .toFile(outputPath);
 
-      // Retornar la información de la imagen procesada
       return {
         originalname: file.originalname,
         path: outputPath,
@@ -40,7 +39,7 @@ const procesarImagenesEsculturas = async (req, res, next) => {
       };
     }));
 
-    // Almacenar la información de las imágenes procesadas en req.files
+    // Almacenamos toda la info de las imágenes trasformadas en req.files
     req.files = processedImages;
     next();
   } catch (error) {
@@ -49,5 +48,5 @@ const procesarImagenesEsculturas = async (req, res, next) => {
   }
 };
 
-// Cambia esto para usar upload.array y manejar múltiples imágenes de esculturas
 module.exports = { upload: upload.array('imagenes'), procesarImagenesEsculturas };
+//como en este programa trabajamos con varias imagenes utilizamos el uploud.array de multer

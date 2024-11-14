@@ -19,7 +19,8 @@ const procesarImagen = async (req, res, next) => {
 
     try {
         await sharp(req.file.buffer)
-            .webp({ quality: 80})
+            .webp({ quality: 80})//aca la transformamos al formato .webp con calidad de 80
+            //mantiene la calidad visual pero comprimida en comparacion con otros formatos
             .toFile(outpuPath)
 
             req.file.path = outpuPath

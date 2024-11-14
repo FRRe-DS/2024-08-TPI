@@ -13,7 +13,7 @@ class EsculturaController {
             for (const file of req.files) {
               await EsculturaModel.createEsculturaImagen({
                 id_escultura: escultura.id_escultura,
-                imagen_url: file.filename
+                imagen_url: file.path
               });
             }
           }
