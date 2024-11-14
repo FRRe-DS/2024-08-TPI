@@ -3,7 +3,9 @@ const pool = require('../config/db');
 class VotoModel{
 
     static async getAllResults(){
+        //Aca tendremos que realizar la logica para mostrar los resultados de la votacion
     }
+    
 
     static async getVotesToEscultor(id_escultor, email){
         const [voto] = await pool.query('Select * from voto where id_escultor = ? and email = ?', [id_escultor, email]);
