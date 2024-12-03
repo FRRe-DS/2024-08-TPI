@@ -72,4 +72,8 @@ export default function UpdateEvento() {
             <Button type='submit'>Actualizar Evento</Button>
         </Form>
     );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c5922ff004e5689e237e0bff32c278223cd6b381
