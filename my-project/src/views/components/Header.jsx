@@ -15,6 +15,7 @@ const Header = () => {
 
     const toggleLogout = () => setShowLogout(!showLogout);
 
+    
     useEffect(() => {
         if (isAuthenticated && user) {
             const postUser = async () => {

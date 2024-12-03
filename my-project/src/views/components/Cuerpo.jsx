@@ -5,9 +5,11 @@ const Cuerpo = () => {
         <main>
             <div className="main-content">
                 <div className="titulos">
-                    <h1 id="titulo1">Bienal</h1>
-                    <h1 id="titulo2">del</h1>
-                    <h1 id="titulo3">Chaco</h1>
+                    <h1 id="titulo1">
+                        <span id='titulo1'>Bienal </span>
+                        <span id='titulo2'>del </span>
+                        <span id='titulo3'>Chaco </span>
+                    </h1>
                 </div>
                 <div id="frase">
                     <cite>Donde el arte, <strong>FLUYE.</strong></cite>
