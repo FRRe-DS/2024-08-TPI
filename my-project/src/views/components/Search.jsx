@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Table } from 'semantic-ui-react';
 import '/public/css/crud.css'; // Importa los estilos

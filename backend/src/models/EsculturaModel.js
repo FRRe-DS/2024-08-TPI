@@ -2,13 +2,21 @@ const pool = require('../config/db');
 
 class EsculturaModel {
     // Crear una nueva escultura
-    static async createEscultura({ nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor }) {
+    static async createEscultura({ nombre, descripcion, id_evento, id_escultor }) {
         const [result] = await pool.query(
-            'INSERT INTO esculturas (nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor) VALUES (?, ?, ?, ?, ?)',
-            [nombre, fecha, lugar, descripcion, tematica]
+          'INSERT INTO esculturas (nombre, descripcion, id_evento, id_escultor) VALUES (?, ?, ?, ?)',
+          [nombre, descripcion, id_evento, id_escultor]
         );
-        return { id_escultura: result.insertId, nombre, descripcion, fecha_creacion, nombre_evento, nombre_escultor };
-    }
+        return { id_escultura: result.insertId, nombre, descripcion, id_evento, id_escultor };
+      }
+      
+      static async createEsculturaImagen({ id_escultura, imagen_url }) {
+        const [result] = await pool.query(
+          'INSERT INTO escultura_img (id_escultura, imagen_url) VALUES (?, ?)',
+          [id_escultura, imagen_url]
+        );
+        return { id: result.insertId, id_escultura, imagen_url };
+      }
 
     // Obtener todas las esculturas
     static async getAllEsculturas() {
@@ -26,10 +34,10 @@ class EsculturaModel {
     }
 
     // Actualizar escultura por ID
-    static async updateEscultura(id_escultura, { nombre, fecha, lugar, descripcion, tematica }) {
+    static async updateEscultura(id_escultura, { nombre, descripcion, id_evento, id_escultor }) {
         const [result] = await pool.query(
-            'UPDATE esculturas SET nombre = ?, descripcion = ?, fecha_creacion = ?, nombre_evento = ?, nombre_escultor = ? WHERE id_escultura = ?',
-            [nombre, fecha, lugar, descripcion, tematica, id_escultura]
+            'UPDATE esculturas SET nombre = ?, descripcion = ?, id_evento = ?, id_escultor = ? WHERE id_escultura = ?',
+            [nombre, descripcion, tematica, id_evento, id_escultor, id_escultura]
         );
         return result.affectedRows > 0;
     }

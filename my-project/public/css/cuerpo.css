@@ -47,7 +47,7 @@ html{
 
 
 .titulos {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center;     /* Alinea verticalmente si es necesario */

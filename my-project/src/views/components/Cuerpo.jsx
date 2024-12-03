@@ -5,7 +5,7 @@ const Cuerpo = () => {
         <main>
             <div className="main-content">
                 <div className="titulos">
-                    <h1 id="titulo1">
+                    <h1>
                         <span id='titulo1'>Bienal </span>
                         <span id='titulo2'>del </span>
                         <span id='titulo3'>Chaco </span>

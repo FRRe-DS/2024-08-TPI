@@ -5,11 +5,20 @@ import Cuerpo from './views/components/Cuerpo';
 import Eventos from './views/components/Eventos';
 import Escultores from './views/components/Escultores';
 import Esculturas from './views/components/Esculturas';
-import Votacion from './views/components/Votacion';
 import RutasProtegidas from './views/components/RutasProtegidas';
-import Create from './views/components/create-escultor'; // Asegúrate de importar el componente Create}
+import CreateEscultor from './views/components/CRUD/CreateEscultor'; 
+import UpdateEscultor from './views/components/CRUD/UpdateEscultor';
+import DeleteEscultor from './views/components/CRUD/DeleteEscultor';
 import Admin from './views/components/CRUD';
-
+import CreateEscultura from './views/components/CRUD/CreateEscultura'
+import UpdateEscultura from './views/components/CRUD/UpdateEscultura';
+import DeleteEscultura from './views/components/CRUD/DeleteEscultura';
+import Votar from './views/components/Votar';
+import Biografia from './views/components/Biografia';
+import Resultados from './views/components/Resultados';
+import CreateEvento from './views/components/CRUD/CreateEvento';
+import DeleteEvento from './views/components/CRUD/DeleteEvento';
+import UpdateEvento from './views/components/CRUD/UpdateEvento'
 
 const App = () => {
   return (
@@ -22,14 +31,18 @@ const App = () => {
             <Route path="/eventos" element={<Eventos />} />
             <Route path="/escultores" element={<Escultores />} />
             <Route path="/esculturas" element={<Esculturas />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/votacion/:id_escultor" element={<Votacion />} />
-            <Route 
-              path="/votacion" 
-              element={
-                <RutasProtegidas component={Votacion} role="user" />
-              }
-            />
+            <Route path="/create" element={<CreateEscultor />} />
+            <Route path="/modificar-escultor/:id_escultor" element={<UpdateEscultor />} />
+            <Route path="/delete-escultor" element={<DeleteEscultor />} />
+            <Route path="/biografia/:id_escultor" element={<Biografia />} />
+            <Route path="/create-escultura" element={<CreateEscultura />} />
+            <Route path="/modificar-escultura/:id_escultura" element={<UpdateEscultura />} />
+            <Route path="/delete-escultura" element={<DeleteEscultura />} />
+            <Route path="/Resultados" element={<Resultados />} />
+            <Route path="/create-evento" element={<CreateEvento />} />
+            <Route path="/delete-evento" element={<DeleteEvento />} />
+            <Route path="/modificar-evento/:id_evento" element={<UpdateEvento />} />
+            <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 
               element={

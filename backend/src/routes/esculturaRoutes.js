@@ -1,5 +1,6 @@
 const express = require('express');
 const EsculturaController = require('../controllers/EsculturaController');
+const { upload, procesarImagenesEsculturas } = require('../config/uploadMultiConfi');
 
 const router = express.Router();
 
@@ -7,15 +8,15 @@ const router = express.Router();
 router.get('/', EsculturaController.getAllEsculturas);
 
 // Crear un nuevo escultura
-router.post('/', EsculturaController.createEscultura);
+router.post('/',upload, procesarImagenesEsculturas, EsculturaController.createEscultura);
 
 // Obtener un escultura por ID
-router.get('/:id', EsculturaController.getEsculturaById);
+router.get('/:id_escultura', EsculturaController.getEsculturaById);
 
 // Actualizar un escultura
-router.put('/:id', EsculturaController.updateEscultura);
+router.put('/:id_escultura', EsculturaController.updateEscultura);
 
 // Eliminar un escultura
-router.delete('/:id', EsculturaController.deleteEscultura);
+router.delete('/:id_escultura', EsculturaController.deleteEscultura);
 
 module.exports = router;

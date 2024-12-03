@@ -1,14 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
+import {QRCodeSVG} from 'qrcode.react'
 
-const Votacion = () => {
+
+
+const Biografia = () => {
   const { id_escultor } = useParams();
   const navigate = useNavigate(); // Inicializar useNavigate
   const [escultor, setEscultor] = useState(null);
+  const [token, setToken] = useState('')
+
+  const generarToken = () =>{
+    const array = new Uint32Array(4);
+    window.crypto.getRandomValues(array);
+    const token = array.join('-');
+    setToken(token)
+  }
 
   useEffect(() => {
-    const fetchEscultorByID = async () => {
+    generarToken()
+    const time = setInterval(generarToken, 60000) //generamos el token cada minuto
+
+    return () => clearInterval(time)
+  },[])
+
+
+
+  useEffect(() => {
+    const fetchEscultor = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
         setEscultor(response.data);
@@ -16,9 +36,15 @@ const Votacion = () => {
         console.error('Error al obtener datos del escultor', error);
       }
     };
-    fetchEscultorByID();
+    fetchEscultor();
   }, [id_escultor]);
-
+  
+  function isUrl(image) {
+    if (!image) return false;
+    const res = image.match(/^(http|https):\/\/[^ "]+$/);
+    return res !== null; // Devuelve true si es una URL válida
+  }
+  
   if (!escultor) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -38,7 +64,10 @@ const Votacion = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex flex-col items-center lg:w-1/3 bg-white rounded-lg shadow-lg p-4">
           <img
-            src={escultor.imagen_esc}
+            src={
+                  (isUrl(escultor.imagen_esc) ? escultor.imagen_esc : `http://localhost:3000/${escultor.imagen_esc}`) ||
+                  '/public/img/avatar.png '
+                }
             alt={escultor.nombre_esc}
             className="w-32 h-32 mb-4 rounded-full border-4 border-gray-300 shadow-md"
           />
@@ -52,17 +81,22 @@ const Votacion = () => {
             <span className='text-GrisCasiOscuro'> {escultor.nombre_esc}</span></p>
             <p><span className="font-bold text-GrisMuyOscuro">Apellido:</span> <span className='text-GrisCasiOscuro'> {escultor.apellido}</span></p>
           </div>
+          {/*codigo QR*/}
+          <div>
+                { token && (
+                  <QRCodeSVG value = {`http://localhost:5173/votar/${id_escultor}?token=${token}`} />
+                )}
 
-          {/* Sección de código QR */}
+          </div>
+
+          {/* Botón que redirige al componente Votar */}
           <div className="mt-6">
-            <h3 className="text-lg items-center font-semibold text-GrisMuyOscuro">ESCANEAR CÓDIGO:</h3>
-            <div className="w-32 h-32 mt-4">
-              <img
-                src={`http://localhost:5173/api/qr/${id_escultor}`}
-                alt="Código QR"
-                className="w-full h-full"
-              />
-            </div>
+            <button
+              onClick={() => navigate(`/votar/${id_escultor}`)} // Navegar al componente Votar
+              className="bg-GrisMuyOscuro hover:bg-grisOscuro text-white font-bold py-2 px-4 rounded"
+            >
+              Ir a Votar
+            </button>
           </div>
         </div>
 
@@ -71,9 +105,8 @@ const Votacion = () => {
             <h3 className="text-lg font-semibold mb-2 text-GrisMuyOscuro">Biografía</h3>
             <p className="text-GrisCasiOscuro leading-relaxed">{escultor.biografia}</p>
           </div>
-
           <div className="bg-gray-100 p-4 rounded-lg mb-4">
-            <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Escultura Actual</h3>
+            <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Proyecto</h3>
             <p className='text-GrisCasiOscuro '>Aquí se mostrará la información sobre la escultura.</p>
           </div>
         </div>
@@ -114,9 +147,4 @@ const Votacion = () => {
   );
 };
 
-export default Votacion;
-
-
-
-
-
+export default Biografia;
