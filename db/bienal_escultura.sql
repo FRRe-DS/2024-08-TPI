@@ -30,7 +30,7 @@ CREATE TABLE `escultores` (
   `pais` varchar(45) DEFAULT NULL,
   `imagen_esc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_escultor`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `escultores` (
 
 LOCK TABLES `escultores` WRITE;
 /*!40000 ALTER TABLE `escultores` DISABLE KEYS */;
-INSERT INTO `escultores` VALUES (1,'Carlos ','Monge',NULL,'México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png'),(19,'MATIAS','BANGHER','AGUANTE COLAPINTO GATOOOOOOOOOOOOOOOOO','Argentina','images/MATIAS_BANGHER-1.webp'),(20,'Rolando','Fulano','nacido alla ite','Chile','images/Rolando_Fulano-1.webp');
+INSERT INTO `escultores` VALUES (1,'Carlos ','Monge',NULL,'México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png'),(19,'MATIAS','BANGHER','AGUANTE COLAPINTO GATOOOOOOOOOOOOOOOOO','Argentina','images/MATIAS_BANGHER-1.webp'),(20,'Rolando','Fulano','nacido alla ite','Chile','images/Rolando_Fulano-1.webp'),(21,'Ayrton ','Senna','Piloto','Brasil','images/Ayrton _Senna-1.webp');
 /*!40000 ALTER TABLE `escultores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +57,7 @@ CREATE TABLE `escultura_img` (
   PRIMARY KEY (`id`),
   KEY `id_escultura` (`id_escultura`),
   CONSTRAINT `escultura_img_ibfk_1` FOREIGN KEY (`id_escultura`) REFERENCES `esculturas` (`id_escultura`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +66,7 @@ CREATE TABLE `escultura_img` (
 
 LOCK TABLES `escultura_img` WRITE;
 /*!40000 ALTER TABLE `escultura_img` DISABLE KEYS */;
+INSERT INTO `escultura_img` VALUES (7,9,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(8,9,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp'),(9,9,'images\\escultor_2\\escultor_apellido_2-escultura-3.webp'),(10,11,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(11,11,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp');
 /*!40000 ALTER TABLE `escultura_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `esculturas` (
   KEY `id_escultor` (`id_escultor`),
   CONSTRAINT `esculturas_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `esculturas_ibfk_2` FOREIGN KEY (`id_escultor`) REFERENCES `escultores` (`id_escultor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +97,7 @@ CREATE TABLE `esculturas` (
 
 LOCK TABLES `esculturas` WRITE;
 /*!40000 ALTER TABLE `esculturas` DISABLE KEYS */;
+INSERT INTO `esculturas` VALUES (9,'EL david','dsafasfasd',1,2),(11,'el migue','dfASDAS',1,2);
 /*!40000 ALTER TABLE `esculturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +117,7 @@ CREATE TABLE `eventos` (
   `tematica` varchar(255) DEFAULT NULL,
   `activo` enum('si','no') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +198,7 @@ CREATE TABLE `voto` (
   `email` varchar(100) NOT NULL,
   `puntuacion` decimal(3,1) NOT NULL,
   PRIMARY KEY (`id_voto`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,6 +207,7 @@ CREATE TABLE `voto` (
 
 LOCK TABLES `voto` WRITE;
 /*!40000 ALTER TABLE `voto` DISABLE KEYS */;
+INSERT INTO `voto` VALUES (14,19,'matiesdelrojo73@gmail.com',5.0),(15,8,'matiesdelrojo73@gmail.com',2.5),(16,6,'matiesdelrojo73@gmail.com',5.0);
 /*!40000 ALTER TABLE `voto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -217,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-14 17:24:55
+-- Dump completed on 2024-12-03 15:26:55
