@@ -42,15 +42,7 @@ function Crud() {
     useEffect(() => {
         const fetchEventos = async () => {
             try {
-<<<<<<< HEAD
                 const response = await fetch('http://localhost:3000/api/eventos'); // Cambia a la URL correcta para eventos
-=======
-<<<<<<< HEAD
-                const response = await fetch('http://localhost:3000/api/eventos'); // Cambia a la URL correcta para usuarios
-=======
-                const response = await fetch('http://localhost:3000/api/usuarios'); // Cambia a la URL correcta para usuarios
->>>>>>> 6a39970f95c4c7e03c306c0850d0b4e7c9ea823f
->>>>>>> c5922ff004e5689e237e0bff32c278223cd6b381
                 const data = await response.json();
                 setEventos(data);
             } catch (error) {
@@ -87,25 +79,15 @@ function Crud() {
                 setEscultores(escultores.filter(item => item.id_escultor !== id));
             } else if (activeList === 'esculturas') {
                 setEsculturas(esculturas.filter(item => item.id_escultura !== id));
-<<<<<<< HEAD
             } else if (activeList === 'eventos') {
                 setEventos(eventos.filter(item => item.id !== id));
             }
             alert('Elemento eliminado correctamente');
-=======
-                mensaje = 'Se ha eliminado correctamente la escultura';
-            } else if (activeList === 'eventos') {
-                setEventos(eventos.filter(item => item.id !== id));
-                mensaje = 'Se ha eliminado correctamente al evento';
-            }
-            alert(mensaje);  // Mostrar mensaje de éxito
->>>>>>> c5922ff004e5689e237e0bff32c278223cd6b381
         } catch (error) {
             console.error('Error al eliminar el elemento', error);
         }
     };
 
-<<<<<<< HEAD
     // Filtrar resultados en base al término de búsqueda y la lista activa
     const filteredItems = () => {
         let listToFilter = [];
@@ -123,17 +105,6 @@ function Crud() {
             return nombre.toLowerCase().includes(searchTerm.toLowerCase());
         });
     };
-=======
-    // Filtrar resultados en base al término de búsqueda
-    const filteredItems = (activeList === 'escultores'
-        ? escultores
-        : activeList === 'esculturas'
-        ? esculturas
-        : eventos
-    ).filter((item) => 
-        (item.nombre_esc || item.nombre).toLowerCase().includes(searchTerm.toLowerCase()) 
-    );
->>>>>>> c5922ff004e5689e237e0bff32c278223cd6b381
 
     // Función para redirigir al formulario de creación
     const handleAdd = () => {

@@ -80,6 +80,7 @@ export default function CreateEscultor() {
             setBiografia('');
             setImagenEsc('');
             setImagenPreview(null);
+            navigate(-1);
         } catch (error) {
             console.error('Error al enviar los datos', error);
             alert('Error al enviar los datos. Por favor, intenta de nuevo.');
