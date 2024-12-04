@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 html{
     background-image: url(../img/fondo2.jpg);
     background-size: cover;
@@ -8,156 +9,115 @@ html{
     width: 100%;
 }
 
-#frase{
-    width: 500px;
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Seccion de titulos */
+.titulos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.titulos h1 {
+    width: 100%;
     text-align: center;
-    font-size: 5vw;
-    margin: 0 auto;
-    margin-bottom: 100px;
-    animation: text 2s linear infinite;
-    color: #9fa3a9;
+    color: rgba(255, 255, 255, 0.8);
+    gap: 0;
+
 }
-#frase strong{
-    color: #bcbcbd;
-    font-size: 35px;
-}
-#frase cite{
-    color: #bcbcbd;
-    font-size: 35px;
-}
-#titulo2, #titulo3{
-    font-family: "Lora", serif;
-    letter-spacing: 2px;
-    font-weight: 800 ;
-    font-size: 12vw;
-    color: #9fa3a9;
-   
+
+.titulos h1 span {
+    font-size: 10vw;
 }
 
 #titulo1 {
     font-family:  "Playfair Display", serif;
     font-style: italic;
-    letter-spacing: 2px;
-    font-weight: lighter;
-    font-size: 12vw; 
-    color: #9fa3a9;
-    
+    font-weight: lighter; 
 }
 
-
-
-.titulos {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;     /* Alinea verticalmente si es necesario */
-    gap: 15px; /* Añade espacio entre los títulos */
-    padding-top: 80px; 
-    padding-bottom: 10px;
-   
+#titulo2, #titulo3{
+    font-family: "Lora", serif;
+    font-weight: 800 ;
 }
 
-
-@keyframes text {
-    0%{
-        filter: hue-rotate(0deg);
-    }
-    100%{
-        filter: hue-rotate(35deg);
-    }  
+#titulo1, #titulo2, #titulo3{
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-
-@media (max-width: 768px) {
-    #titulo1, #titulo2, #titulo3 {
-        font-size: 75px; /* Reducir el tamaño de fuente */
-    }
-
-    .titulos {
-        padding-top: 60px;
-        padding-bottom: 5px;
-        flex-direction: column; /* Alinear los títulos verticalmente */
-    }
+#frase{
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    animation: text 2s linear infinite;
+    color: rgb(159, 163, 169, 0.7);
 }
 
-/* Media query para pantallas pequeñas (móviles) */
-@media (max-width: 480px) {
-    #titulo1, #titulo2, #titulo3 {
-        font-size: 50px; /* Reducir aún más el tamaño de fuente */
-    }
-
-    .titulos {
-        padding-top: 40px;
-        padding-bottom: 5px;
-        flex-direction: column; /* Alinear los títulos verticalmente */
-    }
+#frase cite{
+    font-size: 3vw;
 }
 
+#frase cite span{
+    font-size: 3vw;
+    font-weight: bold;
+}
 
 .info {
-    padding: 20px;
-    background-color: transparent;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.titulos {
+    width: 95%;
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;     /* Alinea verticalmente si es necesario */
-    gap: 15px; /* Añade espacio entre los títulos */
-    padding-top: 80px; 
-   padding-bottom: 10px;
-   
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info .stitulos {
+    width: 100%;
+
+}
+
+.stitulos h2 {
+    width: 100%;
+    text-align: start;
+    color: #9fa3a9 ;
+}
+
+.stitulos h2 span {
+    font-size: 5vw;
+    margin-bottom: 15px;
 }
 
 #stitulo2 {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 3.5rem;
     font-weight: lighter;
-    color: #666;
-    margin-bottom: 15px;
-    
-}
-#stitulo1, #stitulo3{
-    font-family: "Lora", serif;
-    font-size: 3.5rem;
-    font-weight: 800 ;
-    color: #666;
-    margin-bottom: 15px;
-   
 }
 
-.stitulos {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 15px; /* Añade espacio entre los títulos */
-    
+#stitulo1 {
+    font-family: "Lora", serif;
+    font-weight: 800 ;
 }
 
 .info p {
-    
-    font-size: 1rem;
-    color: #666;
+    font-size: 1.5vw;
+    color: #909090;
     line-height: 1.6;
     margin-bottom: 10px;
     animation: slide 5s linear infinite; /* Aplica la animación deseada */
-}
-
-@keyframes moveUpDown {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
-}
-
-.info p {
     animation: moveUpDown 3s ease-in-out;
 }
 
-
-
 .demas_info {
+    width: 100%;
     background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad del 90% */
     padding: 50px; /* Espaciado interno */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para hover */
@@ -172,7 +132,7 @@ html{
     font-family: "Lora", serif;
     letter-spacing: 2px;
     font-weight: 800 ;
-    font-size: 50px;
+    font-size: 5vw;
     color: #000000ab; /* Texto blanco para destacar en fondo oscuro */
     text-align: center;
     margin-bottom: 10px;
@@ -181,7 +141,7 @@ html{
 
 .demas_info p {
     font-family: 'Lora', serif; /* Fuente para el texto */
-    font-size: 20px;
+    font-size: 1.5vw;
     line-height: 1.6;
     color: #000000; /* Texto gris claro para resaltar sobre el fondo */
     margin-bottom: 10px;
@@ -189,50 +149,18 @@ html{
     text-indent: 30px;
 }
 
-@media (max-width: 768px) {
-    .titulos{
-        width: 100%;
-    }
+@keyframes moveUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
 
-    #titulo2, #titulo3{
-        font-family: "Lora", serif;
-        letter-spacing: 2px;
-        font-weight: 800 ;
-        font-size: 5vw;
-        color: #9fa3a9;
-       
+/*Responsive*/
+@media(max-width: 1024px){
+    .info p {
+        font-size: 3vw;
     }
-    
-    #titulo1 {
-        font-family:  "Playfair Display", serif;
-        font-style: italic;
-        letter-spacing: 2px;
-        font-weight: lighter;
-        font-size: 5vw; 
-        color: #9fa3a9;
-        
-    }
-    
-    .titulos {
-        display: flex;
-        justify-content: center; /* Centra horizontalmente */
-        align-items: center;     /* Alinea verticalmente si es necesario */
-        gap: 15px; /* Añade espacio entre los títulos */
-        padding-top: 80px; 
-       padding-bottom: 10px;
-       
-    }
-
-    .demas_info {
-        padding: 15px;
-        max-width: 90%; /* Asegura que se ajuste bien en pantallas pequeñas */
-    }
-    
-    .Historia {
-        font-size: 28px; /* Reduce el tamaño del título en pantallas más pequeñas */
-    }
-    
     .demas_info p {
-        font-size: 16px; /* Reduce el tamaño del texto en pantallas pequeñas */
+        font-size: 3vw;
     }
 }

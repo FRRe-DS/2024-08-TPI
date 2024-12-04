@@ -1,0 +1,19 @@
+.container {
+    width: 80%;
+}
+
+.card-footer {
+    height: 25%;
+}
+
+.card-body {
+    height: 75%;
+}
+
+@media(max-width: 640px) {
+    .card {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

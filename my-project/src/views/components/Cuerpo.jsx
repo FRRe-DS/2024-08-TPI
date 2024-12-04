@@ -1,5 +1,5 @@
-/*import '/public/css/cuerpo.css'; // Acá se incluye el archivo CSS de ser necesario*/
-import '/public/css/CuerpoAux.css'; // Acá se incluye el archivo CSS de ser necesario
+import '/public/css/cuerpo.css'; // Acá se incluye el archivo CSS de ser necesario
+
 const Cuerpo = () => {
     return (
         <main>
