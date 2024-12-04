@@ -72,6 +72,22 @@ class EscultorController {
             res.status(500).json({ error: 'Error al eliminar el Escultor' });
         }
     }
+
+    //Obtener escultores del evento activo
+    static async getEscultoresActivos(req, res) {
+        try {
+            const escultores = await EscultorModel.getEscultoresActivos();
+            console.log('Resultado de la consulta SQL:', escultores); // Log para verificar los datos
+            if (escultores.length === 0) {
+                return res.status(404).json({ error: 'No se encontraron escultores activos' });
+            }
+            res.status(200).json(escultores);
+        } catch (error) {
+            console.error('Error al obtener los escultores activos:', error);
+            res.status(500).json({ error: 'Error al obtener los escultores activos' });
+        }
+    }
 }
 
 module.exports = EscultorController;
+

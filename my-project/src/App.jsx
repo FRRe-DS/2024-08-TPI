@@ -56,7 +56,7 @@ const App = () => {
               element={<RutasProtegidas component={ListaAdminQR} role="admin"/>}
             />
             <Route
-              path="/qr:/id"
+              path="/qr/:id"
               element={<RutasProtegidas component={PresentacionQR} role="admin"/>}
             />
             {/* Ruta 404 */}
