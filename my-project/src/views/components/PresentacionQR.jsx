@@ -71,10 +71,10 @@ const PresentacionQR = () => {
 
   return (
     <div className="qr-page">
-      <h1>{escultor.nombre_esc} {escultor.apellido}</h1>
+      <h1> Voto por {escultor.nombre_esc} {escultor.apellido}</h1>
       <div>
         { token && (
-          <QRCodeSVG value={`http://localhost:5173/votar/${id}?token=${token}`} size={400} />
+          <QRCodeSVG value={`http://localhost:5173/votar/${id}?token=${token}`} size={350} />
         )}
       </div>
     </div>

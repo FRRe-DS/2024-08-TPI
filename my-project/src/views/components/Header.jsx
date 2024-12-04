@@ -73,11 +73,6 @@ const Header = () => {
     ) : ( 
         <Dropdown
         label={<img src={user.picture || "img/avatar.png"} alt="User Icon" style={{ borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer' }} />}>
-            <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
-            <Link to="/admin" className="text-black">
-                        Cerrar Sesión
-                    </Link>
-            </Dropdown.Item>
             {userHasRole("admin") && (
                 <Dropdown.Item>
                     <Link to="/admin" className="text-black">
@@ -85,6 +80,11 @@ const Header = () => {
                     </Link>
                 </Dropdown.Item>
             )}
+            <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
+            <Link to="/users" className="text-black">
+                        Cerrar Sesión
+                    </Link>
+            </Dropdown.Item>
         </Dropdown>
     )}
 </header>

@@ -1,7 +1,7 @@
 footer {
     background-color: #1f2124;
     color: #9fa3a9;
-    padding: 5px;  /* Reducir el padding */
+    padding: 2px;  /* Reducir aún más el padding */
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -10,20 +10,21 @@ footer {
 
 .footer-column {
     flex: 1;
-    margin: 5px;  /* Reducir el margen */
+    margin: 2px;  /* Reducir aún más el margen */
 }
 
 .footer-column h3 {
     color: #fff;
-    margin-bottom: 5px;  /* Reducir el margen inferior */
-    font-size: 18px;  /* Reducir el tamaño de fuente */
+    margin-bottom: 2px;  /* Reducir aún más el margen inferior */
+    font-size: 16px;  /* Aumentar el tamaño de fuente */
 }
 
 .footer-column p,
 .footer-column a {
     color: #9fa3a9;
     text-decoration: none;
-    margin-bottom: 1px;  /* Reducir el margen inferior */
+    margin-bottom: 2px;  /* Reducir aún más el margen inferior */
+    font-size: 14px;  /* Aumentar el tamaño de fuente */
 }
 
 .footer-column a {
@@ -38,7 +39,7 @@ footer {
 .social-media {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;  /* Reducir el margen inferior */
+    margin-bottom: 5px;  /* Reducir aún más el margen inferior */
 }
 
 .social-media ul {
@@ -49,11 +50,11 @@ footer {
 }
 
 .social-media li {
-    margin: 0 5px;  /* Reducir el margen */
+    margin: 0 2px;  /* Reducir aún más el margen */
 }
 
 .social-media img {
-    width: 30px;  /* Reducir el tamaño de los iconos */
+    width: 30px;  /* Aumentar el tamaño de los iconos */
     height: 30px;
     vertical-align: middle;
     transition: opacity 0.3s;
@@ -66,9 +67,10 @@ footer {
 .footer-bottom {
     width: 100%;
     text-align: center;
-    margin-top: 10px;  /* Reducir el margen superior */
-    font-size: 12px;  /* Reducir el tamaño de fuente */
+    margin-top: 2px;  /* Reducir el margen superior */
+    font-size: 8px;  /* Ajustar el tamaño de la fuente a un valor estándar y legible */
     color: #9fa3a9;
+    line-height: 1.1; /* Ajustar el espacio entre líneas */
 }
 
 /* Ajustes para pantallas de menos de 768px */
@@ -76,11 +78,11 @@ footer {
     footer {
         flex-direction: column;
         align-items: center;
-        padding: 10px 5px;  /* Reducir el padding */
+        padding: 5px 2px;  /* Reducir aún más el padding */
     }
 
     .footer-column {
-        margin: 10px 0;
+        margin: 5px 0;
         text-align: center;
         flex-basis: 100%;
     }
@@ -93,19 +95,20 @@ footer {
 /* Ajustes para pantallas muy pequeñas (móviles de menos de 480px) */
 @media (max-width: 480px) {
     footer {
-        padding: 5px;  /* Hacerlo aún más compacto */
+        padding: 2px;  /* Hacerlo aún más compacto */
     }
 
     .footer-column {
-        margin: 5px 0;
+        margin: 2px 0;
     }
 
     .footer-bottom {
-        font-size: 10px;
+        font-size: 6px;  /* Mantener el tamaño de la fuente pequeño */
+        margin-top: 1px;  /* Reducir aún más el margen superior */
     }
 
     .social-media img {
-        width: 20px;  /* Reducir el tamaño de los iconos aún más */
+        width: 20px;  /* Ajustar el tamaño de los iconos */
         height: 20px;
     }
 }

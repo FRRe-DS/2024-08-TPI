@@ -42,16 +42,18 @@ const ListaAdminQR = () => {
       {error ? (
         <p style={{ color: "red" }}>{error}</p>
       ) : (
-        <ul className="escultores-list">
-          {filteredEscultores.map((escultor) => (
-            <li key={escultor.id_escultor} className="escultor-item">
-              <h4>{escultor.nombre_esc} {escultor.apellido}</h4>
-              <Link to={`/qr/${escultor.id_escultor}`}>
-                <button className="view-details-btn">Ver QR</button>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="scroll-container">
+          <ul className="escultores-list">
+            {filteredEscultores.map((escultor) => (
+              <li key={escultor.id_escultor} className="escultor-item">
+                <h4>{escultor.nombre_esc} {escultor.apellido}</h4>
+                <Link to={`/qr/${escultor.id_escultor}`}>
+                  <button className="view-details-btn">Ver QR</button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
