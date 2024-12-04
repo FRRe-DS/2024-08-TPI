@@ -149,8 +149,10 @@ export default function CreateEscultor() {
                         />
                     )}
                 </FormField>
-                <Button type='submit'>Enviar</Button>
-                <Button type='button' onClick={() => navigate(-1)}> Ir Atrás</Button>
+                <div className="flex justify-between">
+                    <Button type='button' onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"> Ir Atrás</Button>
+                    <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Enviar</Button>
+                </div>
             </Form>
         </div>
     );

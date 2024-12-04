@@ -18,6 +18,8 @@ import Biografia from './views/components/Biografia';
 import Resultados from './views/components/Resultados';
 import CreateEvento from './views/components/CRUD/CreateEvento';
 import DeleteEvento from './views/components/CRUD/DeleteEvento';
+import ListaAdminQR from './views/components/ListaAdminQR';
+import PresentacionQR from './views/components/PresentacionQR';
 import UpdateEvento from './views/components/CRUD/UpdateEvento'
 
 const App = () => {
@@ -48,6 +50,14 @@ const App = () => {
               element={
                 <RutasProtegidas component={Admin} role="admin" />
               }
+            />
+            <Route
+              path="admin/qr-list"
+              element={<RutasProtegidas component={ListaAdminQR} role="admin"/>}
+            />
+            <Route
+              path="/qr:/id"
+              element={<RutasProtegidas component={PresentacionQR} role="admin"/>}
             />
             {/* Ruta 404 */}
             <Route path="*" element={<div>404 Not Found</div>} />

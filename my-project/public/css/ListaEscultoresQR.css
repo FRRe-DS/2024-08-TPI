@@ -1,0 +1,76 @@
+/* Contenedor principal */
+.escultores-container {
+  margin: 30px auto;
+  padding: 30px;
+  max-width: 500px; /* Ancho fijo */
+  background-color: #333; /* Fondo oscuro para el contenedor */
+  color: hsl(0, 0%, 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombras suaves para un mejor diseño */
+}
+
+/* Título */
+.escultores-container h2 {
+  text-align: center;
+  color: #fff; /* Blanco */
+  margin-bottom: 30px;
+  font-size: 35px; /* Tamaño del título */
+  font-weight: bold; /* Hacerlo más destacado */
+  text-transform: uppercase; /* Convertir el texto a mayúsculas */
+}
+
+/* Lista de escultores */
+.escultores-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada ítem de la lista */
+.escultor-item {
+  background-color: #444; /* Fondo más claro para los elementos */
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 8px; /* Bordes redondeados */
+  display: flex;
+  justify-content: space-between; /* Mantener elementos alineados hacia la izquierda */
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Nombre del escultor */
+.escultor-item h4 {
+  color: #fff;
+  margin: 0;
+  font-size: 20px;
+  font-weight: normal; /* Estilo más ligero */
+  flex-grow: 1; /* Permitir que el nombre del escultor ocupe el espacio disponible */
+}
+
+/* Estilo del botón */
+.view-details-btn {
+  padding: 8px 20px;
+  background-color: #007bff; /* Azul para el botón */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+  flex-grow: 0; /* No permitir que el botón ocupe más espacio del necesario */
+}
+
+/* Efecto hover en el botón */
+.view-details-btn:hover {
+  background-color: #0056b3; /* Azul más oscuro cuando se pasa el mouse */
+}
+
+.search-input {
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
