@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+html{
+    background-image: url(../img/fondo2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Seccion de titulos */
+.titulos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.titulos h1 {
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    gap: 0;
+
+}
+
+.titulos h1 span {
+    font-size: 10vw;
+}
+
+#titulo1 {
+    font-family:  "Playfair Display", serif;
+    font-style: italic;
+    font-weight: lighter; 
+}
+
+#titulo2, #titulo3{
+    font-family: "Lora", serif;
+    font-weight: 800 ;
+}
+
+#titulo1, #titulo2, #titulo3{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#frase{
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    animation: text 2s linear infinite;
+    color: rgb(159, 163, 169, 0.7);
+}
+
+#frase cite{
+    font-size: 3vw;
+}
+
+#frase cite span{
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+.info {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info .stitulos {
+    width: 100%;
+
+}
+
+.stitulos h2 {
+    width: 100%;
+    text-align: start;
+    color: #9fa3a9 ;
+}
+
+.stitulos h2 span {
+    font-size: 5vw;
+    margin-bottom: 15px;
+}
+
+#stitulo2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+#stitulo1 {
+    font-family: "Lora", serif;
+    font-weight: 800 ;
+}
+
+.info p {
+    font-size: 1.5vw;
+    color: #909090;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    animation: slide 5s linear infinite; /* Aplica la animación deseada */
+    animation: moveUpDown 3s ease-in-out;
+}
+
+.demas_info {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad del 90% */
+    padding: 50px; /* Espaciado interno */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para hover */
+    backdrop-filter: blur(20px); /* Efecto de desenfoque para el fondo */
+}
+
+.demas_info:hover {
+    transform: translateY(-10px); /* Efecto flotante */
+}
+
+.Historia {
+    font-family: "Lora", serif;
+    letter-spacing: 2px;
+    font-weight: 800 ;
+    font-size: 5vw;
+    color: #000000ab; /* Texto blanco para destacar en fondo oscuro */
+    text-align: center;
+    margin-bottom: 10px;
+    
+}
+
+.demas_info p {
+    font-family: 'Lora', serif; /* Fuente para el texto */
+    font-size: 1.5vw;
+    line-height: 1.6;
+    color: #000000; /* Texto gris claro para resaltar sobre el fondo */
+    margin-bottom: 10px;
+    text-align: justify;
+    text-indent: 30px;
+}
+
+@keyframes moveUpDown {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+
+/*Responsive*/
+@media(max-width: 1024px){
+    .info p {
+        font-size: 3vw;
+    }
+    .demas_info p {
+        font-size: 3vw;
+    }
+}

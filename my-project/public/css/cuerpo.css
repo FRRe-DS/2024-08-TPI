@@ -11,7 +11,7 @@ html{
 #frase{
     width: 500px;
     text-align: center;
-    font-size: 25px;
+    font-size: 5vw;
     margin: 0 auto;
     margin-bottom: 100px;
     animation: text 2s linear infinite;
@@ -29,7 +29,7 @@ html{
     font-family: "Lora", serif;
     letter-spacing: 2px;
     font-weight: 800 ;
-    font-size: 10vw;
+    font-size: 12vw;
     color: #9fa3a9;
    
 }
@@ -39,7 +39,7 @@ html{
     font-style: italic;
     letter-spacing: 2px;
     font-weight: lighter;
-    font-size: 10vw; 
+    font-size: 12vw; 
     color: #9fa3a9;
     
 }

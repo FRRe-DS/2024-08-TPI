@@ -1,5 +1,5 @@
-import '/public/css/cuerpo.css'; // Acá se incluye el archivo CSS de ser necesario
-
+/*import '/public/css/cuerpo.css'; // Acá se incluye el archivo CSS de ser necesario*/
+import '/public/css/CuerpoAux.css'; // Acá se incluye el archivo CSS de ser necesario
 const Cuerpo = () => {
     return (
         <main>
@@ -12,15 +12,15 @@ const Cuerpo = () => {
                     </h1>
                 </div>
                 <div id="frase">
-                    <cite>Donde el arte, <strong>FLUYE.</strong></cite>
+                    <cite>Donde el arte, <span>FLUYE.</span></cite>
                 </div>
             </div>
 
             <div className="info">
                 <div className="stitulos">
-                    <h2 id="stitulo1">¿Qué es </h2>
-                    <h2 id="stitulo2">la Bienal?</h2>
-                    <h2 id="stitulo3"></h2>
+                    <h2>
+                        <span id="stitulo1">¿Qué es </span><span id="stitulo2"> la Bienal? </span>
+                    </h2>
                 </div>
                 <p>
                     La Bienal Internacional de Escultura del Chaco es un evento cultural que celebra el arte de la escultura en un escenario de prestigio internacional. Cada dos años, artistas de todo el mundo se reúnen para exhibir sus obras, intercambiar ideas y participar en actividades y talleres relacionados con la escultura.

@@ -131,7 +131,7 @@ export default function CreateEscultura() {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Descripción de la Temática</label>
+                <label className="block text-gray-700">Descripción</label>
                 <textarea
                     placeholder="Escriba una descripción"
                     value={descripcion}
@@ -157,19 +157,8 @@ export default function CreateEscultura() {
             </div>
 
             <div className="flex justify-between">
-                <Button
-                    type="submit"
-                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
-                >
-                    Enviar
-                </Button>
-                <Button
-                    type="button"
-                    onClick={() => navigate(-1)}
-                    className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"
-                >
-                    Ir Atrás
-                </Button>
+                <Button type="button" onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none">Ir Atrás</Button>
+                <Button type="submit" className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">Enviar</Button>
             </div>
         </form>
     );

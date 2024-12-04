@@ -65,6 +65,7 @@ const Header = () => {
             <li><Link to="/esculturas">Esculturas</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
             <li><Link to="/Resultados">Resultados</Link></li>
+            {userHasRole("admin") && (<li><Link to="/admin/qr-list">Lista QR</Link></li>)}
         </ul>
     </nav>
 
