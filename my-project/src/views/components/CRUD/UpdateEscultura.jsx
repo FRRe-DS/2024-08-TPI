@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, FormField } from 'semantic-ui-react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function UpdateEscultura() {
     const { id_escultura } = useParams();
@@ -10,6 +10,8 @@ export default function UpdateEscultura() {
     const [tematica, setTematica] = useState('');
     const [fechaCreacion, setFechaCreacion] = useState('');
     const [descripcion, setDescripcion] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEscultura = async () => {
@@ -39,6 +41,7 @@ export default function UpdateEscultura() {
                 fechaCreacion,
             });
             alert('Escultura actualizada correctamente');
+            navigate(-1);
         } catch (error) {
             console.error('Error al actualizar la escultura', error);
         }

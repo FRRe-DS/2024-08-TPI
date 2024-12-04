@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, FormField } from 'semantic-ui-react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '/public/css/formularios.css';
 
 export default function UpdateEvento() {
@@ -11,6 +11,8 @@ export default function UpdateEvento() {
     const [lugar, setLugar] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [tematica, setTematica] = useState('');
+
+    const navigate = useNavigate();
 
     // Cargar los datos del escultor a editar
     useEffect(() => {
@@ -23,6 +25,7 @@ export default function UpdateEvento() {
                 setLugar(lugar || '');
                 setDescripcion(descripcion || '');
                 setTematica(tematica || '');
+                
             } catch (error) {
                 console.error('Error al cargar el evento', error);
             }
@@ -42,6 +45,7 @@ export default function UpdateEvento() {
                 tematica
             });
             alert('Evento actualizado correctamente');
+            navigate(-1);
         } catch (error) {
             console.error('Error al actualizar el evento', error);
         }

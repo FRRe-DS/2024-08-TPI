@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, FormField } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '/public/css/crud.css'; 
-
+import '/public/css/crud.css';
 export default function CreateEvento() {
     const [nombre, setNombre] = useState('');
     const [fecha, setFecha] = useState({ dia: '', mes: '', anio: '' });
@@ -12,6 +12,8 @@ export default function CreateEvento() {
     const [dias, setDias] = useState([]);
     const [meses, setMeses] = useState([]);
     const [anios, setAnios] = useState([]);
+    
+    const navigate= useNavigate();
 
     useEffect(() => {
         const diasArray = [...Array(31)].map((_, index) => index + 1);
@@ -71,6 +73,7 @@ export default function CreateEvento() {
             setLugar('');
             setDescripcion('');
             setTematica('');
+            navigate(-1);
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
             console.error('Error al enviar los datos', error);
