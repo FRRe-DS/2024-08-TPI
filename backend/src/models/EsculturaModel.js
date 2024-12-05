@@ -33,9 +33,18 @@ class EsculturaModel {
         return rows[0];
     }
 
-    // Obtener imágenes de la escultura por ID
-    static async getImagenesByEsculturaId(id_escultura) {
-        const [rows] = await pool.query('SELECT * FROM escultura_img WHERE id_escultura = ?', [id_escultura]);
+    static async getImagenesByEscultorById(id_escultor) {
+        const [rows] = await pool.query(
+            
+            `SELECT * 
+            FROM escultura_img es 
+            INNER JOIN esculturas e 
+            ON e.id_escultura = es.id_escultura 
+            WHERE e.id_escultor = ?
+            `,
+            [id_escultor]
+        );
+    
         if (rows.length === 0) {
             return [];
         }
