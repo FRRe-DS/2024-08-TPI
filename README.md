@@ -71,9 +71,9 @@ El sistema contempla la creacion, la baja y la modificacion de esculturas, escul
 En el sistema se pueden visualizar los escultores, eventos y esculturas, esto es indiferente del usuario. Si el usuario es un **usuario logueado**, este mismo puede votar a una escultura si la misma se encuentra en un evento activo, esta votacion solo puede ser realizada una vez y es via web o via QR. 
 
 ## Diagrama de casos de uso
-![Casos de uso](Documentacion\Casos_De_Uso.jpg)
+![Casos de uso](https://github.com/FRRe-DS/2024-08-TPI/blob/frontend/Documentacion/Casos_De_Uso.jpg)
 ## Diagrama ENTIDAD-RELACION
-![Entidad relacion](Documentacion\derfinal.jpg)
+![Entidad relacion](https://github.com/FRRe-DS/2024-08-TPI/blob/frontend/Documentacion/derfinal.jpg)
 ## Arquitectura utilizada
 
 Se simula una arquitectura, Modelo Vista Controlador.
@@ -86,7 +86,7 @@ La comunicacion entre frontend y backend sucede a traves de peticiones HTTP, las
 
 Para la base de datos usamos **MySQL**.
 
-![Arquitectura](Documentacion\ArquitecturaMVC.jpg)
+![Arquitectura](https://github.com/FRRe-DS/2024-08-TPI/blob/frontend/Documentacion/ArquitecturaMVC.jpg)
 
 ## Tecnologias 
 - **Node.js**: Es un entorno de ejecución de JavaScript en el lado del servidor que permite construir aplicaciones escalables y rápidas. Es conocido por su modelo de programación asincrónica y basada en eventos, lo que lo hace ideal para aplicaciones en tiempo real y sistemas de alta concurrencia.
