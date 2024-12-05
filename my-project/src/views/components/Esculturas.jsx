@@ -64,6 +64,7 @@ const Esculturas = () => {
     };
 
     useEffect(() => {
+        
         const fetchEsculturas = async () => {
             try {
                 const response = await axios.get('http://localhost:3000/api/escultura');
@@ -117,6 +118,7 @@ const Esculturas = () => {
                         </div>
                     </div>
                     <div className="card-footer">
+                        
                         <div className=" mb-0 w-full flex flex-col sm:flex-row justify-around ">
                             <button
                                 className="bg-grisOscuro text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200 w-full sm:w-auto"
@@ -125,14 +127,55 @@ const Esculturas = () => {
                                 Ver escultor
                             </button>
                         </div>
+                                  {/* Botón para compartir */}
+                        <div className="mb-0 w-full flex flex-col sm:flex-row justify-around">
+                            <button
+                            onClick={() => openShareModal()}
+                            className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"
+                            >
+                            Compartir
+                            </button>
+                        </div>
                     </div>
                     </div>
                 ))}
                 </div>
             </div>
+            
+
+
+
+            {/* Modal de compartir con tamaño ajustado */}
+            {shareModalOpen && (
+                <div className=" fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="w-1/4 bg-white p-4 rounded-lg max-w-3xl relative">
+                        <h3 className="text-lg font-semibold mb-4">Compartir Escultura</h3>
+                        <div className="flex justify-around mb-4">
+                            {/* Icono de WhatsApp */}
+                            <button onClick={handleShareWhatsApp} className="flex items-center justify-center w-16 h-16">
+                            <img src="/public/img/whatsapp.png" alt="Compartir en WhatsApp" className="w-12 h-12" />
+                            </button>
+                            
+                            {/* Icono de Facebook */}
+                            <button onClick={handleShareFacebook} className="flex items-center justify-center w-16 h-16">
+                                <img src="/img/facebookCOMP.png" alt="Compartir en Facebook" className="w-12 h-12" />
+                            </button>
+
+                        </div>
+                        <div className="text-center">
+                        <button
+                        onClick={closeShareModal}
+                        className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+                        >
+                        Cerrar
+                        </button>
+                    </div>
+                    </div>
+
+                </div>
+            )}
         </div>
     );
 };
 
 export default Esculturas;
-
