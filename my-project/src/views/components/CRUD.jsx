@@ -199,16 +199,6 @@ function Crud() {
                                     >
                                         MODIFICAR
                                     </button>
-<<<<<<< HEAD
-
-                                    <button 
-                                        type="button" 
-                                        className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-1 px-6 py-3 mt-4 mb-4 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-800"
-                                        onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id)}
-                                    >
-                                        ELIMINAR
-                                    </button>
-=======
                                      {activeList !== 'usuarios' && (
                                             <button 
                                                 type="button" 
@@ -218,7 +208,6 @@ function Crud() {
                                                 ELIMINAR
                                             </button>
                                         )}
->>>>>>> origin/main
                                 </div>
                             </div>
                         ))
