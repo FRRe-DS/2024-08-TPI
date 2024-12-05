@@ -20,6 +20,6 @@ router.put('/:id_escultor', EscultorController.updateEscultor);
 router.delete('/:id_escultor', EscultorController.deleteEscultor);
 
 // Obtener escultores del evento activo
-router.get('/activos', EscultorController.getEscultoresActivos);
+router.get('/evento/activo', EscultorController.getEscultoresActivos);
 
 module.exports = router;

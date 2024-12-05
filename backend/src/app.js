@@ -5,6 +5,7 @@ const userRoutes = require('./routes/userRoutes');
 const escultorRoutes = require('./routes/escultorRoutes');
 const esculturaRoutes = require('./routes/esculturaRoutes');
 const votoRoutes = require('./routes/votoRoutes');
+const tokenRoutes = require('./routes/tokenRoutes')
 const app = express();
 const cors = require('cors');
 
@@ -21,6 +22,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/escultura', esculturaRoutes);
 app.use('/api/escultor', escultorRoutes);
 app.use('/api/voto', votoRoutes);
+app.use('/api/token', tokenRoutes);
+
 
 
 app.use('/images', express.static('images')); // para que se renderice en tu localhost la imagen

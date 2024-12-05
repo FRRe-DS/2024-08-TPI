@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { QRCodeSVG } from 'qrcode.react';
+import axios from 'axios';
 import '/public/css/PresentacionQR.css';
 
 const PresentacionQR = () => {
@@ -9,18 +10,6 @@ const PresentacionQR = () => {
   const [error, setError] = useState(null);
   const [token, setToken] = useState('');
 
-  const generarToken = () => {
-    const array = new Uint32Array(4);
-    window.crypto.getRandomValues(array);
-    const token = array.join('-');
-    setToken(token);
-  }
-
-  useEffect(() => {
-    generarToken();
-    const time = setInterval(generarToken, 60000); // Generar el token cada minuto
-    return () => clearInterval(time);
-  }, []);
 
   useEffect(() => {
     const fetchEscultor = async () => {
@@ -39,6 +28,24 @@ const PresentacionQR = () => {
     fetchEscultor();
   }, [id]);
 
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const response = await axios.post(`http://localhost:3000/api/token/:${id}`); // Usamos POST con Axios
+        setToken(response.data.token); // Actualizamos el estado con el token recibido
+      } catch (err) {
+        console.error('Error al obtener el token:', err);
+        setError('No se pudo generar el token.');
+      }
+    };
+  
+    fetchToken(); // Llamada inicial
+  
+    const interval = setInterval(fetchToken, 60000); // Llamar cada 60 segundos
+    return () => clearInterval(interval); // Limpiar el intervalo cuando el componente se desmonte
+  }, [id]);
+
+  
   useEffect(() => {
     // Ocultar el header y el footer para esta página
     const header = document.querySelector('.header');
@@ -74,7 +81,7 @@ const PresentacionQR = () => {
       <h1> Voto por {escultor.nombre_esc} {escultor.apellido}</h1>
       <div>
         { token && (
-          <QRCodeSVG value={`http://localhost:5173/votar/${id}?token=${token}`} size={350} />
+          <QRCodeSVG value={`http://localhost:5173/votar/${id}?token=${token}`} size={350}  />
         )}
       </div>
     </div>
