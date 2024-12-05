@@ -2,16 +2,20 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '/public/css/custom.css';
 
+
 const Esculturas = () => {
     const [esculturas, setEsculturas] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
+    const [shareUrl, setShareUrl] = useState('');
 
     // Función para abrir el modal con las imágenes de la escultura
-    const openModal = (imagenes) => {
+    const openModal = (imagenes, url) => {
         setSelectedImages(imagenes);
         setCurrentImageIndex(0); // Comienza en la primera imagen
+        setShareUrl(url); // Establece la URL de la escultura para compartir
         setModalOpen(true);
     };
 
@@ -32,6 +36,30 @@ const Esculturas = () => {
         setCurrentImageIndex((prevIndex) =>
             prevIndex > 0 ? prevIndex - 1 : selectedImages.length - 1
         );
+    };
+
+    // Función para compartir en Facebook
+    const handleShareFacebook = () => {
+        const message = "¡Mira esta escultura de la Bienal!";
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(message)}`;
+        window.open(facebookUrl, '_blank');
+    };
+
+    // Función para compartir en WhatsApp
+    const handleShareWhatsApp = () => {
+        const message = "¡Mira esta escultura de la Bienal! " + shareUrl;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    // Abrir el modal de compartir
+    const openShareModal = () => {
+        setShareModalOpen(true);
+    };
+
+    // Cerrar el modal de compartir
+    const closeShareModal = () => {
+        setShareModalOpen(false);
     };
 
     useEffect(() => {
@@ -67,7 +95,6 @@ const Esculturas = () => {
                                     />
                                 )}
                                 <div className="flex-1 flex flex-col p-4">
-                                    
                                     <div className="bg-gray-100 rounded-lg py-2 px-3 flex-1">
                                         <p className="text-sm text-wh font-black mt-2">
                                             <strong>Descripción:</strong> {escultura.descripcion}
@@ -76,13 +103,19 @@ const Esculturas = () => {
                                         {escultura.imagenes && (
                                             <button
                                                 className="mt-4 bg-blue-500 text-white p-2 rounded-lg"
-                                                onClick={() => openModal(escultura.imagenes)}
+                                                onClick={() => openModal(escultura.imagenes, escultura.url)}
                                             >
                                                 Ver imágenes
                                             </button>
                                         )}
                                     </div>
                                 </div>
+                                <button
+                                    className="mt-4 bg-green-500 text-white p-2 rounded-lg"
+                                    onClick={openShareModal}
+                                >
+                                    Compartir
+                                </button>
                             </div>
                         </div>
                     ))}
@@ -118,6 +151,43 @@ const Esculturas = () => {
                                 onClick={nextImage}
                             >
                                 &#62;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Modal de compartir con tamaño ajustado */}
+            {shareModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-4 rounded-lg max-w-3xl relative">
+                        <button
+                            className="absolute top-0 right-0 p-2 bg-red-500 text-white rounded-full"
+                            onClick={closeShareModal}
+                        >
+                            X
+                        </button>
+                        <h3 className="text-lg font-semibold mb-4">Compartir Escultura</h3>
+                        <div className="flex space-x-4">
+                            <button
+                                className="flex items-center justify-center w-16 h-16"
+                                onClick={handleShareFacebook}
+                            >
+                                <img
+                                    src="/public/img/facebookCOMP.png"
+                                    alt="Compartir en Facebook"
+                                    className="w-12 h-12"
+                                />
+                            </button>
+                            <button
+                                className="flex items-center justify-center w-16 h-16"
+                                onClick={handleShareWhatsApp}
+                            >
+                                <img
+                                    src="/public/img/whatsappCOMP.png"
+                                    alt="Compartir en WhatsApp"
+                                    className="w-12 h-12"
+                                />
                             </button>
                         </div>
                     </div>
