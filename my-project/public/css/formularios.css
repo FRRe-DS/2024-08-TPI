@@ -32,13 +32,13 @@ form textarea {
 /* Estilo para el select */
 form select {
     width: 100%; /* Usa el 100% del ancho disponible */
-    padding: 10px; /* Espaciado interno para el select */
-    margin: 10px 0; /* Margen superior e inferior */
-    font-family: 'Lora', serif; /* Fuente para el texto dentro del select */
-    color: #000000; /* Color del texto */
-    border: 1px solid #9fa3a9; /* Borde del select */
-    border-radius: 5px; /* Esquinas redondeadas */
-    background-color: white; /* Fondo blanco para el select */
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'Lora', serif;
+    color: #000000;
+    border: 1px solid #9fa3a9;
+    border-radius: 5px;
+    background-color: white;
 }
 
 /* Estilo para la opción por defecto en el select */
@@ -48,18 +48,18 @@ form select option[value=""] {
 
 /* Evitar que el usuario seleccione la opción por defecto */
 form select option[disabled] {
-    color: #a0a0a0; /* Color similar al del placeholder */
+    color: #a0a0a0;
 }
 
 /* Estilo para el select al hacer hover */
 form select:hover {
-    border-color: #9fa3a9; /* Cambia el color del borde al pasar el mouse */
+    border-color: #9fa3a9;
 }
 
 /* Estilo específico para el select cuando está deshabilitado */
 form select:disabled {
-    background-color: #f0f0f0; /* Fondo gris claro cuando está deshabilitado */
-    cursor: not-allowed; /* Cambia el cursor al pasar sobre el select */
+    background-color: #f0f0f0;
+    cursor: not-allowed;
 }
 
 /* Estilos para el botón */
@@ -70,8 +70,8 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: block; /* Asegura que el botón sea un bloque */
-    margin: 20px auto; /* Centra el botón horizontalmente */
+    display: block;
+    margin: 20px auto;
 }
 
 /* Estilo para el hover del botón */
@@ -85,34 +85,92 @@ form textarea {
     resize: none; /* Evita que el usuario redimensione el textarea */
 }
 
+/* Contenedor de los radio buttons */
+form .radio-group {
+    display: flex; /* Muestra los elementos en fila */
+    justify-content: space-around; /* Espacio entre los botones */
+    align-items: center; /* Centra verticalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+/* Estilo para cada opción de radio */
+form .radio-group label {
+    display: flex; /* Hace que el texto y el input estén alineados */
+    align-items: center; /* Centra verticalmente el texto con el input */
+    font-family: 'EB Garamond', serif;
+    color: #9fa3a9;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Estilo para el input radio */
+form .radio-group input[type="radio"] {
+    appearance: none; /* Oculta el estilo predeterminado del navegador */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #9fa3a9;
+    border-radius: 50%; /* Hace que el input sea un círculo */
+    margin-right: 10px; /* Espacio entre el input y el texto */
+    outline: none; /* Elimina el borde azul al enfocarse */
+    background-color: transparent; /* Fondo transparente inicialmente */
+    transition: background-color 0.3s, border-color 0.3s; /* Animación suave */
+}
+
+/* Estilo cuando el radio button está seleccionado */
+form .radio-group input[type="radio"]:checked {
+    background-color: #9fa3a9; /* Fondo gris claro al seleccionarse */
+    border-color: #393d42; /* Cambia el color del borde */
+}
+
+/* Estilo para el hover en el radio button */
+form .radio-group input[type="radio"]:hover {
+    border-color: #393d42; /* Oscurece el borde al pasar el mouse */
+}
+
 /* Consultas de medios para hacer el formulario responsivo */
 @media (max-width: 768px) {
     form {
-        padding: 15px; /* Reduce el espaciado interno en pantallas pequeñas */
+        padding: 15px;
     }
 
     form label {
-        font-size: 24px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+        font-size: 24px;
     }
 
     form input,
     form textarea,
     form select {
-        padding: 8px; /* Reduce el padding en inputs y selects */
-        margin: 8px 0; /* Reduce el margen en inputs y selects */
+        padding: 8px;
+        margin: 8px 0;
     }
 
     form button {
-        padding: 8px 16px; /* Reduce el espaciado del botón */
+        padding: 8px 16px;
+    }
+
+    form .radio-group {
+        flex-direction: column; /* Cambia a disposición en columna en pantallas pequeñas */
+        align-items: flex-start;
+    }
+
+    form .radio-group label {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    form .radio-group input[type="radio"] {
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
     }
 }
 
 @media (max-width: 480px) {
     form {
-        max-width: 90%; /* Asegura que el formulario no exceda el 90% del ancho en pantallas muy pequeñas */
+        max-width: 90%;
     }
 
     form label {
-        font-size: 20px; /* Tamaño de fuente aún más pequeño para pantallas muy pequeñas */
+        font-size: 20px;
     }
 }
