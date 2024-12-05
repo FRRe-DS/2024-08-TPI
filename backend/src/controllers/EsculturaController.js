@@ -11,9 +11,11 @@ class EsculturaController {
           // Guardar las imágenes en la tabla 'escultura_img'
           if (req.files) {
             for (const file of req.files) {
+                const nombreimg = file ? file.path.replace(/\\/g, '/') : null
               await EsculturaModel.createEsculturaImagen({
+                
                 id_escultura: escultura.id_escultura,
-                imagen_url: file.path
+                imagen_url: nombreimg
               });
             }
           }
@@ -84,11 +86,11 @@ class EsculturaController {
     }
 
     // Obtener imágenes de la escultura
-    static async getImagenesByEsculturaId(req, res) {
-        const { id_escultura } = req.params;
+    static async getImagenesByEscultorActualById(req, res) {
+        const { id_escultor} = req.params;
         try {
             // Obtener todas las imágenes asociadas a la escultura
-            const imagenes = await EsculturaModel.getImagenesByEsculturaId(id_escultura);
+            const imagenes = await EsculturaModel.getImagenesByEscultorActualById(id_escultor);
             if (imagenes.length === 0) {
                 return res.status(404).json({ error: 'No se encontraron imágenes para esta escultura' });
             }

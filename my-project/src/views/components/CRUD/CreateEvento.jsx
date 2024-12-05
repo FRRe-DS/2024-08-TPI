@@ -11,6 +11,8 @@ export default function CreateEvento() {
     const [descripcion, setDescripcion] = useState('');
     const [tematica, setTematica] = useState('');
     const [activo, setActivo] = useState('si'); // Estado inicial para "activo"
+    const navigate = useNavigate()
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,7 +45,8 @@ export default function CreateEvento() {
             setLugar('');
             setDescripcion('');
             setTematica('');
-            setActivo('si'); // Restablecer el estado inicial de "activo"
+            setActivo('si');
+            navigate(-1) // Restablecer el estado inicial de "activo"
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
             console.error('Error al enviar los datos', error);

@@ -1,0 +1,8 @@
+.carousel .thumb {
+    height: 100px; /* Misma altura que el ancho definido en thumbWidth */
+    
+    object-fit: cover; /* Recorta la imagen sin deformarla */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
