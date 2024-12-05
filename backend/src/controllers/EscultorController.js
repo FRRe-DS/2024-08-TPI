@@ -3,24 +3,26 @@ const EscultorModel = require('../models/EscultorModel');
 class EscultorController {
     // Crear un nuevo Escultor
     static async createEscultor(req, res) {
-        const { nombre_esc, apellido, pais,biografia} = req.body;
-        const imagen_esc = req.file ? req.file.path.replace(/\\/g, '/') : null;
+        const { nombre_esc, apellido, pais, biografia, email, telefono } = req.body;
+        const imagen_esc = req.file ? req.file.path.replace(/\\/g, '/') : null;  // Maneja la imagen si se carga
         try {
             const Escultor = await EscultorModel.createEscultor({ 
                 nombre_esc, 
                 apellido, 
                 pais, 
                 biografia, 
-                imagen_esc 
+                imagen_esc, 
+                email, 
+                telefono
             });
             res.status(201).json(Escultor);
         } catch (error) {
-            console.error('Error al obtener el rol del usuario:', error)
+            console.error('Error al crear el Escultor:', error);
             res.status(500).json({ error: 'Error al crear el Escultor' });
         }
     }
 
-    // Obtener todos los Escultoros
+    // Obtener todos los Escultores
     static async getAllEscultores(req, res) {
         try {
             const Escultores = await EscultorModel.getAllEscultores();
@@ -56,10 +58,17 @@ class EscultorController {
     // Actualizar Escultor
     static async updateEscultor(req, res) {
         const { id_escultor } = req.params;
-        const { nombre_esc, apellido, biografia, pais, imagen_esc } = req.body;
-        console.log (nombre_esc)
+        const { nombre_esc, apellido, biografia, pais, imagen_esc, email, telefono } = req.body;
         try {
-            const success = await EscultorModel.updateEscultor(id_escultor, { nombre_esc, apellido, biografia, pais, imagen_esc });
+            const success = await EscultorModel.updateEscultor(id_escultor, { 
+                nombre_esc, 
+                apellido, 
+                biografia, 
+                pais, 
+                imagen_esc, 
+                email, 
+                telefono 
+            });
             if (success) {
                 res.status(200).json({ message: 'Escultor actualizado correctamente' });
             } else {
@@ -70,7 +79,7 @@ class EscultorController {
             res.status(500).json({ error: 'Error al actualizar el escultor' });
         }
     }
-    
+
     // Eliminar Escultor
     static async deleteEscultor(req, res) {
         const { id_escultor } = req.params;
@@ -85,8 +94,5 @@ class EscultorController {
         }
     }
 }
-    //Obtener escultores del evento activo
-   
 
 module.exports = EscultorController;
-

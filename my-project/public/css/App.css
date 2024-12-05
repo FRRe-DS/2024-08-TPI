@@ -1,0 +1,8 @@
+body {
+    width: 100%;
+    margin: 0px 0px;
+    padding: 0px 0px;
+    background-image: url(../img/fondo2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

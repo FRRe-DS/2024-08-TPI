@@ -3,7 +3,6 @@ import { Button, Form, FormField } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '/public/css/crud.css';
-
 export default function CreateEvento() {
     const [nombre, setNombre] = useState('');
     const [fecha, setFecha] = useState(''); // Usar una cadena directamente

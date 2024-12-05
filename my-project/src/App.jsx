@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './views/components/Header';
 import Footer from './views/components/Footer';
@@ -25,10 +26,11 @@ import UpdateUsuario from './views/components/CRUD/UpdateUsuario'
 
 
 const App = () => {
+  const [showMenuMobile, setShowMenuMobile]= useState(false);
   return (
     <Router>
       <div className="flex flex-col min-h-screen"> 
-        <Header />
+      <Header showMenuMobile = {showMenuMobile} setShowMenuMobile = {setShowMenuMobile}/>
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Cuerpo />} />

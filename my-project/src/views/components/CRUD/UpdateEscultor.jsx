@@ -14,6 +14,8 @@ export default function UpdateEscultor() {
     const [biografia, setBiografia] = useState('');
     const [imagen_esc, setImagenEsc] = useState('');
     const [imagenPreview, setImagenPreview] = useState(null); // Para previsualizar la imagen seleccionada
+    const [email, setEmail] = useState(''); // Nuevo estado para el email
+    const [telefono, setTelefono] = useState(''); // Nuevo estado para el teléfono
 
     const navigate = useNavigate(); // Para navegar a otra ruta
 
@@ -32,14 +34,16 @@ export default function UpdateEscultor() {
         const fetchEscultor = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
-                const { nombre_esc, apellido, pais, biografia, imagen_esc } = response.data;
-                setFirstName(nombre_esc );
-                setLastName(apellido );
-                setPais(pais );
-                setBiografia(biografia );
-                setImagenEsc(imagen_esc );
+                const { nombre_esc, apellido, pais, biografia, imagen_esc, email, telefono } = response.data;
+                setFirstName(nombre_esc);
+                setLastName(apellido);
+                setPais(pais);
+                setBiografia(biografia);
+                setImagenEsc(imagen_esc);
                 setImagenPreview(imagen_esc); // Previsualizar la imagen existente
-                console.log("Datos recibidos:", { nombre_esc, apellido, pais, biografia, imagen_esc });
+                setEmail(email); // Establecer email
+                setTelefono(telefono); // Establecer teléfono
+                console.log("Datos recibidos:", { nombre_esc, apellido, pais, biografia, imagen_esc, email, telefono });
             } catch (error) {
                 console.error('Error al cargar el escultor', error);
             }
@@ -72,6 +76,8 @@ export default function UpdateEscultor() {
         if (!pais) invalidos.push("Pais");
         if (!biografia) invalidos.push("Biografía");
         if (!imagen_esc) invalidos.push("Imagen escultor");
+        if (!email) invalidos.push("Email"); // Validación para el email
+        if (!telefono) invalidos.push("Teléfono"); // Validación para el teléfono
     
         if (biografia.length > 150) {
             alert('La biografía no puede exceder los 150 caracteres.');
@@ -89,12 +95,10 @@ export default function UpdateEscultor() {
         formData.append("biografia", biografia);
         formData.append("pais", pais);
         formData.append("imagen_esc", imagen_esc);
+        formData.append("email", email); // Añadir email a los datos
+        formData.append("telefono", telefono); // Añadir teléfono a los datos
     
-        
-        
-       
         try {
-            
             await axios.put(`http://localhost:3000/api/escultor/${id_escultor}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -104,11 +108,9 @@ export default function UpdateEscultor() {
             alert('Escultor actualizado correctamente');
             navigate(-1); // Navegar de regreso después de actualizar
         } catch (error) {
-        
             console.error('Error al actualizar al escultor', error);
         }
     };
-    
     
     return (
         <Form onSubmit={updateData}>
@@ -149,29 +151,49 @@ export default function UpdateEscultor() {
                 />
             </FormField>
             <FormField>
-                    <label >Seleccione la imagen del escultor</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImagenChange}
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    />
-                    {imagenPreview && (
-                        <div className="mt-2">
-                            <h4 className="text-gray-700">Previsualización de la imagen:</h4>
-                            <img
-                                src={imagenPreview}
-                                alt="Previsualización de la imagen"
-                                className="rounded-md"
-                                style={{ width: '100px', marginTop: '10px' }}
-                            />
-                        </div>
-                    )}
-                </FormField>
-                <div className="flex justify-between">
-                    <Button type='button' onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"> Ir Atrás</Button>
-                    <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Actualizar</Button>
-                </div>
+                <label>Email</label>
+                <input 
+                    type="email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    placeholder="Email"
+                    required
+                />
+            </FormField>
+            <FormField>
+                <label>Teléfono</label>
+                <input 
+                    type="tel" 
+                    value={telefono} 
+                    onChange={(e) => setTelefono(e.target.value)} 
+                    placeholder="Teléfono"
+                    required
+                />
+            </FormField>
+            <FormField>
+                <label>Seleccione la imagen del escultor</label>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImagenChange}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                />
+                {imagenPreview && (
+                    <div className="mt-2">
+                        <h4 className="text-gray-700">Previsualización de la imagen:</h4>
+                        <img
+                            src={imagenPreview}
+                            alt="Previsualización de la imagen"
+                            className="rounded-md"
+                            style={{ width: '100px', marginTop: '10px' }}
+                        />
+                    </div>
+                )}
+            </FormField>
+            <div className="flex justify-between">
+                <Button type='button' onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none">Ir Atrás</Button>
+                <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Actualizar</Button>
+            </div>
         </Form>
     );
 }

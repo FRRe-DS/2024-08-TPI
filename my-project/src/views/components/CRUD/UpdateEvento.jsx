@@ -62,6 +62,7 @@ export default function UpdateEvento() {
                 activo,
             });
             alert('Evento actualizado correctamente');
+            navigate(-1);
         } catch (error) {
             console.error('Error al actualizar el evento', error);
             alert('Error al actualizar el evento');

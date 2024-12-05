@@ -76,6 +76,7 @@ export default function CreateEscultura() {
             setDescripcion('');
             setSelectedEscultor(null);
             setSelectedEvento(null);
+            navigate(-1);
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
             console.error('Error al enviar los datos', error);

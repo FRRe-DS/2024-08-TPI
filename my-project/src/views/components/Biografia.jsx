@@ -81,9 +81,7 @@ const Biografia = () => {
             alt={escultor.nombre_esc}
             className="w-32 h-32 mb-4 rounded-full border-4 border-gray-300 shadow-md"
           />
-          <h2 className="text-2xl font-bold text-GrisMuyOscuro mb-2">
-            {escultor.nombre_esc} {escultor.apellido}
-          </h2>
+          
           <p className="text-gray-500 italic mb-4">{escultor.nacionalidad}</p>
           <div className="text-left w-full px-4">
             <h3 className="text-lg font-semibold text-GrisMuyOscuro">Información del Escultor</h3>
