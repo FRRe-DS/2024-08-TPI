@@ -10,7 +10,7 @@ export default function CreateEvento() {
     const [descripcion, setDescripcion] = useState('');
     const [tematica, setTematica] = useState('');
     const [activo, setActivo] = useState('si'); // Estado inicial para "activo"
-
+    const navigate = useNavigate
     const handleSubmit = async (e) => {
         e.preventDefault();
         let invalidos = [];
@@ -36,13 +36,13 @@ export default function CreateEvento() {
                 activo, // Enviar el valor del estado "activo"
             });
             alert("Evento creado exitosamente");
+            navigate(-1)
             // Reiniciar el formulario
             setNombre('');
             setFecha('');
             setLugar('');
             setDescripcion('');
             setTematica('');
-            navigate(-1);
             setActivo('si'); // Restablecer el estado inicial de "activo"
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
@@ -106,3 +106,4 @@ export default function CreateEvento() {
         </Form>
     );
 }
+

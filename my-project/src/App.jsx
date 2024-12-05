@@ -24,7 +24,6 @@ import UpdateEvento from './views/components/CRUD/UpdateEvento'
 import { useState } from 'react';
 import UpdateUsuario from './views/components/CRUD/UpdateUsuario'
 
-
 const App = () => {
   const [showMenuMobile, setShowMenuMobile]= useState(false);
   return (

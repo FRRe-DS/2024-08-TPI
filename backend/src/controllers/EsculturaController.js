@@ -23,7 +23,7 @@ class EsculturaController {
           console.error(error);
           res.status(500).json({ error: 'Error al crear la escultura' });
         }
-      }
+    }
 
     // Obtener todas las esculturas
     static async getAllEsculturas(_req, res) {
@@ -43,6 +43,10 @@ class EsculturaController {
             if (!escultura) {
                 return res.status(404).json({ error: 'Escultura no encontrada' });
             }
+            // Obtener las imágenes asociadas a la escultura
+            const imagenes = await EsculturaModel.getImagenesByEsculturaId(id_escultura);
+            escultura.imagenes = imagenes; // Añadir las imágenes al objeto escultura
+
             res.status(200).json(escultura);
         } catch (error) {
             res.status(500).json({ error: 'Error al obtener la escultura' });
@@ -78,7 +82,22 @@ class EsculturaController {
             res.status(500).json({ error: 'Error al eliminar la escultura' });
         }
     }
+
+    // Obtener imágenes de la escultura
+    static async getImagenesByEsculturaId(req, res) {
+        const { id_escultura } = req.params;
+        try {
+            // Obtener todas las imágenes asociadas a la escultura
+            const imagenes = await EsculturaModel.getImagenesByEsculturaId(id_escultura);
+            if (imagenes.length === 0) {
+                return res.status(404).json({ error: 'No se encontraron imágenes para esta escultura' });
+            }
+            res.status(200).json(imagenes);
+        } catch (error) {
+            console.error (error)
+            res.status(500).json({ error: 'Error al obtener las imágenes' });
+        }
+    }
 }
 
 module.exports = EsculturaController;
-

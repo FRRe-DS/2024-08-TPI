@@ -3,8 +3,65 @@ import axios from 'axios';
 import '/public/css/esculturas.css';
 import { useNavigate } from 'react-router-dom';
 
+
 const Esculturas = () => {
     const [esculturas, setEsculturas] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
+    const [shareUrl, setShareUrl] = useState('');
+
+    // Función para abrir el modal con las imágenes de la escultura
+    const openModal = (imagenes, url) => {
+        setSelectedImages(imagenes);
+        setCurrentImageIndex(0); // Comienza en la primera imagen
+        setShareUrl(url); // Establece la URL de la escultura para compartir
+        setModalOpen(true);
+    };
+
+    // Función para cerrar el modal
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedImages([]);
+    };
+
+    // Función para navegar entre las imágenes del carrete
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex < selectedImages.length - 1 ? prevIndex + 1 : 0
+        );
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : selectedImages.length - 1
+        );
+    };
+
+    // Función para compartir en Facebook
+    const handleShareFacebook = () => {
+        const message = "¡Mira esta escultura de la Bienal!";
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(message)}`;
+        window.open(facebookUrl, '_blank');
+    };
+
+    // Función para compartir en WhatsApp
+    const handleShareWhatsApp = () => {
+        const message = "¡Mira esta escultura de la Bienal! " + shareUrl;
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    };
+
+    // Abrir el modal de compartir
+    const openShareModal = () => {
+        setShareModalOpen(true);
+    };
+
+    // Cerrar el modal de compartir
+    const closeShareModal = () => {
+        setShareModalOpen(false);
+    };
 
     useEffect(() => {
         const fetchEsculturas = async () => {
@@ -16,6 +73,8 @@ const Esculturas = () => {
             }
         };
         fetchEsculturas();
+
+    
     }, []);
     
     const navigate = useNavigate();
@@ -77,43 +136,3 @@ const Esculturas = () => {
 
 export default Esculturas;
 
-/*<div className="esculturas-container">
-            {esculturas.length > 0 ? (
-                <div className="scroll-container">
-                    {esculturas.map((escultura) => (
-                        <div
-                            key={escultura.id_escultura}
-                            className="relative bg-gradient-to-t from-[#9fa3a9] to-white shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
-                        >
-                            <h2 className="text-lg sm:text-xl font-semibold text-black p-4">
-                                {escultura.nombre}
-                            </h2>
-                            <div className="flex-1 flex">
-                                {escultura.img_url && (
-                                    <img
-                                        src={escultura.img_url}
-                                        alt={escultura.nombre}
-                                        className="w-32 h-32 object-cover rounded-lg m-4"
-                                    />
-                                )}
-                                <div className="flex-1 flex flex-col p-4">
-                                    <p className="bg-gray-100 rounded-lg text-grisBIENnegro text-center text-md py-1 mb-2">
-                                        <strong>Temática:</strong> {escultura.tematica}
-                                    </p>
-                                    <div className="bg-gray-100 rounded-lg py-2 px-3 flex-1">
-                                        <p className="text-md font-semibold">
-                                            <strong>Fecha de creación:</strong> {escultura.fecha_creacion}
-                                        </p>
-                                        <p className="text-sm text-wh font-black mt-2">
-                                            <strong>Descripción:</strong> {escultura.descripcion}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="text-center text-lg text-gray-500 mt-4">No se encontraron esculturas.</p>
-            )}
-        </div>*/

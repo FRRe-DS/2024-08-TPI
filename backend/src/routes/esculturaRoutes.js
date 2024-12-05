@@ -4,19 +4,22 @@ const { upload, procesarImagenesEsculturas } = require('../config/uploadMultiCon
 
 const router = express.Router();
 
-// Obtener todos los escultura
+// Obtener todas las esculturas
 router.get('/', EsculturaController.getAllEsculturas);
 
 // Crear un nuevo escultura
-router.post('/',upload, procesarImagenesEsculturas, EsculturaController.createEscultura);
+router.post('/', upload, procesarImagenesEsculturas, EsculturaController.createEscultura);
 
 // Obtener un escultura por ID
 router.get('/:id_escultura', EsculturaController.getEsculturaById);
 
 // Actualizar un escultura
-router.put('/:id_escultura',upload, procesarImagenesEsculturas, EsculturaController.updateEscultura);
+router.put('/:id_escultura', upload, procesarImagenesEsculturas, EsculturaController.updateEscultura);
 
 // Eliminar un escultura
 router.delete('/:id_escultura', EsculturaController.deleteEscultura);
+
+// Obtener imágenes de la escultura
+router.get('/img_escultura/:id_escultura', EsculturaController.getImagenesByEsculturaId);
 
 module.exports = router;

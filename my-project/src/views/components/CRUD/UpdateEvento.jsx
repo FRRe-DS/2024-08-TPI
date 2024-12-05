@@ -15,6 +15,7 @@ export default function UpdateEvento() {
     const [activo, setActivo] = useState(''); // Estado para el campo "activo"
     const navigate = useNavigate();
 
+    // Cargar los datos del escultor a editar
     useEffect(() => {
         const fetchEvento = async () => {
             try {

@@ -142,10 +142,10 @@ function Crud() {
     return (
         <div className="crud-container">
             <div className="sidebar">
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('eventos')}>Eventos</button>
-                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('usuarios')}>Usuarios</button>
+                <button className="sidebar-button bg-[#444444] list-item dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
+                <button className="sidebar-button bg-[#444444] list-item dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
+                <button className="sidebar-button bg-[#444444] list-item dark:text-white" onClick={() => setActiveList('eventos')}>Eventos</button>
+                <button className="sidebar-button bg-[#444444] list-item dark:text-white" onClick={() => setActiveList('usuarios')}>Usuarios</button>
             </div>
             <div className="main-section">
                 <header className="header bg-transparent">
@@ -169,8 +169,8 @@ function Crud() {
                 <div className="list-container">
                     {filteredItems().length > 0 ? (
                         filteredItems().map((item) => (
-                            <div key={item.id_escultor || item.id_escultura || item.id || item.nickname} className="flex justify-between bg-[#222222] mb-2 items-center text-2xl dark:text-white pr-3">
-                                <div className="text-center mx-5 items-center text-2xl">  
+                            <div key={item.id_escultor || item.id_escultura || item.id || item.nickname} className="flex justify-between overflow-scroll lg:overflow-visible bg-[#222222] mb-2 items-center text-2xl dark:text-white pr-3">
+                                <div className="mx-5 items-center text-2xl">  
                                 {item.nickname ? item.nickname : item.nombre_esc && item.apellido ? `${item.nombre_esc} ${item.apellido}` : item.nombre}
                                 </div>       
                                 <div className="action-buttons">

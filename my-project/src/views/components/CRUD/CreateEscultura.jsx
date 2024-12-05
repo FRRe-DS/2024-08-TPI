@@ -86,7 +86,7 @@ export default function CreateEscultura() {
     return (
         <form className="create-form" onSubmit={postData}>
             <div className="mb-4">
-                <label className="block text-gray-700">Escultor</label>
+                <label >Escultor</label>
                 <select
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     value={selectedEscultor || ''}
@@ -102,7 +102,7 @@ export default function CreateEscultura() {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Nombre</label>
+                <label >Nombre</label>
                 <input
                     type="text"
                     placeholder="Ingrese nombre"
@@ -113,7 +113,7 @@ export default function CreateEscultura() {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Imágenes</label>
+                <label >Imágenes</label>
                 <input
                     type="file"
                     multiple
@@ -131,7 +131,7 @@ export default function CreateEscultura() {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Descripción</label>
+                <label >Descripción</label>
                 <textarea
                     placeholder="Escriba una descripción"
                     value={descripcion}
@@ -141,7 +141,7 @@ export default function CreateEscultura() {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Evento</label>
+                <label >Evento</label>
                 <select
                     className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     value={selectedEvento || ''}
@@ -157,8 +157,8 @@ export default function CreateEscultura() {
             </div>
 
             <div className="flex justify-between">
-                <Button type="button" onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none">Ir Atrás</Button>
-                <Button type="submit" className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">Enviar</Button>
+                    <Button type='button' onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"> Ir Atrás</Button>
+                    <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Enviar</Button>
             </div>
         </form>
     );

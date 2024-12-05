@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `bienal_escultura` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `bienal_escultura`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: bienal_escultura
+-- Host: localhost    Database: bienal_escultura
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -29,8 +31,10 @@ CREATE TABLE `escultores` (
   `biografia` text,
   `pais` varchar(45) DEFAULT NULL,
   `imagen_esc` varchar(255) DEFAULT NULL,
+  `email` varchar(250) NOT NULL,
+  `telefono` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id_escultor`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +43,7 @@ CREATE TABLE `escultores` (
 
 LOCK TABLES `escultores` WRITE;
 /*!40000 ALTER TABLE `escultores` DISABLE KEYS */;
-INSERT INTO `escultores` VALUES (1,'Carlos ','Monge',NULL,'México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png'),(19,'MATIAS','BANGHER','AGUANTE COLAPINTO GATOOOOOOOOOOOOOOOOO','Argentina','images/MATIAS_BANGHER-1.webp'),(20,'Rolando','Fulano','nacido alla ite','Chile','images/Rolando_Fulano-1.webp'),(21,'Ayrton ','Senna','Piloto','Brasil','images/Ayrton _Senna-1.webp');
+INSERT INTO `escultores` VALUES (1,'Carlos ','Monge','Alto viejo puto ','México','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Carlos-Monge.png','carlos@gmail.com','4555'),(2,'Juan ','Pezzani',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Juan-pezzani-foto.png','juan@gmail.com','444'),(3,'Milagros ','Tejarina',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Milagro-Tejerina.png','mili@gmail.com','222'),(4,'Camilo ','Guinot',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/DSC9723.png','cam@gmail.com','333'),(5,'Alejandro ','Arce',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Retrato-Alejandro-Arce.png','ale@gmail.com','11'),(6,'Gerardo ','Aranda',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/Imagen-de-WhatsApp-2024-02-24-a-las-18.04.57_3f093bb7.png','herni@gmail.com','1'),(7,'Hernán ','Lira',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/inv2024-Hernan-Lira.png','her@hotmail.com','515151'),(8,'Alejandro ','Pérez',NULL,'Argentina','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/05/alejandro-perez-foto.png','ale@gmail.com','15151'),(9,'Carlos ','Iglesias',NULL,'España','https://www.bienaldelchaco.org/2024/wp-content/uploads/2024/04/carlos-iglesias-faura.png','charles@gmail.com','15151'),(19,'MATIAS','BANGHER','AGUANTE COLAPINTO ','Argentina','images/MATIAS_BANGHER-1.webp','mati@outlook.com','515151'),(20,'Rolando','Fulano','nacido alla ite','Chile','images/Rolando_Fulano-1.webp','rol@gmail.com','51515'),(21,'Ayrton ','Senna','Piloto','Brasil','images/Ayrton _Senna-1.webp','aaa@yopmail.com','151515'),(22,'marce','g','fsdfsdffgfregrgrereg','Argentina','images/marce_g-1.webp','mar@jeje.gmail','22256125'),(23,'messi','suarez','dsfdfef','Chile','images/messi_suarez-1.webp','mesi@yopmail.com','12333');
 /*!40000 ALTER TABLE `escultores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +61,7 @@ CREATE TABLE `escultura_img` (
   PRIMARY KEY (`id`),
   KEY `id_escultura` (`id_escultura`),
   CONSTRAINT `escultura_img_ibfk_1` FOREIGN KEY (`id_escultura`) REFERENCES `esculturas` (`id_escultura`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +70,7 @@ CREATE TABLE `escultura_img` (
 
 LOCK TABLES `escultura_img` WRITE;
 /*!40000 ALTER TABLE `escultura_img` DISABLE KEYS */;
-INSERT INTO `escultura_img` VALUES (7,9,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(8,9,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp'),(9,9,'images\\escultor_2\\escultor_apellido_2-escultura-3.webp'),(10,11,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(11,11,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp');
+INSERT INTO `escultura_img` VALUES (7,9,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(8,9,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp'),(9,9,'images\\escultor_2\\escultor_apellido_2-escultura-3.webp'),(10,11,'images\\escultor_2\\escultor_apellido_2-escultura-1.webp'),(11,11,'images\\escultor_2\\escultor_apellido_2-escultura-2.webp'),(12,12,'images\\escultor_8\\escultor_apellido_8-escultura-1.webp'),(13,13,'images\\escultor_8\\escultor_apellido_8-escultura-1.webp'),(14,13,'images\\escultor_8\\escultor_apellido_8-escultura-2.webp'),(15,13,'images\\escultor_8\\escultor_apellido_8-escultura-3.webp');
 /*!40000 ALTER TABLE `escultura_img` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +92,7 @@ CREATE TABLE `esculturas` (
   KEY `id_escultor` (`id_escultor`),
   CONSTRAINT `esculturas_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id`) ON DELETE CASCADE,
   CONSTRAINT `esculturas_ibfk_2` FOREIGN KEY (`id_escultor`) REFERENCES `escultores` (`id_escultor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +101,7 @@ CREATE TABLE `esculturas` (
 
 LOCK TABLES `esculturas` WRITE;
 /*!40000 ALTER TABLE `esculturas` DISABLE KEYS */;
-INSERT INTO `esculturas` VALUES (9,'EL david','dsafasfasd',1,2),(11,'el migue','dfASDAS',1,2);
+INSERT INTO `esculturas` VALUES (9,'EL david','dsafasfasd',1,2),(11,'el migue','miguelote',5,22),(12,'La gioconda','dfwdwe',5,8),(13,'sdada','sadasdsa',8,8);
 /*!40000 ALTER TABLE `esculturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +121,7 @@ CREATE TABLE `eventos` (
   `tematica` varchar(255) DEFAULT NULL,
   `activo` enum('si','no') DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +130,7 @@ CREATE TABLE `eventos` (
 
 LOCK TABLES `eventos` WRITE;
 /*!40000 ALTER TABLE `eventos` DISABLE KEYS */;
-INSERT INTO `eventos` VALUES (1,'Bienal 2024 Actualizada','2024-07-01','Chaco','Escultura modernizada','Arte actual','si'),(2,'Exposición de Arte Clásico','2024-09-15','Museo de Arte Clásico','Una muestra de esculturas y pinturas clásicas.','Arte Clásico','no'),(3,'Festival de Música Electrónica','2024-10-05','Estadio Central','Un festival con artistas internacionales de música electrónica.','Música Electrónica','no'),(4,'Feria de Artesanías Locales','2024-11-20','Plaza Mayor','Una feria con artesanías locales y productos regionales.','Artesanías','no'),(5,'Conferencia de Innovación Tecnológica','2024-12-10','Centro de Convenciones','Conferencia sobre las últimas tendencias en tecnología e innovación.','Tecnología','no'),(6,'Exposición de Esculturas Modernas','2024-10-01','Centro Cultural de Resistencia','Una exposición de esculturas modernas de artistas locales e internacionales.','Arte Moderno','no');
+INSERT INTO `eventos` VALUES (1,'Bienal 2024 ','2024-07-15','Chaco','Escultura modernizada','Arte actual','no'),(2,'Exposición de Arte Clásico','2024-12-18','Museo de Arte Clásico','Una muestra de esculturas y pinturas clásicas.','Arte Clásico','si'),(3,'Festival de Música Electrónica','2024-10-05','Estadio Central','Un festival con artistas internacionales de música electrónica.','Música Electrónica','no'),(4,'Feria de Artesanías Locales','2024-11-20','Plaza Mayor','Una feria con artesanías locales y productos regionales.','Artesanías','no'),(5,'Conferencia de Innovación Tecnológica','2024-12-10','Centro de Convenciones','Conferencia sobre las últimas tendencias en tecnología e innovación.','Tecnología','no'),(6,'Exposición de Esculturas Modernas','2024-10-01','Centro Cultural de Resistencia','Una exposición de esculturas modernas de artistas locales e internacionales.','Arte Moderno','no'),(8,'fdsfd','2024-12-20','efewfew','dsffdsfds','efewgf','si'),(9,'sdadsa','2024-12-19','fsfsdefs','wedfwefew','sdfdsfgdsg','si');
 /*!40000 ALTER TABLE `eventos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +176,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`email`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +185,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('Matías Ezequiel Bangher','matiasbangher06@gmail.com','matiasbangher06','admin',2),('Mati Bangher','matiesdelrojo73@gmail.com','matiesdelrojo73','user',3);
+INSERT INTO `usuarios` VALUES ('Matías Ezequiel Bangher','matiasbangher06@gmail.com','matiasbangher06','admin',2),('Mati Bangher','matiesdelrojo73@gmail.com','matiesdelrojo73','user',3),('sss@jmail.com','sss@jmail.com','sss','user',4);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 15:26:55
+-- Dump completed on 2024-12-05  9:10:19
