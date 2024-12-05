@@ -42,6 +42,14 @@ class EsculturaModel {
         return rows;
     }
 
+    static async getImagenesByEscultorById(id_escultor) {
+        const [rows] = await pool.query('SELECT * FROM (escultura_img es join esculturas e) where e.id_escultura = es.id_escultura  and id_escultor = ?', [id_escultor]);
+        if (rows.length === 0) {
+            return [];
+        }
+        return rows;
+    }
+
     // Actualizar escultura por ID
     static async updateEscultura(id_escultura, { nombre, descripcion, id_evento, id_escultor }) {
         const [result] = await pool.query(

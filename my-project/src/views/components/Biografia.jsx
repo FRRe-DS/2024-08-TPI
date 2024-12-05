@@ -128,33 +128,20 @@ const Biografia = () => {
                       </div>
                     ))
                   ) : (
-                    <p className="text-GrisCasiOscuro">Aquí se mostrará la información sobre la escultura.</p>
+                    <p className="text-GrisCasiOscuro">Este escultor no participa en el evento actual</p>
                   )}
               </Carousel>
-
           </div>
+          
         </div>
       </div>
 
       <div className="bg-white rounded-lg shadow-lg p-4 mt-6">
-        <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Esculturas Antiguas</h3>
-        {escultor.esculturas_antiguas && escultor.esculturas_antiguas.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {escultor.esculturas_antiguas.map((escultura, index) => (
-              <div key={index} className="bg-gray-100 shadow-md rounded-lg p-4">
-                <img
-                  src={escultura.imagen}
-                  alt={escultura.nombre}
-                  className="w-full h-40 object-cover rounded-lg mb-2"
-                />
-                <h4 className="text-lg font-semibold text-GrisMuyOscuro">{escultura.nombre}</h4>
-                <p className="text-gray-600">Año: {escultura.anio}</p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">No hay esculturas antiguas registradas.</p>
-        )}
+        <div className="bg-gray-100 p-4 rounded-lg mb-4">
+              <h3 className="text-xl font-semibold mb-4 text-GrisMuyOscuro">Contacto</h3>
+              <p><span className="font-bold text-GrisMuyOscuro">Email:</span> <span className='text-GrisCasiOscuro'>{escultor.email}</span></p>
+              <p><span className="font-bold text-GrisMuyOscuro">Teléfono:</span> <span className='text-GrisCasiOscuro'>{escultor.telefono}</span></p>
+            </div>
       </div>
 
       <div className="flex justify-end mt-8">

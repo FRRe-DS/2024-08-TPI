@@ -8,36 +8,12 @@ const Esculturas = () => {
     const [esculturas, setEsculturas] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedImages, setSelectedImages] = useState([]);
+    const[imagen, setImagen] = useState([]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [shareModalOpen, setShareModalOpen] = useState(false);
     const [shareUrl, setShareUrl] = useState('');
 
-    // Función para abrir el modal con las imágenes de la escultura
-    const openModal = (imagenes, url) => {
-        setSelectedImages(imagenes);
-        setCurrentImageIndex(0); // Comienza en la primera imagen
-        setShareUrl(url); // Establece la URL de la escultura para compartir
-        setModalOpen(true);
-    };
-
-    // Función para cerrar el modal
-    const closeModal = () => {
-        setModalOpen(false);
-        setSelectedImages([]);
-    };
-
-    // Función para navegar entre las imágenes del carrete
-    const nextImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex < selectedImages.length - 1 ? prevIndex + 1 : 0
-        );
-    };
-
-    const prevImage = () => {
-        setCurrentImageIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : selectedImages.length - 1
-        );
-    };
+    
 
     // Función para compartir en Facebook
     const handleShareFacebook = () => {
@@ -72,15 +48,26 @@ const Esculturas = () => {
                 console.error('Error al obtener las esculturas', error);
             }
         };
-        fetchEsculturas();
 
-    
+        fetchEsculturas();
     }, []);
+
+    useEffect(() => {
+        const img_escultura = async()=>{
+            try {
+                const response = await axios.get(`http://localhost:3000/api/escultura/img_escultura/${id_escultor}`)
+                setImagen(response.data.imagen_url)
+            }catch (error) {
+                console.error('Error al obtener las las imagenes', error);
+            }
+        }
+        img_escultura()
+    }, [esculturas.id_escultor]);
     
     const navigate = useNavigate();
     const handleEscultor = (escultura) => {
         navigate(`/biografia/${escultura.id_escultor}`);
-    };
+    };
     
     return (
         <div className="container relative">
@@ -101,7 +88,7 @@ const Esculturas = () => {
                         <div className="image-container">
                             <img
                             className="w-20 h-20 sm:w-24 sm:h-24 mb-3 rounded-md object-cover shadow-md"
-                            src=""
+                            src={`http://localhost:3000/${imagen}`}
                             alt={escultura.nombre_esc}
                             />
                         </div>

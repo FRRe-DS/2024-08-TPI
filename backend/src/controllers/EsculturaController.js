@@ -77,10 +77,12 @@ class EsculturaController {
         try {
             const success = await EsculturaModel.deleteEscultura(id_escultura);
             if (!success) {
-                return res.status(404).json({ error: 'Escultura no encontrada' });
+    
+                return console.error();
             }
             res.status(200).json({ message: 'Escultura eliminada correctamente' });
         } catch (error) {
+            console.error(error)
             res.status(500).json({ error: 'Error al eliminar la escultura' });
         }
     }
@@ -100,6 +102,21 @@ class EsculturaController {
             res.status(500).json({ error: 'Error al obtener las imágenes' });
         }
     }
-}
 
+    static async getImagenesByEscultorById(req, res) {
+        const { id_escultor} = req.params;
+        try {
+            // Obtener todas las imágenes asociadas a la escultura
+            const imagenes = await EsculturaModel.getImagenesByEscultorById(id_escultor);
+            if (imagenes.length === 0) {
+                return res.status(404).json({ error: 'No se encontraron imágenes para esta escultura' });
+            }
+            res.status(200).json(imagenes);
+        } catch (error) {
+            console.error (error)
+            res.status(500).json({ error: 'Error al obtener las imágenes' });
+        }
+    }
+
+}
 module.exports = EsculturaController;
