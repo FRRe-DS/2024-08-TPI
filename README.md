@@ -87,3 +87,10 @@ La comunicacion entre frontend y backend sucede a traves de peticiones HTTP, las
 Para la base de datos usamos **MySQL**.
 
 ![Arquitectura](Documentacion\ArquitecturaMVC.jpg)
+
+## Tecnologias 
+- **Node.js**: Es un entorno de ejecución de JavaScript en el lado del servidor que permite construir aplicaciones escalables y rápidas. Es conocido por su modelo de programación asincrónica y basada en eventos, lo que lo hace ideal para aplicaciones en tiempo real y sistemas de alta concurrencia.
+- **Express:** Es un marco de trabajo para Node.js que facilita la creación de aplicaciones web y API. Proporciona una estructura ligera y modular para manejar rutas, middleware y lógica de negocio, simplificando el desarrollo.
+- **React.js:** Es una biblioteca de JavaScript desarrollada por Meta (Facebook) para construir interfaces de usuario interactivas. React permite crear componentes reutilizables y gestionar el estado de las aplicaciones de forma eficiente. Su enfoque en un DOM virtual asegura un rendimiento óptimo, incluso en aplicaciones complejas.
+
+- **MYSQL:** Es un sistema de gestión de bases de datos relacional (RDBMS) basado en SQL. MySQL es conocido por ser robusto, seguro y ampliamente utilizado en aplicaciones web y empresariales. Es ideal para almacenar, organizar y consultar grandes volúmenes de datos, gracias a su compatibilidad con transacciones y su arquitectura de almacenamiento optimizada. 
