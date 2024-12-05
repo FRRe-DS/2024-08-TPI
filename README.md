@@ -60,6 +60,14 @@ El CMD les va pedir su contraseña del servidor de MYSQL, al escribir no van a v
 pip install mysql
 ```
 
+## Escenario Planteado
 
+La organización de la Bienal Internacional de Escultura del Chaco, se a contactado son su empresa para planificar, analizar, desarrollar e implementar un sistema de gestión que soporte el registro de los eventos, escultores como así también aplicaciones satélites para que los ciudadanos/ publico en general pueda realizar comentarios y votación durante el evento.
     
-## Documentacion
+## Alcance 
+
+El sistema contempla la creacion, la baja y la modificacion de esculturas, escultores y eventos siempre y cuando el usuario sea un **administrador**. 
+
+En el sistema se pueden visualizar los escultores, eventos y esculturas, esto es indiferente del usuario. Si el usuario es un **usuario logueado**, este mismo puede votar a una escultura si la misma se encuentra en un evento activo, esta votacion solo puede ser realizada una vez y es via web o via QR. 
+
+##

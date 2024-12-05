@@ -3,9 +3,9 @@ const EventModel = require('../models/EventModel');
 class EventController {
     // Crear un nuevo evento
     static async createEvent(req, res) {
-        const { nombre, fecha, lugar, descripcion, tematica } = req.body;
+        const { nombre, fecha, lugar, descripcion, tematica , activo} = req.body;
         try {
-            const event = await EventModel.createEvent({ nombre, fecha, lugar, descripcion, tematica });
+            const event = await EventModel.createEvent({ nombre, fecha, lugar, descripcion, tematica , activo});
             res.status(201).json(event);
         } catch (error) {
             res.status(500).json({ error: 'Error al crear el evento' });
@@ -39,9 +39,9 @@ class EventController {
     // Actualizar evento
     static async updateEvent(req, res) {
         const { id } = req.params;
-        const { nombre, fecha, lugar, descripcion, tematica } = req.body;
+        const { nombre, fecha, lugar, descripcion, tematica, activo } = req.body;
         try {
-            const success = await EventModel.updateEvent(id, { nombre, fecha, lugar, descripcion, tematica });
+            const success = await EventModel.updateEvent(id, { nombre, fecha, lugar, descripcion, tematica, activo });
             if (!success) {
                 return res.status(404).json({ error: 'Evento no encontrado' });
             }

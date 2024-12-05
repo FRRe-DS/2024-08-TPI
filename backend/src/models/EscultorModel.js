@@ -3,7 +3,7 @@ const pool = require('../config/db');
 class EscultorModel {
     // Crear un nuevo escultor
     static async createEscultor({ nombre_esc, apellido, pais,biografia,imagen_esc }) {
-    
+        
         const [result] = await pool.query(
             'INSERT INTO Escultores (nombre_esc, apellido,pais,biografia,imagen_esc) VALUES (?, ?, ?, ?, ?)',
             [nombre_esc, apellido, pais,biografia,imagen_esc ]
@@ -32,13 +32,14 @@ class EscultorModel {
     }
 
     // Actualizar Escultor por ID
-    static async updateEscultor(id_escultor, {nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc }) {
+    static async updateEscultor(id_escultor, { nombre_esc, apellido, biografia, pais, imagen_esc }) {
         const [result] = await pool.query(
-            'UPDATE Escultores SET nombre_esc = ?, apellido = ?, nacionalidad = ?, img_nacionalidad = ?,biografia = ?, imagen_esc = ? WHERE id_escultor = ?',
-            [nombre_esc, apellido, nacionalidad,img_nacionalidad,biografia,imagen_esc, id_escultor ]
+            'UPDATE Escultores SET nombre_esc = ?, apellido = ?, biografia = ?, pais = ?, imagen_esc = ? WHERE id_escultor = ?',
+            [nombre_esc, apellido, biografia, pais, imagen_esc, id_escultor]
         );
         return result.affectedRows > 0;
     }
+    
 
     // Eliminar Escultor por ID
     static async deleteEscultor(id_escultor) {
