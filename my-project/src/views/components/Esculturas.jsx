@@ -72,6 +72,8 @@ const Esculturas = () => {
             }
         };
         fetchEsculturas();
+
+    
     }, []);
 
     return (
@@ -117,6 +119,7 @@ const Esculturas = () => {
                                     Compartir
                                 </button>
                             </div>
+                            
                         </div>
                     ))}
                 </div>
@@ -168,28 +171,18 @@ const Esculturas = () => {
                             X
                         </button>
                         <h3 className="text-lg font-semibold mb-4">Compartir Escultura</h3>
-                        <div className="flex space-x-4">
-                            <button
-                                className="flex items-center justify-center w-16 h-16"
-                                onClick={handleShareFacebook}
-                            >
-                                <img
-                                    src="/public/img/facebookCOMP.png"
-                                    alt="Compartir en Facebook"
-                                    className="w-12 h-12"
-                                />
-                            </button>
-                            <button
-                                className="flex items-center justify-center w-16 h-16"
-                                onClick={handleShareWhatsApp}
-                            >
-                                <img
-                                    src="/public/img/whatsappCOMP.png"
-                                    alt="Compartir en WhatsApp"
-                                    className="w-12 h-12"
-                                />
-                            </button>
-                        </div>
+                        <div className="flex justify-around mb-4">
+                        {/* Icono de WhatsApp */}
+                        <button onClick={handleShareWhatsApp} className="flex items-center justify-center w-16 h-16">
+                        <img src="/public/img/whatsapp.png" alt="Compartir en WhatsApp" className="w-12 h-12" />
+                        </button>
+                        
+                        {/* Icono de Facebook */}
+                        <button onClick={handleShareFacebook} className="flex items-center justify-center w-16 h-16">
+                            <img src="/img/facebookCOMP.png" alt="Compartir en Facebook" className="w-12 h-12" />
+                        </button>
+
+                    </div>
                     </div>
                 </div>
             )}
