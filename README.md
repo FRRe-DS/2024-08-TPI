@@ -70,4 +70,20 @@ El sistema contempla la creacion, la baja y la modificacion de esculturas, escul
 
 En el sistema se pueden visualizar los escultores, eventos y esculturas, esto es indiferente del usuario. Si el usuario es un **usuario logueado**, este mismo puede votar a una escultura si la misma se encuentra en un evento activo, esta votacion solo puede ser realizada una vez y es via web o via QR. 
 
-##
+## Diagrama de casos de uso
+![Casos de uso](Documentacion\Casos_De_Uso.jpg)
+## Diagrama ENTIDAD-RELACION
+![Entidad relacion](Documentacion\derfinal.jpg)
+## Arquitectura utilizada
+
+Se simula una arquitectura, Modelo Vista Controlador.
+
+En el backend trabajamos con **Node.JS**, donde hicimos los modelos de negocio y los controladores de cada uno, el controlador hace peticiones al modelo el cual hace consultas directas a la base de datos.
+
+En el frontend trabajamos con **React.JS**, para los estilos se uso **CSS** y **Tailwind**.
+
+La comunicacion entre frontend y backend sucede a traves de peticiones HTTP, las cuales se realizan mediante una API.
+
+Para la base de datos usamos **MySQL**.
+
+![Arquitectura](Documentacion\ArquitecturaMVC.jpg)
