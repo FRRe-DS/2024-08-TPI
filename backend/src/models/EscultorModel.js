@@ -17,6 +17,11 @@ class EscultorModel {
         return rows;
     }
 
+    static async getEscultoresActivos(){
+        const [rows] = await pool.query('SELECT distinct* FROM (esculturas esc join escultores es) inner join eventos e where (e.activo = "si" and esc.id_escultor = es.id_escultor and esc.id_evento = e.id)')
+        return [rows];
+    }
+
     // Obtener Escultor por ID
     static async getEscultorById(id_escultor) {
         const [rows] = await pool.query('SELECT * FROM Escultores WHERE id_escultor = ?', [id_escultor]);

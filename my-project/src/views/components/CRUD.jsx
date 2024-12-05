@@ -7,10 +7,24 @@ function Crud() {
     const [escultores, setEscultores] = useState([]);
     const [esculturas, setEsculturas] = useState([]);
     const [eventos, setEventos] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
     const [searchTerm, setSearchTerm] = useState(''); // Estado para el buscador
     const [activeList, setActiveList] = useState('escultores'); // Estado para controlar qué listado mostrar
 
     // Función para traer escultores desde el backend
+    useEffect(() => {
+        const fetchUsuarios = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/users'); // Asegúrate de que la URL sea correcta
+                const data = await response.json();
+                setUsuarios(data);
+            } catch (error) {
+                console.error('Error al traer los usuarios', error);
+            }
+        };
+        fetchUsuarios();
+    }, []);
+
     useEffect(() => {
         const fetchEscultores = async () => {
             try {
@@ -97,11 +111,13 @@ function Crud() {
             listToFilter = esculturas;
         } else if (activeList === 'eventos') {
             listToFilter = eventos;
+        } else if (activeList === 'usuarios'){
+            listToFilter = usuarios;
         }
 
         // Filtrado por búsqueda
         return listToFilter.filter(item => {
-            const nombre = item.nombre_esc || item.nombre;
+            const nombre = item.nombre_esc || item.nombre || item.nickname;
             return nombre.toLowerCase().includes(searchTerm.toLowerCase());
         });
     };
@@ -129,6 +145,7 @@ function Crud() {
                 <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('escultores')}>Escultores</button>
                 <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('esculturas')}>Esculturas</button>
                 <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('eventos')}>Eventos</button>
+                <button className="sidebar-button bg-[#444444] list-item text-3xl dark:text-white" onClick={() => setActiveList('usuarios')}>Usuarios</button>
             </div>
             <div className="main-section">
                 <header className="header bg-transparent">
@@ -152,9 +169,9 @@ function Crud() {
                 <div className="list-container">
                     {filteredItems().length > 0 ? (
                         filteredItems().map((item) => (
-                            <div key={item.id_escultor || item.id_escultura || item.id} className="flex justify-between bg-[#222222] mb-2 items-center text-2xl dark:text-white pr-3">
+                            <div key={item.id_escultor || item.id_escultura || item.id || item.nickname} className="flex justify-between bg-[#222222] mb-2 items-center text-2xl dark:text-white pr-3">
                                 <div className="text-center mx-5 items-center text-2xl">  
-                                    {item.nombre_esc ? `${item.nombre_esc} ${item.apellido}` : item.nombre}
+                                {item.nickname ? item.nickname : item.nombre_esc && item.apellido ? `${item.nombre_esc} ${item.apellido}` : item.nombre}
                                 </div>       
                                 <div className="action-buttons">
                                     
@@ -172,6 +189,9 @@ function Crud() {
                                                 case 'eventos':
                                                     navigate(`/modificar-evento/${item.id}`); 
                                                     break;
+                                                case 'usuarios':
+                                                    navigate(`/modificar-usuario/${item.email}`); 
+                                                break;
                                                 default:
                                                     break;
                                             }
@@ -179,6 +199,7 @@ function Crud() {
                                     >
                                         MODIFICAR
                                     </button>
+<<<<<<< HEAD
 
                                     <button 
                                         type="button" 
@@ -187,6 +208,17 @@ function Crud() {
                                     >
                                         ELIMINAR
                                     </button>
+=======
+                                     {activeList !== 'usuarios' && (
+                                            <button 
+                                                type="button" 
+                                                className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-1 px-6 py-3 mt-4 mb-4 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-800"
+                                                onClick={() => handleDelete(item.id_escultor || item.id_escultura || item.id)}
+                                            >
+                                                ELIMINAR
+                                            </button>
+                                        )}
+>>>>>>> origin/main
                                 </div>
                             </div>
                         ))

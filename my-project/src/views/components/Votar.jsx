@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import useCountdown from '../../hooks/useCountdown';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -7,17 +7,21 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Votar = () => {
   const { id_escultor: id_escultorParam } = useParams();
   const id_escultor = parseInt(id_escultorParam, 10); // Convertir a entero
+  const location = useLocation();
   const navigate = useNavigate();
   const [escultor, setEscultor] = useState(null);
   const [puntuacion, setPuntuacion] = useState(2.5);
   const [email, setEmail] = useState(null);
   const [votado, setVotado] = useState(null);
-  const { user } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect  } = useAuth0();
   const timeLeft = useCountdown(60);
+
+ 
+
 
   useEffect(() => {
     const fetchEscultor = async () => {
-      setEmail(user.email);
+      setEmail(user?.email); // Asegúrate de que user.email esté definido
       try {
         const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
         setEscultor(response.data);
@@ -30,13 +34,16 @@ const Votar = () => {
           setVotado(true); // Deshabilitar la votación
         } else {
           setVotado(false); // Permitir la votación si no existe 
-          }
-          }catch (error) {
+        }
+      } catch (error) {
         console.error('Error al obtener datos del escultor o votación previa', error);
       }
     };
-    fetchEscultor();
-  }, [id_escultor, user.email]);
+
+    if (user?.email) {
+      fetchEscultor();
+    }
+  }, [id_escultor, user?.email]);
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -46,24 +53,51 @@ const Votar = () => {
 
   const handleVotar = async () => {
     if (!votado) {
-      try{
-          await axios.post(`http://localhost:3000/api/voto`, {
-          id_escultor,
-          email,
-          puntuacion: Number(puntuacion)
-        });
-        setVotado(true); 
-        alert('Votación enviada');
+      try {
+        const token = new URLSearchParams(location.search).get('token'); // Corregido de `location.seach` a `location.search`
 
-        setTimeout(() => {
-          navigate('/');
-        }, 3000); //Una vez que voto lo devuelve al home luego de 3 segundos.
+        const verifyResponse = await axios.get('http://localhost:3000/api/token/Verifytoken', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        console.log(verifyResponse);
+        console.log(verifyResponse.data);
+        console.log(verifyResponse.data.valido)
+        if (verifyResponse.data.valido) {
+          await axios.post(`http://localhost:3000/api/voto`, {
+            id_escultor,
+            email,
+            puntuacion: Number(puntuacion),
+          });
+          setVotado(true);
+          alert('Votación enviada');
+
+          setTimeout(() => {
+            navigate('/');
+          }, 3000);
+        } else {
+          alert('El QR expiró');
+        }
       } catch (error) {
         console.error('Error al enviar la votación', error);
+        alert('Ocurrió un error al validar la votación');
       }
     }
   };
-
+  if (!isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-gray-900 p-8 rounded-lg shadow-lg text-center">
+          <h2 className="text-2xl font-bold mb-4">Debes iniciar sesión para votar</h2>
+          <button
+            onClick={() => loginWithRedirect()}
+            className="py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold"
+          >
+            Iniciar sesión
+          </button>
+        </div>
+      </div>
+    );
+  }
   if (!escultor) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -73,6 +107,7 @@ const Votar = () => {
       </div>
     );
   }
+ 
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-white">

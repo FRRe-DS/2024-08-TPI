@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '/public/css/ListaEscultoresQR.css';
 
@@ -10,7 +10,7 @@ const ListaAdminQR = () => {
   useEffect(() => {
     const fetchEscultores = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/escultor"); //Aca tiene que ser escultores que participan en el evento acutal
+        const response = await fetch("http://localhost:3000/api/escultor/evento/activo"); //Aca tiene que ser escultores que participan en el evento acutal
         if (!response.ok) {
           throw new Error('Error en la respuesta del servidor');
         }

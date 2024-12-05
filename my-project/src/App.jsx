@@ -21,6 +21,8 @@ import DeleteEvento from './views/components/CRUD/DeleteEvento';
 import ListaAdminQR from './views/components/ListaAdminQR';
 import PresentacionQR from './views/components/PresentacionQR';
 import UpdateEvento from './views/components/CRUD/UpdateEvento'
+import UpdateUsuario from './views/components/CRUD/UpdateUsuario'
+
 
 const App = () => {
   return (
@@ -44,6 +46,7 @@ const App = () => {
             <Route path="/create-evento" element={<CreateEvento />} />
             <Route path="/delete-evento" element={<DeleteEvento />} />
             <Route path="/modificar-evento/:id" element={<UpdateEvento />} />
+            <Route path="/modificar-usuario/:email" element={<UpdateUsuario />} />
             <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 

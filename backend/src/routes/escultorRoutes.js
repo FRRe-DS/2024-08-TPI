@@ -20,6 +20,6 @@ router.put('/:id_escultor',uploadOne.single('imagen_esc'), procesarImagen, Escul
 router.delete('/:id_escultor', EscultorController.deleteEscultor);
 
 // Obtener escultores del evento activo
-router.get('/activos', EscultorController.getEscultoresActivos);
+router.get('/evento/activo', EscultorController.getEscultoresActivos);
 
 module.exports = router;
