@@ -5,3 +5,23 @@
 .custom-bg2{
     background-color: #6a6e73;
 }
+
+.esculturas-container {
+    max-height: 70vh; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+    padding: 1rem; 
+    border: 1px solid #171718; 
+    border-radius: 0.5rem; 
+    background-color: #171718; 
+}
+
+.scroll-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite múltiples filas */
+    gap: 1rem; /* Espacio entre las tarjetas */
+    justify-content: center; /* Alineación */
+}
+
+p {
+    word-break: break-word; /* Ajusta el texto largo */
+}

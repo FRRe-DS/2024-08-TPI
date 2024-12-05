@@ -1,0 +1,13 @@
+.mensaje-acceso-denegado {
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #f5c6cb; /* Borde rojo claro */
+    border-radius: 5px; /* Bordes redondeados */
+    text-align: center; /* Centrar el texto */
+    font-family: 'Nunito', sans-serif; /* Fuente */
+    font-size: 18px; /* Tamaño del texto */
+    max-width: 600px; /* Ancho máximo */
+    margin: 50px auto; /* Centrar horizontalmente y dar margen superior e inferior */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}

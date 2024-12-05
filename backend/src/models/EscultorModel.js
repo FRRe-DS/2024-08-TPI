@@ -40,6 +40,20 @@ class EscultorModel {
         const [result] = await pool.query('DELETE FROM Escultores WHERE id_escultor = ?', [id_escultor]);
         return result.affectedRows > 0;
     }
+
+    // Obtener escultores del evento activo
+    static async getEscultoresActivos(){
+        const query = ` 
+            SELECT es.* 
+            FROM escultores es 
+            JOIN esculturas e ON es.id_escultor = e.id_escultor 
+            JOIN eventos ev ON e.id_evento = ev.id 
+            WHERE ev.activo = 'si'
+        `;
+        const [rows] = await pool.query(query);
+        return rows;
+    }
+
 }
 
 module.exports = EscultorModel;

@@ -56,11 +56,9 @@ const App = () => {
               element={<RutasProtegidas component={ListaAdminQR} role="admin"/>}
             />
             <Route
-              path="/qr:/id"
+              path="/qr/:id"
               element={<RutasProtegidas component={PresentacionQR} role="admin"/>}
             />
-            {/* Ruta 404 */}
-            <Route path="*" element={<div>404 Not Found</div>} />
           </Routes>
         </main>
         <Footer />

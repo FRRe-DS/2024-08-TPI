@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import {useEffect,useState} from 'react';
 import axios from 'axios';
+import '/public/css/RutasProtegidas.css';
 
 const RutasProtegidas = ({ component: Component, role, ...rest }) => {
     const { isAuthenticated, isLoading, user } = useAuth0();
@@ -30,7 +31,7 @@ const RutasProtegidas = ({ component: Component, role, ...rest }) => {
 
 
     if (isLoading) {
-        return <div>Cargando...</div>
+        return <div></div>
     }
     
     if (!isAuthenticated) {
@@ -38,9 +39,8 @@ const RutasProtegidas = ({ component: Component, role, ...rest }) => {
     }
     
     if (role && !userHasRole(role)){
-        return <div>No tenes acceso a esta página</div> 
+        return <div className="mensaje-acceso-denegado">No tenes acceso a esta página</div> 
     }
-
 
     return <Component {...rest}/>
 }

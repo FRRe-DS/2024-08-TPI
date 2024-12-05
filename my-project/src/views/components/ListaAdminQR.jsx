@@ -10,12 +10,16 @@ const ListaAdminQR = () => {
   useEffect(() => {
     const fetchEscultores = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/escultor/");
+        const response = await fetch("http://localhost:3000/api/escultor"); //Aca tiene que ser escultores que participan en el evento acutal
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
         const data = await response.json();
+        console.log('Datos recibidos:', data); // Log para verificar la respuesta
         setEscultores(data);
       } catch (err) {
-        console.error("Error al obtener los escultores:", err);
-        setError("No se pudieron cargar los escultores.");
+        console.error("Error al obtener los escultores activos:", err);
+        setError("No se pudieron cargar los escultores activos.");
       }
     };
     fetchEscultores();
@@ -38,16 +42,18 @@ const ListaAdminQR = () => {
       {error ? (
         <p style={{ color: "red" }}>{error}</p>
       ) : (
-        <ul className="escultores-list">
-          {filteredEscultores.map((escultor) => (
-            <li key={escultor.id_escultor} className="escultor-item">
-              <h4>{escultor.nombre_esc} {escultor.apellido}</h4>
-              <Link to={`/qr:/id${escultor.id_escultor}`}>
-                <button className="view-details-btn">Ver QR</button>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="scroll-container">
+          <ul className="escultores-list">
+            {filteredEscultores.map((escultor) => (
+              <li key={escultor.id_escultor} className="escultor-item">
+                <h4>{escultor.nombre_esc} {escultor.apellido}</h4>
+                <Link to={`/qr/${escultor.id_escultor}`}>
+                  <button className="view-details-btn">Ver QR</button>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

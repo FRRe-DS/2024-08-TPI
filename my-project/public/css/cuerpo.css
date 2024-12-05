@@ -35,11 +35,10 @@ main {
 }
 
 .titulos h1 span {
-    font-size: 10vw;
+    font-size: 7vw;
 }
-
 #titulo1 {
-    font-family:  "Playfair Display", serif;
+    font-family: "Playfair Display", serif;
     font-style: italic;
     font-weight: lighter; 
 }
@@ -64,11 +63,11 @@ main {
 }
 
 #frase cite{
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 #frase cite span{
-    font-size: 3vw;
+    font-size: 2vw;
     font-weight: bold;
 }
 
@@ -92,7 +91,7 @@ main {
 }
 
 .stitulos h2 span {
-    font-size: 5vw;
+    font-size: 3vw;
     margin-bottom: 15px;
 }
 
@@ -108,7 +107,7 @@ main {
 }
 
 .info p {
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     color: #909090;
     line-height: 1.6;
     margin-bottom: 10px;
@@ -119,7 +118,7 @@ main {
 .demas_info {
     width: 100%;
     background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad del 90% */
-    padding: 50px; /* Espaciado interno */
+    padding: 40px; /* Ajustar padding */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación para hover */
     backdrop-filter: blur(20px); /* Efecto de desenfoque para el fondo */
 }
@@ -132,21 +131,20 @@ main {
     font-family: "Lora", serif;
     letter-spacing: 2px;
     font-weight: 800 ;
-    font-size: 5vw;
+    font-size: 3vw;
     color: #000000ab; /* Texto blanco para destacar en fondo oscuro */
     text-align: center;
     margin-bottom: 10px;
-    
 }
 
 .demas_info p {
     font-family: 'Lora', serif; /* Fuente para el texto */
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     line-height: 1.6;
     color: #000000; /* Texto gris claro para resaltar sobre el fondo */
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* Ajustar margen */
     text-align: justify;
-    text-indent: 30px;
+    text-indent: 25px; /* Ajustar indentado */
 }
 
 @keyframes moveUpDown {
@@ -163,4 +161,11 @@ main {
     .demas_info p {
         font-size: 3vw;
     }
+    .stitulos h2 span {
+        font-size: 5vw;
+    }
+    .Historia {
+        font-size: 5vw;
+    }
 }
+
