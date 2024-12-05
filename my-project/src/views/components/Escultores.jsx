@@ -32,11 +32,11 @@ const Escultores = () => {
     <div className="container relative">
       <div className="overflow-y-auto h-[80vh] p-4 mt-4 " >
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {escultores.map((escultor) => (
             <div
               key={escultor.id_escultor}
-              className="card relative bg-gradient-to-t from-[#9fa3a9] to-[#1f2124] shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
+              className="h-80 sm:h-72 card relative bg-gradient-to-t from-[#9fa3a9] to-[#1f2124] shadow-md p-4 rounded-lg flex flex-col items-center transition-all duration-300 hover:shadow-xl"
             >
               <div className="card-body">
                 <img
@@ -54,7 +54,7 @@ const Escultores = () => {
                 />
                 <div className="text-center">
                   <h2 className="text-lg sm:text-xl font-semibold text-grisBIENnegro">
-                    {escultor.nombre_esc + ' ' + escultor.apellido}
+                    {escultor.nombre_esc}<br/> {escultor.apellido}
                   </h2>
                   <p className="text-grisBIENnegro">{escultor.nacionalidad}</p>
                 </div>
