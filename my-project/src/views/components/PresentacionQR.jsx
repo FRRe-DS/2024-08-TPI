@@ -48,7 +48,7 @@ const PresentacionQR = () => {
   
   useEffect(() => {
     // Ocultar el header y el footer para esta página
-    const header = document.querySelector('.header');
+    const header = document.querySelector('header');
     const footer = document.querySelector('footer');
     if (header) {
       header.style.display = 'none';

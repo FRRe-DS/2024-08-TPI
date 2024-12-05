@@ -1,20 +1,19 @@
 .qr-page {
-  background-color: white;
-  color: black;
+  background-color: transparent;
+  color: white;
   height: 100vh;
   display: flex;
-  flex-direction: column; /* Asegúrate de que el contenido esté en columna */
-  justify-content: flex-start; /* Mover el contenido hacia la parte superior */
-  align-items: center; /* Centrar el contenido horizontalmente */
-  padding-top: 50px; /* Ajusta este valor para mover más arriba o abajo */
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center; 
 }
 
 .qr-page h1 {
-  font-size: 3rem; /* Aumentar el tamaño de la fuente */
+  font-size: 3rem; 
   margin: 0;
   padding: 0;
 }
 
 .qr-page div {
-  margin-top: 20px; /* Ajustar el margen superior del QR para posicionarlo correctamente */
+  margin-top: 20px; 
 }
