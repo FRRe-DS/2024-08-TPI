@@ -4,15 +4,21 @@ import axios from 'axios';
 import '/public/css/Header.css'; 
 import { useAuth0 } from '@auth0/auth0-react';
 import { Dropdown } from 'flowbite-react'; // Importa el dropdown de Flowbite
+import { AiOutlineMenu, AiOutlineArrowLeft } from "react-icons/ai";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-
-const Header = () => {
+function Header({showMenuMobile, setShowMenuMobile}){
     
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
     const [userRole, setUserRole] = useState(null);
+    const isDesktop = useMediaQuery('(min-width:768px)');
 
+    useEffect(()=>{
+        if (isDesktop){
+            setShowMenuMobile(false);
+        }
+    },[isDesktop]);
 
-    
     useEffect(() => {
         if (isAuthenticated && user) {
             const postUser = async () => {
@@ -52,43 +58,60 @@ const Header = () => {
         return userRole===role
     };
 
+    function showMenu(){
+        let showMenuAux = !showMenuMobile;
+        setShowMenuMobile(showMenuAux);
+    }
         
   
     return (
-        <header className="header">
-    <div className="logo">
-        <Link to="/"><img src="img/logo.png" alt="Logo de la marca" /></Link>
-    </div>
-    <nav>
-        <ul className="nav-links">
-            <li><Link to="/escultores">Escultores</Link></li>
-            <li><Link to="/esculturas">Esculturas</Link></li>
-            <li><Link to="/eventos">Eventos</Link></li>
-            <li><Link to="/Resultados">Resultados</Link></li>
-            {userHasRole("admin") && (<li><Link to="/admin/qr-list">Lista QR</Link></li>)}
-        </ul>
-    </nav>
+        <header>
+            
+            <div className="barra-movil">
+                <div className="logo-container">
+                    <img className= "imagen-mobile" src="img/logo.png" alt="Logo de la marca" />
+                </div>
+                <div className="burger-container">
+                    <button onClick={showMenu}>
+                        <AiOutlineMenu className="menu-button"/>
+                    </button>
+                </div>
+            </div>
+            <div className={showMenuMobile? "menu-container show-content" : "menu-container hidde-content"}>
+                <div className="logo">
+                    <Link to="/"><img className= "imagen" src="img/logo.png" alt="Logo de la marca" /></Link>
+                </div>
+                <nav>
+                    <ul className="nav-links">
+                        <li><Link className="link" to="/escultores">Escultores</Link></li>
+                        <li><Link className="link" to="/esculturas">Esculturas</Link></li>
+                        <li><Link className="link" to="/eventos">Eventos</Link></li>
+                        <li><Link className="link" to="/Resultados">Resultados</Link></li>
+                        {userHasRole("admin") && (<li><Link className="link" to="/admin/qr-list">Lista QR</Link></li>)}
+                    </ul>
+                </nav>
 
-    {!isAuthenticated ? (
-        <button className="btn" onClick={loginWithRedirect}>Iniciar Sesión</button>
-    ) : ( 
-        <Dropdown
-        label={<img src={user.picture || "img/avatar.png"} alt="User Icon" style={{ borderRadius: '50%', width: '50px', height: '50px', cursor: 'pointer' }} />}>
-            {userHasRole("admin") && (
-                <Dropdown.Item>
-                    <Link to="/admin" className="text-black">
-                        Panel de Control
-                    </Link>
-                </Dropdown.Item>
-            )}
-            <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
-            <Link to="/users" className="text-black">
-                        Cerrar Sesión
-                    </Link>
-            </Dropdown.Item>
-        </Dropdown>
-    )}
-</header>
+                {!isAuthenticated ? (
+                    <button className="btn" onClick={loginWithRedirect}>Iniciar Sesión</button>
+                ) : ( 
+                    <Dropdown arrowIcon={false}
+                    label={<img className="user-logo" src={user.picture || "img/avatar.png"} alt="User Icon" />}>
+                        {userHasRole("admin") && (
+                            <Dropdown.Item>
+                                <Link to="/admin" className="text-black">
+                                    Panel de Control
+                                </Link>
+                            </Dropdown.Item>
+                        )}
+                        <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>
+                        <Link to="/users" className="text-black">
+                                    Cerrar Sesión
+                                </Link>
+                        </Dropdown.Item>
+                    </Dropdown>
+                )}
+            </div>
+        </header>
 
 
     );

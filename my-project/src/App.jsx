@@ -21,12 +21,14 @@ import DeleteEvento from './views/components/CRUD/DeleteEvento';
 import ListaAdminQR from './views/components/ListaAdminQR';
 import PresentacionQR from './views/components/PresentacionQR';
 import UpdateEvento from './views/components/CRUD/UpdateEvento'
+import { useState } from 'react';
 
 const App = () => {
+  const [showMenuMobile, setShowMenuMobile]= useState(false);
   return (
     <Router>
       <div className="flex flex-col min-h-screen"> 
-        <Header />
+      <Header showMenuMobile = {showMenuMobile} setShowMenuMobile = {setShowMenuMobile}/>
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Cuerpo />} />
