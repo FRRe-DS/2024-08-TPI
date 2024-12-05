@@ -8,15 +8,15 @@ class EsculturaModel {
           [nombre, descripcion, id_evento, id_escultor]
         );
         return { id_escultura: result.insertId, nombre, descripcion, id_evento, id_escultor };
-      }
+    }
       
-      static async createEsculturaImagen({ id_escultura, imagen_url }) {
+    static async createEsculturaImagen({ id_escultura, imagen_url }) {
         const [result] = await pool.query(
           'INSERT INTO escultura_img (id_escultura, imagen_url) VALUES (?, ?)',
           [id_escultura, imagen_url]
         );
         return { id: result.insertId, id_escultura, imagen_url };
-      }
+    }
 
     // Obtener todas las esculturas
     static async getAllEsculturas() {
@@ -31,6 +31,15 @@ class EsculturaModel {
             return null;
         }
         return rows[0];
+    }
+
+    // Obtener imágenes de la escultura por ID
+    static async getImagenesByEsculturaId(id_escultura) {
+        const [rows] = await pool.query('SELECT * FROM escultura_img WHERE id_escultura = ?', [id_escultura]);
+        if (rows.length === 0) {
+            return [];
+        }
+        return rows;
     }
 
     // Actualizar escultura por ID
