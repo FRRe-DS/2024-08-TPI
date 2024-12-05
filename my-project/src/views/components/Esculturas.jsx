@@ -4,6 +4,35 @@ import '/public/css/custom.css';
 
 const Esculturas = () => {
     const [esculturas, setEsculturas] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedImages, setSelectedImages] = useState([]);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Función para abrir el modal con las imágenes de la escultura
+    const openModal = (imagenes) => {
+        setSelectedImages(imagenes);
+        setCurrentImageIndex(0); // Comienza en la primera imagen
+        setModalOpen(true);
+    };
+
+    // Función para cerrar el modal
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedImages([]);
+    };
+
+    // Función para navegar entre las imágenes del carrete
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex < selectedImages.length - 1 ? prevIndex + 1 : 0
+        );
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex > 0 ? prevIndex - 1 : selectedImages.length - 1
+        );
+    };
 
     useEffect(() => {
         const fetchEsculturas = async () => {
@@ -38,16 +67,20 @@ const Esculturas = () => {
                                     />
                                 )}
                                 <div className="flex-1 flex flex-col p-4">
-                                    <p className="bg-gray-100 rounded-lg text-grisBIENnegro text-center text-md py-1 mb-2">
-                                        <strong>Temática:</strong> {escultura.tematica}
-                                    </p>
+                                    
                                     <div className="bg-gray-100 rounded-lg py-2 px-3 flex-1">
-                                        <p className="text-md font-semibold">
-                                            <strong>Fecha de creación:</strong> {escultura.fecha_creacion}
-                                        </p>
                                         <p className="text-sm text-wh font-black mt-2">
                                             <strong>Descripción:</strong> {escultura.descripcion}
                                         </p>
+                                        {/* Botón para abrir el modal con las imágenes */}
+                                        {escultura.imagenes && (
+                                            <button
+                                                className="mt-4 bg-blue-500 text-white p-2 rounded-lg"
+                                                onClick={() => openModal(escultura.imagenes)}
+                                            >
+                                                Ver imágenes
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -56,6 +89,39 @@ const Esculturas = () => {
                 </div>
             ) : (
                 <p className="text-center text-lg text-gray-500 mt-4">No se encontraron esculturas.</p>
+            )}
+
+            {/* Modal para ver imágenes */}
+            {modalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-4 rounded-lg max-w-3xl relative">
+                        <button
+                            className="absolute top-0 right-0 p-2 bg-red-500 text-white rounded-full"
+                            onClick={closeModal}
+                        >
+                            X
+                        </button>
+                        <div className="flex justify-center items-center">
+                            <button
+                                className="p-2 bg-gray-500 text-white rounded-full mr-4"
+                                onClick={prevImage}
+                            >
+                                &#60;
+                            </button>
+                            <img
+                                src={selectedImages[currentImageIndex]?.imagen_url}
+                                alt={`Escultura ${currentImageIndex + 1}`}
+                                className="w-full h-auto max-h-96 object-contain"
+                            />
+                            <button
+                                className="p-2 bg-gray-500 text-white rounded-full ml-4"
+                                onClick={nextImage}
+                            >
+                                &#62;
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );

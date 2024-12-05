@@ -135,18 +135,23 @@ export default function CreateEscultor() {
                     />
                 </Form.Field>
                 <FormField>
-                    <label>Seleccione la imagen del escultor</label>
-                    <input 
-                        type="file" 
-                        accept="image/*" 
-                        onChange={handleImagenChange} 
+                    <label >Seleccione la imagen del escultor</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImagenChange}
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                     />
                     {imagenPreview && (
-                        <img 
-                            src={imagenPreview} 
-                            alt="Previsualización de la imagen" 
-                            style={{ width: '100px', marginTop: '10px' }} 
-                        />
+                        <div className="mt-2">
+                            <h4 className="text-gray-700">Previsualización de la imagen:</h4>
+                            <img
+                                src={imagenPreview}
+                                alt="Previsualización de la imagen"
+                                className="rounded-md"
+                                style={{ width: '100px', marginTop: '10px' }}
+                            />
+                        </div>
                     )}
                 </FormField>
                 <div className="flex justify-between">
