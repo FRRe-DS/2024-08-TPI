@@ -51,15 +51,17 @@ export default function UpdateEscultor() {
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            console.log('Archivo seleccionado:', file);
             setImagenEsc(file);
             const reader = new FileReader();
             reader.onloadend = () => {
+                console.log('URL de previsualización:', reader.result);
                 setImagenPreview(reader.result); // Guarda la URL de previsualización
             };
             reader.readAsDataURL(file);
         }
     };
-
+    
     // Enviar los datos actualizados
     const updateData = async (e) => {
         e.preventDefault();

@@ -10,15 +10,13 @@ router.get('/', UserController.getAllUsers);
 router.post('/', UserController.createUser);
 
 // Obtener un User por ID
-router.get('/:email', UserController.getUserById);
+router.get('/:email', UserController.getUserByEmail);
 
 router.get('/role/:email', UserController.getRoleByEmail);
 
 // Actualizar un User
-router.put('/:id', UserController.updateUser);
+router.put('/:email', UserController.updateUser);
 
-// Eliminar un User
-router.delete('/:id', UserController.deleteUser);
 
 module.exports = router;
 
