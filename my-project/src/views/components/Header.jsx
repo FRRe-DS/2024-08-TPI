@@ -92,7 +92,8 @@ function Header({showMenuMobile, setShowMenuMobile}){
                 </nav>
 
                 {!isAuthenticated ? (
-                    <button className="btn" onClick={loginWithRedirect}>Iniciar Sesión</button>
+                    <button    className="bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg m-4 shadow-md hover:bg-gray-700 hover:shadow-lg transition-transform transform hover:-translate-y-1 active:translate-y-0"
+                    onClick={loginWithRedirect}>Iniciar Sesión</button>
                 ) : ( 
                     <Dropdown arrowIcon={false}
                     label={<img className="user-logo" src={user.picture || "img/avatar.png"} alt="User Icon" />}>

@@ -133,23 +133,21 @@ const Esculturas = () => {
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <div className="mb-0 w-full flex flex-col sm:flex-row justify-around">
-                                    <button
-                                        className="bg-grisOscuro text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200 w-full sm:w-auto"
-                                        onClick={() => handleEscultor(escultura)}
-                                    >
-                                        Ver escultor
-                                    </button>
-                                </div>
-                                <div className="mb-0 w-full flex flex-col sm:flex-row justify-around">
-                                    <button
-                                        onClick={openShareModal}
-                                        className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"
-                                    >
-                                        Compartir
-                                    </button>
-                                </div>
-                            </div>
+                        <div className="mb-0 w-full flex flex-col sm:flex-row gap-4 justify-around">
+                            <button
+                            className="bg-gray-800 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-gray-700 transition duration-200"
+                            onClick={() => handleEscultor(escultura)}
+                            >
+                            Ver escultor
+                            </button>
+                            <button
+                            onClick={openShareModal}
+                            className="bg-green-500 text-white rounded-md px-4 py-2 w-full sm:w-auto hover:bg-green-600 transition duration-300"
+                            >
+                            Compartir
+                            </button>
+                        </div>
+                        </div>
                         </div>
                     ))}
                 </div>

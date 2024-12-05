@@ -20,6 +20,8 @@ router.put('/:id_escultura', upload, procesarImagenesEsculturas, EsculturaContro
 router.delete('/:id_escultura', EsculturaController.deleteEscultura);
 
 // Obtener imágenes de la escultura
-router.get('/img_escultura/:id_escultura', EsculturaController.getImagenesByEsculturaId);
+router.get('/img_esculturaActual/:id_escultor', EsculturaController.getImagenesByEscultorActualById);
+
+router.get('/img_escultura/:id_escultor', EsculturaController.getImagenesByEscultorById);
 
 module.exports = router;

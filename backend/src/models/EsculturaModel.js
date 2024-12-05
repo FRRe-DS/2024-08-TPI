@@ -33,18 +33,17 @@ class EsculturaModel {
         return rows[0];
     }
 
+    // Obtener imágenes de la escultura por ID
+    static async getImagenesByEscultorActualById(id_escultor) {
+        const [rows] = await pool.query('SELECT * FROM (escultura_img ei join esculturas e) join eventos ev where ei.id_escultura = e.id_escultura and e.id_evento = ev.id  and ev.activo = "si" and e.id_escultor = ?', [id_escultor]);
+        if (rows.length === 0) {
+            return [];
+        }
+        return rows;
+    }
+
     static async getImagenesByEscultorById(id_escultor) {
-        const [rows] = await pool.query(
-            
-            `SELECT * 
-            FROM escultura_img es 
-            INNER JOIN esculturas e 
-            ON e.id_escultura = es.id_escultura 
-            WHERE e.id_escultor = ?
-            `,
-            [id_escultor]
-        );
-    
+        const [rows] = await pool.query('SELECT * FROM (escultura_img es join esculturas e) where e.id_escultura = es.id_escultura  and id_escultor = ?', [id_escultor]);
         if (rows.length === 0) {
             return [];
         }

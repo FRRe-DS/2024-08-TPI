@@ -1,6 +1,6 @@
 .qr-page {
-  background-color: transparent;
-  color: white;
+  background-color: white;
+  color: black;
   height: 100vh;
   display: flex;
   flex-direction: column; 
