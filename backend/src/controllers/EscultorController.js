@@ -47,18 +47,21 @@ class EscultorController {
     // Actualizar Escultor
     static async updateEscultor(req, res) {
         const { id_escultor } = req.params;
-        const { nombre_esc, apellido, pais,biografia,imagen_esc } = req.body;
+        const { nombre_esc, apellido, biografia, pais, imagen_esc } = req.body;
+        console.log (nombre_esc)
         try {
-            const success = await EscultorModel.updateEscultor(id_escultor, { nombre_esc, apellido, pais, biografia, imagen_esc });
-            if (!success) {
-                return res.status(404).json({ error: 'Escultor no encontrado' });
+            const success = await EscultorModel.updateEscultor(id_escultor, { nombre_esc, apellido, biografia, pais, imagen_esc });
+            if (success) {
+                res.status(200).json({ message: 'Escultor actualizado correctamente' });
+            } else {
+                res.status(404).json({ error: 'Escultor no encontrado' });
             }
-            res.status(200).json({ message: 'Escultor actualizado correctamente' });
         } catch (error) {
-            res.status(500).json({ error: 'Error al actualizar el Escultoro' });
+            console.error('Error al actualizar el escultor:', error);
+            res.status(500).json({ error: 'Error al actualizar el escultor' });
         }
     }
-
+    
     // Eliminar Escultor
     static async deleteEscultor(req, res) {
         const { id_escultor } = req.params;
