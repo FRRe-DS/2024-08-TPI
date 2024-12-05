@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button, Form, FormField } from 'semantic-ui-react';
 import axios from 'axios';
-<<<<<<< HEAD
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '/public/css/crud.css';
-=======
-import { useParams, useNavigate } from 'react-router-dom';
-import '/public/css/formularios.css';
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
 
 export default function UpdateEvento() {
     const { id } = useParams();
@@ -20,17 +15,10 @@ export default function UpdateEvento() {
     const [activo, setActivo] = useState(''); // Estado para el campo "activo"
     const navigate = useNavigate();
 
-<<<<<<< HEAD
-=======
-    const navigate = useNavigate();
-
-    // Cargar los datos del escultor a editar
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
     useEffect(() => {
         const fetchEvento = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/eventos/${id}`);
-<<<<<<< HEAD
                 const { nombre, fecha, lugar, descripcion, tematica, activo } = response.data;
                 setNombre(nombre);
                 // Convertir la fecha a formato dd/mm/yyyy
@@ -40,15 +28,6 @@ export default function UpdateEvento() {
                 setDescripcion(descripcion);
                 setTematica(tematica);
                 setActivo(activo === 'si' ? 'si' : 'no');
-=======
-                const { nombre, fecha, lugar, descripcion, tematica } = response.data;
-                setNombre(nombre || '');
-                setFecha(fecha || '');
-                setLugar(lugar || '');
-                setDescripcion(descripcion || '');
-                setTematica(tematica || '');
-                
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
             } catch (error) {
                 console.error('Error al cargar el evento', error);
             }

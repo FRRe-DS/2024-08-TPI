@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './views/components/Header';
 import Footer from './views/components/Footer';
@@ -21,12 +22,8 @@ import DeleteEvento from './views/components/CRUD/DeleteEvento';
 import ListaAdminQR from './views/components/ListaAdminQR';
 import PresentacionQR from './views/components/PresentacionQR';
 import UpdateEvento from './views/components/CRUD/UpdateEvento'
-<<<<<<< HEAD
 import UpdateUsuario from './views/components/CRUD/UpdateUsuario'
 
-=======
-import { useState } from 'react';
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
 
 const App = () => {
   const [showMenuMobile, setShowMenuMobile]= useState(false);

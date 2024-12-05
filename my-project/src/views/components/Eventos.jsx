@@ -90,16 +90,16 @@ const Eventos = () => {
       {eventos.map((evento) => (
         <div
           key={evento.id}
-          className="relative bg-gradient-to-t from-[#9fa3a9] to-white shadow-md p-4 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl"
+          className="h-80 relative bg-gradient-to-t from-[#9fa3a9] to-white shadow-md p-4 rounded-lg flex flex-col transition-all duration-300 hover:shadow-xl"
           style={{ maxHeight: '350px', minHeight: '350px', overflowY: 'auto' }} 
         >
           {/* Título del evento */}
-          <div className="flex justify-center items-center mb-4">
+          <div className="h-1/5 flex justify-center items-center mb-4">
             <h2 className="text-xl font-semibold text-center break-words">{evento.nombre}</h2>
           </div>
 
           {/* Detalles del evento */}
-          <div className="grid grid-cols-1 gap-y-2 text-sm text-gray-700">
+          <div className="h-1/2 grid grid-cols-1 gap-y-2 text-sm text-gray-700">
             <p>
               <strong>Temática:</strong> {evento.tematica}
             </p>
@@ -119,7 +119,7 @@ const Eventos = () => {
 
 
           {/* Botón para compartir */}
-          <div className="mt-4 flex justify-center">
+          <div className="h-1/8 mt-4 flex justify-center">
             <button
               onClick={() => handleOpenModal(evento)}
               className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300"

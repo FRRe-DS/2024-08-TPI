@@ -3,53 +3,13 @@ import { Button, Form, FormField } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '/public/css/crud.css';
-<<<<<<< HEAD
-
-=======
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
 export default function CreateEvento() {
     const [nombre, setNombre] = useState('');
     const [fecha, setFecha] = useState(''); // Usar una cadena directamente
     const [lugar, setLugar] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [tematica, setTematica] = useState('');
-<<<<<<< HEAD
     const [activo, setActivo] = useState('si'); // Estado inicial para "activo"
-=======
-    const [dias, setDias] = useState([]);
-    const [meses, setMeses] = useState([]);
-    const [anios, setAnios] = useState([]);
-    
-    const navigate= useNavigate();
-
-    useEffect(() => {
-        const diasArray = [...Array(31)].map((_, index) => index + 1);
-        setDias(diasArray);
-
-        const mesesArray = [
-            { value: 1, text: "Enero" },
-            { value: 2, text: "Febrero" },
-            { value: 3, text: "Marzo" },
-            { value: 4, text: "Abril" },
-            { value: 5, text: "Mayo" },
-            { value: 6, text: "Junio" },
-            { value: 7, text: "Julio" },
-            { value: 8, text: "Agosto" },
-            { value: 9, text: "Septiembre" },
-            { value: 10, text: "Octubre" },
-            { value: 11, text: "Noviembre" },
-            { value: 12, text: "Diciembre" },
-        ];
-        setMeses(mesesArray);
-
-        const aniosArray = [];
-        const anioActual = new Date().getFullYear();
-        for (let i = 0; i <= 100; i++) { 
-            aniosArray.push(anioActual - i);
-        }
-        setAnios(aniosArray);
-    }, []);
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -82,11 +42,7 @@ export default function CreateEvento() {
             setLugar('');
             setDescripcion('');
             setTematica('');
-<<<<<<< HEAD
             setActivo('si'); // Restablecer el estado inicial de "activo"
-=======
-            navigate(-1);
->>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
         } catch (error) {
             alert("Error al enviar los datos. Por favor, intenta de nuevo");
             console.error('Error al enviar los datos', error);
