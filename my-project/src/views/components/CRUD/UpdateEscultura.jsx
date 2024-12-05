@@ -14,7 +14,12 @@ export default function UpdateEscultura() {
     const [selectedEvento, setSelectedEvento] = useState(null);
     const navigate = useNavigate();
 
+<<<<<<< HEAD
     // Cargar datos de la escultura
+=======
+    const navigate = useNavigate();
+
+>>>>>>> cac717bf1fe2abde6abe6e104631fbbda4a7bf83
     useEffect(() => {
         const fetchEscultura = async () => {
             try {

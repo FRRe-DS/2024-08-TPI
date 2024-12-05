@@ -9,185 +9,171 @@
     font-size: 18px; /* Reducir el tamaño de fuente global */
 }
 
-.header {
-    background-color: #000000;
+header {
+    display: flex;
+    flex-direction: column; 
+}
+
+.barra-movil {
+    height: 10vh;    
+    margin-bottom: 20%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px; /* Reducir la altura del header */
-    padding: 5px 8%; /* Ajustar el padding */
+    border-radius: 30px;
+    background-color: #2f2f2fa5;
 }
 
-.header .logo {
-    cursor: pointer;
+.logo-container {
+    width: 40%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-left: 5%;
 }
 
-.header .logo img {
-    height: 50px; /* Reducir la altura del logo */
-    width: auto;
-    transition: all 0.3s;
-    border-radius: 50%;
-    margin-top: 5px; /* Ajustar margen */
-    margin-left: 10px; /* Ajustar margen */
+.imagen-mobile{
+    width: 20%;
+    border-radius: 100%;
 }
 
-.header .logo img:hover {
-    transform: scale(1.2);
+.burger-container{
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-right: 5%;
 }
 
-.header .nav-links {
-    list-style: none;
+.menu-button{
+    font-size: 45px;
+    font-weight:900;
+    color: rgb(226, 222, 222)
 }
 
-.header .nav-links li {
-    display: inline-block;
-    padding: 0 15px; /* Reducir padding */
+.menu-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    background-color: rgb(0,0,0,80%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
 
-.header .nav-links li:hover {
-    transform: scale(1.1);
+.logo{
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.header .nav-links a {
-    font-size: 16px; /* Ajustar tamaño de fuente */
-    color: #9fa3a9;
-    text-decoration: none;
+.imagen{
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    border-radius: 100%;
 }
 
-.header .nav-links li a:hover {
-    color: #393d42;
+nav{
+    width: 100%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nav-links{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.header .btn button, .header .menu button {
-    font-weight: 700;
-    color: #1f2124;
-    padding: 7px 20px; /* Reducir padding */
-    background: #6a6e73;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
+.link{
+    color: white;
 }
 
-.header .btn {
-    font-weight: 700;
-    color: #1f2124;
-    padding: 7px 20px; /* Reducir padding */
-    background: #6a6e73;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-.header .btn:hover {
-    background-color: #9fa3a9;
-    color: #393d42;
-    transform: scale(1.1);
-}
-
-/* También para el botón del menú */
-.header .menu button {
-    font-weight: 700;
-    color: #1f2124;
-    padding: 7px 20px; /* Reducir padding */
-    background: #6a6e73;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-}
-
-.header .menu button:hover {
-    background-color: #9fa3a9;
-    color: #393d42;
-    transform: scale(1.1);
-}
-
-.menu {
+.hidde-content{
     display: none;
 }
 
-@media screen and (max-width: 800px) {
-    .nav-links, .btn {
-        display: none; /* Ocultar el menú de navegación y el botón de iniciar sesión */
+.show-content{
+    visibility: visible;
+}
+
+@media(min-width: 760px){
+    .barra-movil{
+        display: none;
+
     }
-    .menu {
-        display: inherit; /* Mostrar el botón menú en pantallas pequeñas */
+
+    .menu-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        position: static;
+        top: 0px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size:inherit;
     }
-}
 
-.header a {
-    text-decoration: none;
-}
-
-.header .overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.95);
-    overflow: hidden;
-    transition: width 0.3s ease 0s;
-}
-
-.header .overlay.open {
-    width: 100%; /* Asegúrate de que se expanda a todo el ancho de la pantalla */
-}
-
-.header .overlay .overlay-content {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.header .overlay a {
-    padding: 15px;
-    font-size: 30px; /* Reducir el tamaño de fuente */
-    display: block;
-    transition: color 0.3s ease 0s;
-    font-weight: 700;
-    color: #9fa3a9;
-}
-
-.header .overlay a:hover,
-.header .overlay a:focus {
-    color: #393d42;
-}
-
-.header .overlay .close {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 55px; /* Reducir el tamaño de fuente */
-}
-
-@media screen and (max-height: 450px) {
-    .header .overlay a {
-        font-size: 18px; /* Reducir el tamaño de fuente */
+    .logo {
+        width:20%;
+        margin-left: 5%;
+        margin-top: 2%;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
     }
-    .header .overlay .close {
-        font-size: 35px; /* Reducir el tamaño de fuente */
-        top: 15px;
-        right: 35px;
+
+    .imagen {
+        width: 32%;
     }
-}
+    
+    nav{
+        width: 70%;
+        margin-right: 12%;
+        margin-top: 0%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 
-.logout-menu button {
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 2px 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px; /* Reducir el tamaño de fuente */
-    transition: background-color 0.3s;
-}
+    .nav-links {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5%;
+        flex-direction: row;
+    }
 
-.logout-menu button:hover {
-    background-color: #f0f0f0;
+    .link{
+        font-size: 24px;
+        text-decoration: none;
+        color: white
+    }
+
+    .user-logo{
+        width:65%;
+        border-radius: 50%;
+        margin-top: 20%;
+    }
 }
