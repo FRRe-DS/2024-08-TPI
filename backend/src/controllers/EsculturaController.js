@@ -60,6 +60,7 @@ class EsculturaController {
             }
             res.status(200).json({ message: 'Escultura actualizada correctamente' });
         } catch (error) {
+            console.error (error)
             res.status(500).json({ error: 'Error al actualizar la escultura' });
         }
     }

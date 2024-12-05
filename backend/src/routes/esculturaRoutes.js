@@ -14,7 +14,7 @@ router.post('/',upload, procesarImagenesEsculturas, EsculturaController.createEs
 router.get('/:id_escultura', EsculturaController.getEsculturaById);
 
 // Actualizar un escultura
-router.put('/:id_escultura', EsculturaController.updateEscultura);
+router.put('/:id_escultura',upload, procesarImagenesEsculturas, EsculturaController.updateEscultura);
 
 // Eliminar un escultura
 router.delete('/:id_escultura', EsculturaController.deleteEscultura);

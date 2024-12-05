@@ -25,12 +25,12 @@ export default function UpdateEvento() {
             try {
                 const response = await axios.get(`http://localhost:3000/api/eventos/${id}`);
                 const { nombre, fecha, lugar, descripcion, tematica, activo } = response.data;
-                setNombre(nombre || '');
+                setNombre(nombre );
                 const fechaArray = fecha.split('-');
                 setFecha({ dia: fechaArray[2], mes: parseInt(fechaArray[1]), anio: parseInt(fechaArray[0]) });
-                setLugar(lugar || '');
-                setDescripcion(descripcion || '');
-                setTematica(tematica || '');
+                setLugar(lugar );
+                setDescripcion(descripcion );
+                setTematica(tematica );
                 setActivo(activo === 'si' ? 'si' : 'no'); // Establecer estado inicial del campo "activo"
             } catch (error) {
                 console.error('Error al cargar el evento', error);
@@ -159,7 +159,7 @@ export default function UpdateEvento() {
             </FormField>
             <div className="flex justify-between">
                 <Button type='button' onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none"> Ir Atrás</Button>
-                <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Enviar</Button>
+                <Button type='submit' className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none">Actualizar</Button>
             </div>
         </Form>
     );

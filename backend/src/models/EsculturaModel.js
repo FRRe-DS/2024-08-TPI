@@ -37,7 +37,7 @@ class EsculturaModel {
     static async updateEscultura(id_escultura, { nombre, descripcion, id_evento, id_escultor }) {
         const [result] = await pool.query(
             'UPDATE esculturas SET nombre = ?, descripcion = ?, id_evento = ?, id_escultor = ? WHERE id_escultura = ?',
-            [nombre, descripcion, tematica, id_evento, id_escultor, id_escultura]
+            [nombre, descripcion, id_evento, id_escultor, id_escultura]
         );
         return result.affectedRows > 0;
     }

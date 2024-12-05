@@ -41,6 +41,7 @@ const Eventos = () => {
                             <strong>Lugar:</strong> {evento.lugar}
                         </p>
                         <p className="text-black">{evento.descripcion}</p>
+                        <p className = ""></p>
                     </div>
                 </div>
             ))}

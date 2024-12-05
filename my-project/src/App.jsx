@@ -43,7 +43,7 @@ const App = () => {
             <Route path="/Resultados" element={<Resultados />} />
             <Route path="/create-evento" element={<CreateEvento />} />
             <Route path="/delete-evento" element={<DeleteEvento />} />
-            <Route path="/modificar-evento/:id_evento" element={<UpdateEvento />} />
+            <Route path="/modificar-evento/:id" element={<UpdateEvento />} />
             <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 

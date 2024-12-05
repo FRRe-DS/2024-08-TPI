@@ -6,32 +6,32 @@ import { useParams, useNavigate } from 'react-router-dom';
 export default function UpdateEscultura() {
     const { id_escultura } = useParams();
     const [nombre, setNombre] = useState('');
+    const [selectedEscultor, setSelectedEscultor] = useState(null);
     const [imgFiles, setImgFiles] = useState([]);
-    const [tematica, setTematica] = useState('');
-    const [fechaCreacion, setFechaCreacion] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [eventos, setEventos] = useState([]);
+    const [escultores, setEscultores] = useState([]); // Estado para los escultores
     const [selectedEvento, setSelectedEvento] = useState(null);
-
     const navigate = useNavigate();
 
+    // Cargar datos de la escultura
     useEffect(() => {
         const fetchEscultura = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/escultura/${id_escultura}`);
-                const { nombre, tematica, descripcion, fechaCreacion, id_evento } = response.data;
+                const { nombre, descripcion, id_evento, id_escultor } = response.data;
                 setNombre(nombre);
-                setTematica(tematica);
                 setDescripcion(descripcion);
-                setFechaCreacion(fechaCreacion);
                 setSelectedEvento(id_evento);
+                setSelectedEscultor(id_escultor);
             } catch (error) {
-                console.error('Error al cargar la escultura', error);
+                console.error('Error al cargar la escultura:', error);
             }
         };
         fetchEscultura();
     }, [id_escultura]);
 
+    // Cargar eventos
     useEffect(() => {
         const fetchEventos = async () => {
             try {
@@ -48,6 +48,23 @@ export default function UpdateEscultura() {
         fetchEventos();
     }, []);
 
+    // Cargar escultores
+    useEffect(() => {
+        const fetchEscultores = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/escultor');
+                setEscultores(response.data.map((escultor) => ({
+                    key: escultor.id_escultor,
+                    text: `${escultor.nombre_esc} ${escultor.apellido}`,
+                    value: escultor.id_escultor,
+                })));
+            } catch (error) {
+                console.error('Error al cargar los escultores', error);
+            }
+        };
+        fetchEscultores();
+    }, []);
+
     const handleImageChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
         setImgFiles(prevFiles => [...prevFiles, ...selectedFiles]);
@@ -57,9 +74,8 @@ export default function UpdateEscultura() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('nombre', nombre);
-        formData.append('tematica', tematica);
+        formData.append('id_escultor', selectedEscultor);
         formData.append('descripcion', descripcion);
-        formData.append('fechaCreacion', fechaCreacion);
         formData.append('id_evento', selectedEvento);
 
         imgFiles.forEach(file => {
@@ -85,6 +101,20 @@ export default function UpdateEscultura() {
                 <input value={nombre} onChange={(e) => setNombre(e.target.value)} />
             </FormField>
             <FormField>
+                <label>Escultor</label>
+                <select
+                    value={selectedEscultor || ''}
+                    onChange={(e) => setSelectedEscultor(e.target.value)}
+                >
+                    <option value="">Selecciona un escultor</option>
+                    {escultores.map((escultor) => (
+                        <option key={escultor.key} value={escultor.value}>
+                            {escultor.text}
+                        </option>
+                    ))}
+                </select>
+            </FormField>
+            <FormField>
                 <label>Imágenes</label>
                 <input
                     type="file"
@@ -106,10 +136,7 @@ export default function UpdateEscultura() {
                 <label>Descripción</label>
                 <textarea value={descripcion} onChange={(e) => setDescripcion(e.target.value)} />
             </FormField>
-            <FormField>
-                <label>Fecha de Creación</label>
-                <input type='date' value={fechaCreacion} onChange={(e) => setFechaCreacion(e.target.value)} />
-            </FormField>
+           
             <FormField>
                 <label>Evento</label>
                 <select
@@ -127,8 +154,11 @@ export default function UpdateEscultura() {
             </FormField>
             <div className="flex justify-between">
                 <Button type="button" onClick={() => navigate(-1)} className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 focus:outline-none">Ir Atrás</Button>
-                <Button type="submit" className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">Actualizar</Button>
-            </div>
-        </Form>
+                <Button type="submit" className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">Actualizar </Button>
+            </div>   
+            </Form>
     );
 }
+
+
+
