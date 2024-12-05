@@ -26,11 +26,11 @@ class UserController {
         }
     }
 
-    // Obtener usuario por ID
-    static async getUserById(req, res) {
+    // Obtener usuario por email
+    static async getUserByEmail(req, res) {
         const { email } = req.params;
         try {
-            const user = await UserModel.getUserById(email);
+            const user = await UserModel.getUserByEmail(email);
             if (!user) {
                 return res.status(404).json({ error: 'Usuario no encontrado' });
             }
@@ -64,14 +64,15 @@ class UserController {
     // Actualizar User
     static async updateUser(req, res) {
         const { email } = req.params;
-        const { name, nickname, role } = req.body;
+        const { role } = req.body;
         try {
-            const success = await UserModel.updateUser(email, { name, nickname, role  });
+            const success = await UserModel.updateUser(email, {  role  });
             if (!success) {
                 return res.status(404).json({ error: 'User no encontrado' });
             }
             res.status(200).json({ message: 'User actualizado correctamente' });
         } catch (error) {
+            console.error(error)
             res.status(500).json({ error: 'User al actualizar el evento' });
         }
     }

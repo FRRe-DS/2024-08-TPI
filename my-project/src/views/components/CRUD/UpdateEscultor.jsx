@@ -32,14 +32,14 @@ export default function UpdateEscultor() {
         const fetchEscultor = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/escultor/${id_escultor}`);
-                const { nombre_esc, apellido, pais, img_nacionalidad, biografia, imagen_esc } = response.data;
-                setFirstName(nombre_esc || '');
-                setLastName(apellido || '');
-                setPais(pais || '');
-                setBanderaUrl(img_nacionalidad || '');
-                setBiografia(biografia || '');
-                setImagenEsc(imagen_esc || '');
+                const { nombre_esc, apellido, pais, biografia, imagen_esc } = response.data;
+                setFirstName(nombre_esc );
+                setLastName(apellido );
+                setPais(pais );
+                setBiografia(biografia );
+                setImagenEsc(imagen_esc );
                 setImagenPreview(imagen_esc); // Previsualizar la imagen existente
+                console.log("Datos recibidos:", { nombre_esc, apellido, pais, biografia, imagen_esc });
             } catch (error) {
                 console.error('Error al cargar el escultor', error);
             }
@@ -51,56 +51,64 @@ export default function UpdateEscultor() {
     const handleImagenChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            console.log('Archivo seleccionado:', file);
             setImagenEsc(file);
             const reader = new FileReader();
             reader.onloadend = () => {
+                console.log('URL de previsualización:', reader.result);
                 setImagenPreview(reader.result); // Guarda la URL de previsualización
             };
             reader.readAsDataURL(file);
         }
     };
-
+    
     // Enviar los datos actualizados
     const updateData = async (e) => {
         e.preventDefault();
-
+    
         let invalidos = [];
         if (!nombre_esc) invalidos.push("Nombre");
         if (!apellido) invalidos.push("Apellido");
         if (!pais) invalidos.push("Pais");
         if (!biografia) invalidos.push("Biografía");
         if (!imagen_esc) invalidos.push("Imagen escultor");
-
+    
         if (biografia.length > 150) {
             alert('La biografía no puede exceder los 150 caracteres.');
             return;
         }
-
+    
         if (invalidos.length > 0) {
             alert("Por favor, completa los siguientes campos: " + invalidos.join(", "));
             return;
         }
-
+    
         const formData = new FormData();
         formData.append("nombre_esc", nombre_esc);
         formData.append("apellido", apellido);
-        formData.append("pais", pais);
         formData.append("biografia", biografia);
+        formData.append("pais", pais);
         formData.append("imagen_esc", imagen_esc);
-
+    
+        
+        
+       
         try {
+            
             await axios.put(`http://localhost:3000/api/escultor/${id_escultor}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log(formData)
+            console.log('Datos enviados correctamente');
             alert('Escultor actualizado correctamente');
             navigate(-1); // Navegar de regreso después de actualizar
         } catch (error) {
+        
             console.error('Error al actualizar al escultor', error);
         }
     };
+    
     
     return (
         <Form onSubmit={updateData}>

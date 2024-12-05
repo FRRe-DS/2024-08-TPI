@@ -2,12 +2,12 @@ const pool = require('../config/db');
 
 class EventModel {
     // Crear un nuevo evento
-    static async createEvent({ nombre, fecha, lugar, descripcion, tematica }) {
+    static async createEvent({ nombre, fecha, lugar, descripcion, tematica, activo }) {
         const [result] = await pool.query(
-            'INSERT INTO eventos (nombre, fecha, lugar, descripcion, tematica) VALUES (?, ?, ?, ?, ?)',
-            [nombre, fecha, lugar, descripcion, tematica]
+            'INSERT INTO eventos (nombre, fecha, lugar, descripcion, tematica, activo) VALUES (?, ?, ?, ?, ?, ?)',
+            [nombre, fecha, lugar, descripcion, tematica, activo]
         );
-        return { id: result.insertId, nombre, fecha, lugar, descripcion, tematica };
+        return { id: result.insertId, nombre, fecha, lugar, descripcion, tematica, activo };
     }
 
     // Obtener todos los eventos
@@ -26,10 +26,10 @@ class EventModel {
     }
 
     // Actualizar evento por ID
-    static async updateEvent(id, { nombre, fecha, lugar, descripcion, tematica }) {
+    static async updateEvent(id, { nombre, fecha, lugar, descripcion, tematica, activo }) {
         const [result] = await pool.query(
-            'UPDATE eventos SET nombre = ?, fecha = ?, lugar = ?, descripcion = ?, tematica = ? WHERE id = ?',
-            [nombre, fecha, lugar, descripcion, tematica, id]
+            'UPDATE eventos SET nombre = ?, fecha = ?, lugar = ?, descripcion = ?, tematica = ?, activo = ? WHERE id = ?',
+            [nombre, fecha, lugar, descripcion, tematica, activo, id]
         );
         return result.affectedRows > 0;
     }

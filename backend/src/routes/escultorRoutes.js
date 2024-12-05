@@ -14,12 +14,12 @@ router.post('/', uploadOne.single('imagen_esc'), procesarImagen ,EscultorControl
 router.get('/:id_escultor', EscultorController.getEscultorById);
 
 // Actualizar un escultor
-router.put('/:id_escultor', EscultorController.updateEscultor);
+router.put('/:id_escultor',uploadOne.single('imagen_esc'), procesarImagen, EscultorController.updateEscultor);
 
 // Eliminar un escultores
 router.delete('/:id_escultor', EscultorController.deleteEscultor);
 
 // Obtener escultores del evento activo
-router.get('/activos', EscultorController.getEscultoresActivos);
+router.get('/evento/activo', EscultorController.getEscultoresActivos);
 
 module.exports = router;

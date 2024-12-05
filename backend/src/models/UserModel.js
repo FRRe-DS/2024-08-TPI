@@ -23,7 +23,7 @@ class UserModel {
     }
 
     // Obtener user por email
-    static async getUserById(email) {
+    static async getUserByEmail(email) {
         const [rows] = await pool.query('SELECT * FROM usuarios WHERE email = ?', [email]);
         if (rows.length === 0) {
             return null;
@@ -39,10 +39,10 @@ class UserModel {
     }
 
     // Actualizar user 
-    static async updateUser(email, {name, nickname, role }) {
+    static async updateUser(email, { role }) {
         const [result] = await pool.query(
-            'UPDATE eventos SET name = ?, nickname = ?, role = ? WHERE email = ?',
-            [name, nickname, role, email]
+            'UPDATE usuarios SET role = ? WHERE email = ?',
+            [role, email]
         );
         return result.affectedRows > 0;
     }

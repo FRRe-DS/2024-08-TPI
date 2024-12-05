@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Importar useNavigate
 import axios from 'axios';
-import {QRCodeSVG} from 'qrcode.react'
+
 
 
 
@@ -11,21 +11,7 @@ const Biografia = () => {
   const [escultor, setEscultor] = useState(null);
   const [token, setToken] = useState('')
 
-  const generarToken = () =>{
-    const array = new Uint32Array(4);
-    window.crypto.getRandomValues(array);
-    const token = array.join('-');
-    setToken(token)
-  }
-
-  useEffect(() => {
-    generarToken()
-    const time = setInterval(generarToken, 60000) //generamos el token cada minuto
-
-    return () => clearInterval(time)
-  },[])
-
-
+  
 
   useEffect(() => {
     const fetchEscultor = async () => {
@@ -38,7 +24,26 @@ const Biografia = () => {
     };
     fetchEscultor();
   }, [id_escultor]);
+
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const response = await axios.post(`http://localhost:3000/api/token/:${id_escultor}`); // Usamos POST con Axios
+        setToken(response.data.token); // Actualizamos el estado con el token recibido
+      } catch (err) {
+        console.error('Error al obtener el token:', err);
+
+      }
+    };
   
+    fetchToken(); // Llamada inicial
+  
+    const interval = setInterval(fetchToken, 60000); // Llamar cada 60 segundos
+    return () => clearInterval(interval); // Limpiar el intervalo cuando el componente se desmonte
+  }, [id_escultor]);
+
+
   function isUrl(image) {
     if (!image) return false;
     const res = image.match(/^(http|https):\/\/[^ "]+$/);
@@ -80,18 +85,11 @@ const Biografia = () => {
             <span className='text-GrisCasiOscuro'> {escultor.nombre_esc}</span></p>
             <p><span className="font-bold text-GrisMuyOscuro">Apellido:</span> <span className='text-GrisCasiOscuro'> {escultor.apellido}</span></p>
           </div>
-          {/*codigo QR*/}
-          <div>
-                { token && (
-                  <QRCodeSVG value = {`http://localhost:5173/votar/${id_escultor}?token=${token}`} />
-                )}
-
-          </div>
-
+         
           {/* Botón que redirige al componente Votar */}
           <div className="mt-6">
             <button
-              onClick={() => navigate(`/votar/${id_escultor}`)} // Navegar al componente Votar
+              onClick={() => navigate(`/votar/${id_escultor}?token=${token}`)} // Navegar al componente Votar
               className="bg-GrisMuyOscuro hover:bg-grisOscuro text-white font-bold py-2 px-4 rounded"
             >
               Ir a Votar

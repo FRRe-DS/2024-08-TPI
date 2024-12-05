@@ -22,6 +22,8 @@ import ListaAdminQR from './views/components/ListaAdminQR';
 import PresentacionQR from './views/components/PresentacionQR';
 import UpdateEvento from './views/components/CRUD/UpdateEvento'
 import { useState } from 'react';
+import UpdateUsuario from './views/components/CRUD/UpdateUsuario'
+
 
 const App = () => {
   const [showMenuMobile, setShowMenuMobile]= useState(false);
@@ -45,7 +47,8 @@ const App = () => {
             <Route path="/Resultados" element={<Resultados />} />
             <Route path="/create-evento" element={<CreateEvento />} />
             <Route path="/delete-evento" element={<DeleteEvento />} />
-            <Route path="/modificar-evento/:id_evento" element={<UpdateEvento />} />
+            <Route path="/modificar-evento/:id" element={<UpdateEvento />} />
+            <Route path="/modificar-usuario/:email" element={<UpdateUsuario />} />
             <Route path="/votar/:id_escultor" element={<RutasProtegidas component={Votar} role="user" />} />   
             <Route 
               path="/Admin" 
